@@ -2,6 +2,6 @@
 
 class_CanIf CanIf;
 
-void class_CanIf::InitFunction(void){
+FUNC(void, CANIF_CODE) class_CanIf::InitFunction(void){
 }
 
