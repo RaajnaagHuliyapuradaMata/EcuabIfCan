@@ -8,6 +8,8 @@
 /*****************************************************/
 #include "CanIf.h"
 
+#include "CanIf_EcuM.h"
+
 /*****************************************************/
 /* #DEFINES                                          */
 /*****************************************************/
@@ -32,11 +34,13 @@
 /* OBJECTS                                           */
 /*****************************************************/
 class_CanIf CanIf;
+class_CanIf_EcuM CanIf_EcuM;
+class_EcuM_Client *EcuM_Client_ptr_CanIf = &CanIf_EcuM;
 
 /*****************************************************/
 /* FUNCTIONS                                         */
 /*****************************************************/
-FUNC(void, CANIF_CODE) class_CanIf::InitFunction(void){
+FUNC(void, CANIF_CODE) class_CanIf_EcuM::InitFunction(void){
 }
 
 FUNC(void, CANIF_CODE) class_CanIf::GetControllerMode(void){

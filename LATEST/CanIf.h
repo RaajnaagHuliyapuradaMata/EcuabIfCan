@@ -26,7 +26,6 @@ class class_CanIf{
 /*****************************************************/
 /* FUNCTIONS                                         */
 /*****************************************************/
-      FUNC(void, CANIF_CODE) InitFunction                  (void);
       FUNC(void, CANIF_CODE) GetControllerMode             (void);
       FUNC(void, CANIF_CODE) SetControllerMode             (void);
       FUNC(void, CANIF_CODE) Transmit                      (void);
