@@ -1,6 +1,6 @@
 #pragma once
 /*****************************************************/
-/* File   : CanIf_EcuM.h                             */
+/* File   : CanIf_SchM.h                             */
 /* Author : Naagraaj HM                              */
 /*****************************************************/
 
@@ -9,7 +9,7 @@
 /*****************************************************/
 #include "Compiler_Cfg_CanIf.h"
 
-#include "EcuM_Client.h"
+#include "SchM_Client.h"
 
 /*****************************************************/
 /* #DEFINES                                          */
@@ -22,13 +22,12 @@
 /*****************************************************/
 /* TYPEDEFS                                          */
 /*****************************************************/
-class interface_CanIf_EcuM : public interface_EcuM_Client{
+class interface_CanIf_SchM : public interface_SchM_Client{
    public:
 /*****************************************************/
 /* FUNCTIONS                                         */
 /*****************************************************/
-      FUNC(void, CANIF_CODE) InitFunction   (void);
-      FUNC(void, CANIF_CODE) DeInitFunction (void);
+      FUNC(void, CANIF_CODE) MainFunction(void);
 };
 
 /*****************************************************/
@@ -42,7 +41,7 @@ class interface_CanIf_EcuM : public interface_EcuM_Client{
 /*****************************************************/
 /* OBJECTS                                           */
 /*****************************************************/
-extern interface_CanIf_EcuM *EcuM_Client_ptr_CanIf;
+extern interface_CanIf_SchM *SchM_Client_ptr_CanIf;
 
 /*****************************************************/
 /* EOF                                               */
