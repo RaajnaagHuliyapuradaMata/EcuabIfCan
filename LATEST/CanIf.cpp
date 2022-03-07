@@ -24,8 +24,6 @@
 /*****************************************************/
 class module_CanIf:
       public abstract_module
-   ,  public interface_CanIf_EcuM
-   ,  public interface_CanIf_SchM
 {
    public:
       FUNC(void, CANIF_CODE) InitFunction   (void);
@@ -44,10 +42,9 @@ class module_CanIf:
 /*****************************************************/
 /* OBJECTS                                           */
 /*****************************************************/
-module_CanIf CanIf;
-
-interface_CanIf_EcuM *EcuM_Client_ptr_CanIf = &CanIf;
-interface_CanIf_SchM *SchM_Client_ptr_CanIf = &CanIf;
+module_CanIf   CanIf;
+infEcuMClient* gptrinfEcuMClient_CanIf = &CanIf;
+infSchMClient* gptrinfSchMClient_CanIf = &CanIf;
 
 /*****************************************************/
 /* FUNCTIONS                                         */
