@@ -32,7 +32,7 @@
 /*****************************************************/
 /* OBJECTS                                           */
 /*****************************************************/
-extern infEcuMClient *gptrinfEcuMClient_CanIf;
+extern infEcuMClient* gptrinfEcuMClient_CanIf;
 
 /*****************************************************/
 /* FUNCTIONS                                         */

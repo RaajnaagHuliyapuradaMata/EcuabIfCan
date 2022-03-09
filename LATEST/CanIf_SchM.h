@@ -32,7 +32,7 @@
 /*****************************************************/
 /* OBJECTS                                           */
 /*****************************************************/
-extern infSchMClient *gptrinfSchMClient_CanIf;
+extern infSchMClient* gptrinfSchMClient_CanIf;
 
 /*****************************************************/
 /* FUNCTIONS                                         */
