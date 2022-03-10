@@ -7,8 +7,8 @@
 /* #INCLUDES                                         */
 /*****************************************************/
 #include "module.h"
-#include "CanIf_EcuM.h"
-#include "CanIf_SchM.h"
+#include "infCanIf_EcuM.h"
+#include "infCanIf_SchM.h"
 #include "CanIf_Unused.h"
 
 /*****************************************************/
@@ -28,6 +28,7 @@ class module_CanIf:
    public:
       FUNC(void, CANIF_CODE) InitFunction   (void);
       FUNC(void, CANIF_CODE) DeInitFunction (void);
+      FUNC(void, CANIF_CODE) GetVersionInfo (void);
       FUNC(void, CANIF_CODE) MainFunction   (void);
 };
 
@@ -44,6 +45,7 @@ class module_CanIf:
 /*****************************************************/
 module_CanIf   CanIf;
 infEcuMClient* gptrinfEcuMClient_CanIf = &CanIf;
+infDcmClient*  gptrinfDcmClient_CanIf  = &CanIf;
 infSchMClient* gptrinfSchMClient_CanIf = &CanIf;
 
 /*****************************************************/
@@ -53,6 +55,9 @@ FUNC(void, CANIF_CODE) module_CanIf::InitFunction(void){
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::DeInitFunction(void){
+}
+
+FUNC(void, CANIF_CODE) module_CanIf::GetVersionInfo(void){
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::MainFunction(void){
