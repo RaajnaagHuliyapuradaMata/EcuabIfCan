@@ -1,6 +1,6 @@
 #pragma once
 /*****************************************************/
-/* File   : CanIf_EcuM.h                             */
+/* File   : infCanIf_Dcm.h                           */
 /* Author : Naagraaj HM                              */
 /*****************************************************/
 
@@ -32,7 +32,7 @@
 /*****************************************************/
 /* OBJECTS                                           */
 /*****************************************************/
-extern infEcuMClient* gptrinfEcuMClient_CanIf;
+extern infDcmClient* gptrinfDcmClient_CanIf;
 
 /*****************************************************/
 /* FUNCTIONS                                         */

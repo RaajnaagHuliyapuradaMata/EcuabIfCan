@@ -8,8 +8,8 @@
 /*****************************************************/
 #include "module.h"
 #include "infCanIf_EcuM.h"
+#include "infCanIf_Dcm.h"
 #include "infCanIf_SchM.h"
-#include "CanIf_Unused.h"
 
 /*****************************************************/
 /* #DEFINES                                          */
@@ -63,6 +63,8 @@ FUNC(void, CANIF_CODE) module_CanIf::GetVersionInfo(void){
 FUNC(void, CANIF_CODE) module_CanIf::MainFunction(void){
 }
 
+#include "CanIf_Unused.h"
+
 FUNC(void, CANIF_CODE) class_CanIf_Unused::GetControllerMode(void){
 }
 
@@ -88,9 +90,6 @@ FUNC(void, CANIF_CODE) class_CanIf_Unused::GetPduMode(void){
 }
 
 FUNC(void, CANIF_CODE) class_CanIf_Unused::SetPduMode(void){
-}
-
-FUNC(void, CANIF_CODE) class_CanIf_Unused::GetVersionInfo(void){
 }
 
 FUNC(void, CANIF_CODE) class_CanIf_Unused::SetDynamicTxId(void){
