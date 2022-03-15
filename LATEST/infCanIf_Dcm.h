@@ -32,7 +32,7 @@
 /******************************************************************************/
 /* OBJECTS                                                                    */
 /******************************************************************************/
-extern infDcmClient* gptrinfDcmClient_CanIf;
+extern CONSTP2VAR(infDcmClient, CANIF_VAR, CANIF_CONST) gptrinfDcmClient_CanIf;
 
 /******************************************************************************/
 /* FUNCTIONS                                                                  */
