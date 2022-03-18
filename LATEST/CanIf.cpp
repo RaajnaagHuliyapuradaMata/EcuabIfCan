@@ -54,9 +54,11 @@ CONSTP2VAR(infSchMClient, CANIF_VAR, CANIF_CONST) gptrinfSchMClient_CanIf = &Can
 /* FUNCTIONS                                                                  */
 /******************************************************************************/
 FUNC(void, CANIF_CODE) module_CanIf::InitFunction(void){
+   CanIf.IsInitDone = TRUE;
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::DeInitFunction(void){
+   CanIf.IsInitDone = FALSE;
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::GetVersionInfo(void){
