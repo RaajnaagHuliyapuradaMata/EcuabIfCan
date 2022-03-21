@@ -6,9 +6,8 @@
 /******************************************************************************/
 /* #INCLUDES                                                                  */
 /******************************************************************************/
-#include "infCanIf_Version.h"
-
 #include "module.h"
+#include "infCanIf_Version.h"
 #include "infCanIf_EcuM.h"
 #include "infCanIf_Dcm.h"
 #include "infCanIf_SchM.h"
@@ -54,11 +53,11 @@ CONSTP2VAR(infSchMClient, CANIF_VAR, CANIF_CONST) gptrinfSchMClient_CanIf = &Can
 /* FUNCTIONS                                                                  */
 /******************************************************************************/
 FUNC(void, CANIF_CODE) module_CanIf::InitFunction(void){
-   CanIf.IsInitDone = TRUE;
+   CanIf.IsInitDone = E_OK;
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::DeInitFunction(void){
-   CanIf.IsInitDone = FALSE;
+   CanIf.IsInitDone = E_NOT_OK;
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::GetVersionInfo(void){
