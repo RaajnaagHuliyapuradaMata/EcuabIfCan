@@ -7,7 +7,7 @@
 /* #INCLUDES                                                                  */
 /******************************************************************************/
 #include "module.h"
-#include "infCanIf_Version.h"
+#include "CanIf_Cfg.h"
 #include "infCanIf_EcuM.h"
 #include "infCanIf_Dcm.h"
 #include "infCanIf_SchM.h"
@@ -15,10 +15,19 @@
 /******************************************************************************/
 /* #DEFINES                                                                   */
 /******************************************************************************/
+#define CANIF_AR_RELEASE_MAJOR_VERSION                                         4
+#define CANIF_AR_RELEASE_MINOR_VERSION                                         3
 
 /******************************************************************************/
 /* MACROS                                                                     */
 /******************************************************************************/
+#if(CANIF_AR_RELEASE_MAJOR_VERSION != STD_AR_RELEASE_MAJOR_VERSION)
+   #error "Incompatible CANIF_AR_RELEASE_MAJOR_VERSION!"
+#endif
+
+#if(CANIF_AR_RELEASE_MINOR_VERSION != STD_AR_RELEASE_MINOR_VERSION)
+   #error "Incompatible CANIF_AR_RELEASE_MINOR_VERSION!"
+#endif
 
 /******************************************************************************/
 /* TYPEDEFS                                                                   */
@@ -61,6 +70,11 @@ FUNC(void, CANIF_CODE) module_CanIf::DeInitFunction(void){
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::GetVersionInfo(void){
+#if(STD_ON == CanIf_DevErrorDetect)
+//TBD: API parameter check
+   Det_ReportError(
+   );
+#endif
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::MainFunction(void){
