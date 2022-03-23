@@ -40,6 +40,16 @@ class module_CanIf:
       FUNC(void, CANIF_CODE) DeInitFunction (void);
       FUNC(void, CANIF_CODE) GetVersionInfo (void);
       FUNC(void, CANIF_CODE) MainFunction   (void);
+
+   private:
+      CONST(Std_TypeVersionInfo, CANIF_CONST) VersionInfo = {
+            0x0000
+         ,  0xFFFF
+         ,  0x01
+         ,  '0'
+         ,  '1'
+         ,  '0'
+      };
 };
 
 /******************************************************************************/
