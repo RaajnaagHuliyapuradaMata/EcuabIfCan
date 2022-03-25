@@ -6,11 +6,11 @@
 /******************************************************************************/
 /* #INCLUDES                                                                  */
 /******************************************************************************/
-#include "module.h"
-#include "CfgCanIf.h"
-#include "infCanIf_EcuM.h"
-#include "infCanIf_Dcm.h"
-#include "infCanIf_SchM.h"
+#include "module.hpp"
+#include "CfgCanIf.hpp"
+#include "infCanIf_EcuM.hpp"
+#include "infCanIf_Dcm.hpp"
+#include "infCanIf_SchM.hpp"
 
 /******************************************************************************/
 /* #DEFINES                                                                   */
@@ -90,7 +90,7 @@ FUNC(void, CANIF_CODE) module_CanIf::GetVersionInfo(void){
 FUNC(void, CANIF_CODE) module_CanIf::MainFunction(void){
 }
 
-#include "CanIf_Unused.h"
+#include "CanIf_Unused.hpp"
 
 FUNC(void, CANIF_CODE) class_CanIf_Unused::GetControllerMode(void){
 }
