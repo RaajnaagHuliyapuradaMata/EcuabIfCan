@@ -7,7 +7,6 @@
 /* #INCLUDES                                                                  */
 /******************************************************************************/
 #include "module.hpp"
-#include "CfgCanIf.hpp"
 #include "infCanIf_EcuM.hpp"
 #include "infCanIf_Dcm.hpp"
 #include "infCanIf_SchM.hpp"
@@ -36,37 +35,40 @@ class module_CanIf:
       public abstract_module
 {
    public:
+      module_CanIf(Std_TypeVersionInfo lVersionInfo) : abstract_module(lVersionInfo){
+      }
       FUNC(void, CANIF_CODE) InitFunction   (void);
       FUNC(void, CANIF_CODE) DeInitFunction (void);
-      FUNC(void, CANIF_CODE) GetVersionInfo (void);
       FUNC(void, CANIF_CODE) MainFunction   (void);
-
-   private:
-      CONST(Std_TypeVersionInfo, CANIF_CONST) VersionInfo = {
-            0x0000
-         ,  0xFFFF
-         ,  0x01
-         ,  '0'
-         ,  '1'
-         ,  '0'
-      };
 };
+
+extern VAR(module_CanIf, CANIF_VAR) CanIf;
 
 /******************************************************************************/
 /* CONSTS                                                                     */
 /******************************************************************************/
+CONSTP2VAR(infEcuMClient, CANIF_VAR, CANIF_CONST) gptrinfEcuMClient_CanIf = &CanIf;
+CONSTP2VAR(infDcmClient,  CANIF_VAR, CANIF_CONST) gptrinfDcmClient_CanIf  = &CanIf;
+CONSTP2VAR(infSchMClient, CANIF_VAR, CANIF_CONST) gptrinfSchMClient_CanIf = &CanIf;
 
 /******************************************************************************/
 /* PARAMS                                                                     */
 /******************************************************************************/
+#include "CfgCanIf.hpp"
 
 /******************************************************************************/
 /* OBJECTS                                                                    */
 /******************************************************************************/
-VAR(module_CanIf, CANIF_VAR) CanIf;
-CONSTP2VAR(infEcuMClient, CANIF_VAR, CANIF_CONST) gptrinfEcuMClient_CanIf = &CanIf;
-CONSTP2VAR(infDcmClient,  CANIF_VAR, CANIF_CONST) gptrinfDcmClient_CanIf  = &CanIf;
-CONSTP2VAR(infSchMClient, CANIF_VAR, CANIF_CONST) gptrinfSchMClient_CanIf = &CanIf;
+VAR(module_CanIf, CANIF_VAR) CanIf(
+   {
+         0x0000
+      ,  0xFFFF
+      ,  0x01
+      ,  '0'
+      ,  '1'
+      ,  '0'
+   }
+);
 
 /******************************************************************************/
 /* FUNCTIONS                                                                  */
@@ -77,19 +79,6 @@ FUNC(void, CANIF_CODE) module_CanIf::InitFunction(void){
 
 FUNC(void, CANIF_CODE) module_CanIf::DeInitFunction(void){
    CanIf.IsInitDone = E_NOT_OK;
-}
-
-FUNC(void, CANIF_CODE) module_CanIf::GetVersionInfo(
-   CONSTP2VAR(Std_TypeVersionInfo, CANIF_VAR, CANIF_CONST) lptrVersionInfo
-){
-   if(NULL_PTR == lptrVersionInfo){
-#if(STD_ON == CanIf_DevErrorDetect)
-      Det_ReportError(
-      );
-#endif
-   }
-   else{
-   }
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::MainFunction(void){
