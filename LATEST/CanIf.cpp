@@ -37,11 +37,9 @@ class module_CanIf:
    public:
       module_CanIf(Std_TypeVersionInfo lVersionInfo) : abstract_module(lVersionInfo){
       }
-
       FUNC(void, CANIF_CODE) InitFunction(
          CONSTP2CONST(CfgModule_TypeAbstract, CANIF_CONFIG_DATA, CANIF_APPL_CONST) lptrCfgModule
       );
-
       FUNC(void, CANIF_CODE) DeInitFunction (void);
       FUNC(void, CANIF_CODE) MainFunction   (void);
 };
@@ -80,21 +78,37 @@ VAR(module_CanIf, CANIF_VAR) CanIf(
 FUNC(void, CANIF_CODE) module_CanIf::InitFunction(
    CONSTP2CONST(CfgModule_TypeAbstract, CANIF_CONFIG_DATA, CANIF_APPL_CONST) lptrCfgModule
 ){
-   if(NULL_PTR == lptrCfgModule){
+   if(E_OK == IsInitDone){
 #if(STD_ON == CanIf_DevErrorDetect)
       Det_ReportError(
       );
 #endif
    }
    else{
-// check lptrCfgCanIf for memory faults
+      if(NULL_PTR == lptrCfgModule){
+#if(STD_ON == CanIf_DevErrorDetect)
+         Det_ReportError(
+         );
+#endif
+      }
+      else{
+// check lptrCfgModule for memory faults
 // use PBcfg_CanIf as back-up configuration
+      }
+      IsInitDone = E_OK;
    }
-   IsInitDone = E_OK;
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::DeInitFunction(void){
-   CanIf.IsInitDone = E_NOT_OK;
+   if(E_OK != IsInitDone){
+#if(STD_ON == CanIf_DevErrorDetect)
+      Det_ReportError(
+      );
+#endif
+   }
+   else{
+      IsInitDone = E_NOT_OK;
+   }
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::MainFunction(void){
