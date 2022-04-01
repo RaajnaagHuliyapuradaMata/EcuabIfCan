@@ -78,6 +78,7 @@ VAR(module_CanIf, CANIF_VAR) CanIf(
 FUNC(void, CANIF_CODE) module_CanIf::InitFunction(
    CONSTP2CONST(CfgModule_TypeAbstract, CANIF_CONFIG_DATA, CANIF_APPL_CONST) lptrCfgModule
 ){
+#if(STD_ON == CanIf_InitCheck)
    if(E_OK == IsInitDone){
 #if(STD_ON == CanIf_DevErrorDetect)
       Det_ReportError(
@@ -85,6 +86,7 @@ FUNC(void, CANIF_CODE) module_CanIf::InitFunction(
 #endif
    }
    else{
+#endif
       if(NULL_PTR == lptrCfgModule){
 #if(STD_ON == CanIf_DevErrorDetect)
          Det_ReportError(
@@ -96,10 +98,13 @@ FUNC(void, CANIF_CODE) module_CanIf::InitFunction(
 // use PBcfg_CanIf as back-up configuration
       }
       IsInitDone = E_OK;
+#if(STD_ON == CanIf_InitCheck)
    }
+#endif
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::DeInitFunction(void){
+#if(STD_ON == CanIf_InitCheck)
    if(E_OK != IsInitDone){
 #if(STD_ON == CanIf_DevErrorDetect)
       Det_ReportError(
@@ -107,11 +112,26 @@ FUNC(void, CANIF_CODE) module_CanIf::DeInitFunction(void){
 #endif
    }
    else{
+#endif
       IsInitDone = E_NOT_OK;
+#if(STD_ON == CanIf_InitCheck)
    }
+#endif
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::MainFunction(void){
+#if(STD_ON == CanIf_InitCheck)
+   if(E_OK != IsInitDone){
+#if(STD_ON == CanIf_DevErrorDetect)
+      Det_ReportError(
+      );
+#endif
+   }
+   else{
+#endif
+#if(STD_ON == CanIf_InitCheck)
+   }
+#endif
 }
 
 class class_CanIf_Unused{
@@ -149,7 +169,27 @@ class class_CanIf_Unused{
       FUNC(void, CANIF_CODE) CbTrcvModeIndication          (void);
 };
 
+ERROR
+#define InitCheck_Start(module_name) ({                                        \
+#if(STD_ON == module_name##_InitCheck)                                         \
+   if(E_OK != IsInitDone){                                                     \
+#if(STD_ON == module_name##_DevErrorDetect)                                    \
+      Det_ReportError(                                                         \
+      );                                                                       \
+#endif                                                                         \
+   }                                                                           \
+   else{
+#endif                                                                         \
+})
+
+#define InitCheck_Stop(module)                                                 \
+#if(STD_ON == ##module_InitCheck)                                              \
+   }                                                                           \
+#endif
+
 FUNC(void, CANIF_CODE) class_CanIf_Unused::GetControllerMode(void){
+   InitCheck_Start(CanIf)
+   InitCheck_Stop(CanIf)
 }
 
 FUNC(void, CANIF_CODE) class_CanIf_Unused::SetControllerMode(void){
