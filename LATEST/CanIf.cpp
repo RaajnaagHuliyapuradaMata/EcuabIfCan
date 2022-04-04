@@ -169,6 +169,7 @@ class class_CanIf_Unused{
       FUNC(void, CANIF_CODE) CbTrcvModeIndication          (void);
 };
 
+
 FUNC(void, CANIF_CODE) class_CanIf_Unused::GetControllerMode(void){
 }
 
