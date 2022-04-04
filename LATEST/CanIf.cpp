@@ -169,27 +169,7 @@ class class_CanIf_Unused{
       FUNC(void, CANIF_CODE) CbTrcvModeIndication          (void);
 };
 
-ERROR
-#define InitCheck_Start(module_name) ({                                        \
-#if(STD_ON == module_name##_InitCheck)                                         \
-   if(E_OK != IsInitDone){                                                     \
-#if(STD_ON == module_name##_DevErrorDetect)                                    \
-      Det_ReportError(                                                         \
-      );                                                                       \
-#endif                                                                         \
-   }                                                                           \
-   else{
-#endif                                                                         \
-})
-
-#define InitCheck_Stop(module)                                                 \
-#if(STD_ON == ##module_InitCheck)                                              \
-   }                                                                           \
-#endif
-
 FUNC(void, CANIF_CODE) class_CanIf_Unused::GetControllerMode(void){
-   InitCheck_Start(CanIf)
-   InitCheck_Stop(CanIf)
 }
 
 FUNC(void, CANIF_CODE) class_CanIf_Unused::SetControllerMode(void){
