@@ -14,18 +14,18 @@
 /******************************************************************************/
 /* #DEFINES                                                                   */
 /******************************************************************************/
-#define CANIF_AR_RELEASE_MAJOR_VERSION                                         4
-#define CANIF_AR_RELEASE_MINOR_VERSION                                         3
+#define CANIF_AR_RELEASE_VERSION_MAJOR                                         4
+#define CANIF_AR_RELEASE_VERSION_MINOR                                         3
 
 /******************************************************************************/
 /* MACROS                                                                     */
 /******************************************************************************/
-#if(CANIF_AR_RELEASE_MAJOR_VERSION != STD_AR_RELEASE_MAJOR_VERSION)
-   #error "Incompatible CANIF_AR_RELEASE_MAJOR_VERSION!"
+#if(CANIF_AR_RELEASE_VERSION_MAJOR != STD_AR_RELEASE_VERSION_MAJOR)
+   #error "Incompatible CANIF_AR_RELEASE_VERSION_MAJOR!"
 #endif
 
-#if(CANIF_AR_RELEASE_MINOR_VERSION != STD_AR_RELEASE_MINOR_VERSION)
-   #error "Incompatible CANIF_AR_RELEASE_MINOR_VERSION!"
+#if(CANIF_AR_RELEASE_VERSION_MINOR != STD_AR_RELEASE_VERSION_MINOR)
+   #error "Incompatible CANIF_AR_RELEASE_VERSION_MINOR!"
 #endif
 
 /******************************************************************************/
@@ -63,8 +63,10 @@ CONSTP2VAR(infSchMClient, CANIF_VAR, CANIF_CONST) gptrinfSchMClient_CanIf = &Can
 /******************************************************************************/
 VAR(module_CanIf, CANIF_VAR) CanIf(
    {
-         0x0000
-      ,  0xFFFF
+         CANIF_AR_RELEASE_VERSION_MAJOR
+      ,  CANIF_AR_RELEASE_VERSION_MINOR
+      ,  0x00
+      ,  0xFF
       ,  0x01
       ,  '0'
       ,  '1'
