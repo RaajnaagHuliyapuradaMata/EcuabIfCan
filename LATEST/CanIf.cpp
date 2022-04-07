@@ -101,8 +101,8 @@ FUNC(void, CANIF_CODE) module_CanIf::InitFunction(
             lptrCfg = lptrCfgModule;
          }
          else{
-// use PBcfg_CanIf as back-up configuration
-            lptrCfg = PBcfg_CanIf;
+// use PBcfgCanIf as back-up configuration
+            lptrCfg = &PBcfgCanIf;
          }
       }
       IsInitDone = E_OK;
