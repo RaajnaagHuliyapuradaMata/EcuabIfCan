@@ -96,8 +96,14 @@ FUNC(void, CANIF_CODE) module_CanIf::InitFunction(
 #endif
       }
       else{
+         if(STD_LOW){
 // check lptrCfgModule for memory faults
+            lptrCfg = lptrCfgModule;
+         }
+         else{
 // use PBcfg_CanIf as back-up configuration
+            lptrCfg = PBcfg_CanIf;
+         }
       }
       IsInitDone = E_OK;
 #if(STD_ON == CanIf_InitCheck)
