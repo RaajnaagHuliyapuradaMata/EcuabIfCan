@@ -7,6 +7,7 @@
 /* #INCLUDES                                                                  */
 /******************************************************************************/
 #include "Module.hpp"
+#include "CanIf_core.hpp"
 #include "infCanIf_EcuM.hpp"
 #include "infCanIf_Dcm.hpp"
 #include "infCanIf_SchM.hpp"
