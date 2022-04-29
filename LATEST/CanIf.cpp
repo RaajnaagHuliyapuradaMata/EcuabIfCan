@@ -7,10 +7,9 @@
 /* #INCLUDES                                                                  */
 /******************************************************************************/
 #include "Module.hpp"
+#include "CfgCanIf.hpp"
 #include "CanIf_core.hpp"
-#include "infCanIf_EcuM.hpp"
-#include "infCanIf_Dcm.hpp"
-#include "infCanIf_SchM.hpp"
+#include "infCanIf.hpp"
 
 /******************************************************************************/
 /* #DEFINES                                                                   */
@@ -44,6 +43,7 @@ class module_CanIf:
       );
       FUNC(void, CANIF_CODE) DeInitFunction (void);
       FUNC(void, CANIF_CODE) MainFunction   (void);
+      CANIF_CORE_FUNCTIONALITIES
 };
 
 extern VAR(module_CanIf, CANIF_VAR) CanIf;
@@ -58,7 +58,6 @@ CONSTP2VAR(infSchMClient, CANIF_VAR, CANIF_CONST) gptrinfSchMClient_CanIf = &Can
 /******************************************************************************/
 /* PARAMS                                                                     */
 /******************************************************************************/
-#include "CfgCanIf.hpp"
 
 /******************************************************************************/
 /* OBJECTS                                                                    */
