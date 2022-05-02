@@ -159,94 +159,94 @@ FUNC(void, CANIF_CODE) module_CanIf::MainFunction(void){
 #endif
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::GetControllerMode(void){
+FUNC(void, CANIF_CODE) module_CanIf::GetControllerMode(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::SetControllerMode(void){
+FUNC(void, CANIF_CODE) module_CanIf::SetControllerMode(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::Transmit(void){
+FUNC(void, CANIF_CODE) module_CanIf::Transmit(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::CancelTransmit(void){
+FUNC(void, CANIF_CODE) module_CanIf::CancelTransmit(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::ReadRxPduData(void){
+FUNC(void, CANIF_CODE) module_CanIf::ReadRxPduData(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::ReadTxNotifStatus(void){
+FUNC(void, CANIF_CODE) module_CanIf::ReadTxNotifStatus(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::ReadRxNotifStatus(void){
+FUNC(void, CANIF_CODE) module_CanIf::ReadRxNotifStatus(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::GetPduMode(void){
+FUNC(void, CANIF_CODE) module_CanIf::GetPduMode(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::SetPduMode(void){
+FUNC(void, CANIF_CODE) module_CanIf::SetPduMode(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::SetDynamicTxId(void){
+FUNC(void, CANIF_CODE) module_CanIf::SetDynamicTxId(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::GetTrcvMode(void){
+FUNC(void, CANIF_CODE) module_CanIf::GetTrcvMode(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::SetTrcvMode(void){
+FUNC(void, CANIF_CODE) module_CanIf::SetTrcvMode(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::GetTrcvWakeupReason(void){
+FUNC(void, CANIF_CODE) module_CanIf::GetTrcvWakeupReason(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::SetTrcvWakeupMode(void){
+FUNC(void, CANIF_CODE) module_CanIf::SetTrcvWakeupMode(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::CheckWakeup(void){
+FUNC(void, CANIF_CODE) module_CanIf::CheckWakeup(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::CheckValidation(void){
+FUNC(void, CANIF_CODE) module_CanIf::CheckValidation(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::GetTxConfirmationState(void){
+FUNC(void, CANIF_CODE) module_CanIf::GetTxConfirmationState(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::ClearTrcvWufFlag(void){
+FUNC(void, CANIF_CODE) module_CanIf::ClearTrcvWufFlag(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::CheckTrcvWakeFlag(void){
+FUNC(void, CANIF_CODE) module_CanIf::CheckTrcvWakeFlag(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::CheckBaudRate(void){
+FUNC(void, CANIF_CODE) module_CanIf::CheckBaudRate(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::ChangeBaudRate(void){
+FUNC(void, CANIF_CODE) module_CanIf::ChangeBaudRate(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::CbTxConfirmation(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbTxConfirmation(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::CbRxIndication(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbRxIndication(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::CbCancelTxConfirmation(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbCancelTxConfirmation(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::CbControllerBusOff(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbControllerBusOff(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::CbConfirmPnAvailability(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbConfirmPnAvailability(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::CbClearTrcvWufFlagIndication(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbClearTrcvWufFlagIndication(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::CbCheckTrcvWakeFlagIndication(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbCheckTrcvWakeFlagIndication(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::CbControllerModeIndication(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbControllerModeIndication(void){
 }
 
-FUNC(void, CANIF_CODE) class_CanIf_Functionality::CbTrcvModeIndication(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbTrcvModeIndication(void){
 }
 
 /******************************************************************************/

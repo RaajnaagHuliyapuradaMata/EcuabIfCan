@@ -22,7 +22,6 @@
               FUNC(void, CANIF_CODE) ReadRxNotifStatus             (void);     \
               FUNC(void, CANIF_CODE) GetPduMode                    (void);     \
               FUNC(void, CANIF_CODE) SetPduMode                    (void);     \
-              FUNC(void, CANIF_CODE) GetVersionInfo                (void);     \
               FUNC(void, CANIF_CODE) SetDynamicTxId                (void);     \
               FUNC(void, CANIF_CODE) GetTrcvMode                   (void);     \
               FUNC(void, CANIF_CODE) SetTrcvMode                   (void);     \
@@ -55,7 +54,6 @@
       virtual FUNC(void, CANIF_CODE) ReadRxNotifStatus             (void) = 0; \
       virtual FUNC(void, CANIF_CODE) GetPduMode                    (void) = 0; \
       virtual FUNC(void, CANIF_CODE) SetPduMode                    (void) = 0; \
-      virtual FUNC(void, CANIF_CODE) GetVersionInfo                (void) = 0; \
       virtual FUNC(void, CANIF_CODE) SetDynamicTxId                (void) = 0; \
       virtual FUNC(void, CANIF_CODE) GetTrcvMode                   (void) = 0; \
       virtual FUNC(void, CANIF_CODE) SetTrcvMode                   (void) = 0; \
