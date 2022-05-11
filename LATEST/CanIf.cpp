@@ -9,7 +9,7 @@
 #include "Module.hpp"
 #include "CfgCanIf.hpp"
 #include "CanIf_core.hpp"
-#include "infCanIf.hpp"
+#include "infCanIf_Exp.hpp"
 
 /******************************************************************************/
 /* #DEFINES                                                                   */
@@ -32,6 +32,7 @@
 /* TYPEDEFS                                                                   */
 /******************************************************************************/
 class module_CanIf:
+   INTERFACES_EXPORTED_CANIF
       public abstract_module
    ,  public class_CanIf_Functionality
 {
