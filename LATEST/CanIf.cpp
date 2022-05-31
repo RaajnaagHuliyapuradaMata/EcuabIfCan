@@ -32,7 +32,7 @@
 /* TYPEDEFS                                                                   */
 /******************************************************************************/
 class module_CanIf:
-   INTERFACES_EXPORTED_CANIF
+      INTERFACES_EXPORTED_CANIF
       public abstract_module
    ,  public class_CanIf_Functionality
 {
