@@ -10,6 +10,7 @@
 #include "CfgCanIf.hpp"
 #include "CanIf_core.hpp"
 #include "infCanIf_Exp.hpp"
+#include "infCanIf_Imp.hpp"
 
 /******************************************************************************/
 /* #DEFINES                                                                   */
@@ -42,6 +43,7 @@ class module_CanIf:
 /******************************************************************************/
             Std_TypeReturn          IsInitDone{E_NOT_OK};
       const CfgModule_TypeAbstract* lptrCfg{(CfgModule_TypeAbstract*)NULL_PTR};
+            infPduRClient_Lo        infPduRClient_CanIf;
 
    public:
       module_CanIf(Std_TypeVersionInfo lVersionInfo) : abstract_module(lVersionInfo){
