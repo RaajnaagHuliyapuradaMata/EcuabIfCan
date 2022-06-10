@@ -74,10 +74,6 @@ CONSTP2VAR(infSchMClient, CANIF_VAR, CANIF_CONST) gptrinfSchMClient_CanIf = &Can
 /******************************************************************************/
 VAR(module_CanIf, CANIF_VAR) CanIf(
    {
-#if(STD_ON == _ReSIM)
-         "CanIf",
-#else
-#endif
          CANIF_AR_RELEASE_VERSION_MAJOR
       ,  CANIF_AR_RELEASE_VERSION_MINOR
       ,  0x00
