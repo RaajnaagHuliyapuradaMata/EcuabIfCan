@@ -182,21 +182,6 @@ FUNC(void, CANIF_CODE) module_CanIf::GetControllerMode(void){
 FUNC(void, CANIF_CODE) module_CanIf::SetControllerMode(void){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::Transmit(void){
-}
-
-FUNC(void, CANIF_CODE) module_CanIf::CancelTransmit(void){
-}
-
-FUNC(void, CANIF_CODE) module_CanIf::ReadRxPduData(void){
-}
-
-FUNC(void, CANIF_CODE) module_CanIf::ReadTxNotifStatus(void){
-}
-
-FUNC(void, CANIF_CODE) module_CanIf::ReadRxNotifStatus(void){
-}
-
 FUNC(void, CANIF_CODE) module_CanIf::GetPduMode(void){
 }
 
@@ -239,15 +224,6 @@ FUNC(void, CANIF_CODE) module_CanIf::CheckBaudRate(void){
 FUNC(void, CANIF_CODE) module_CanIf::ChangeBaudRate(void){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::CbTxConfirmation(void){
-}
-
-FUNC(void, CANIF_CODE) module_CanIf::CbRxIndication(void){
-}
-
-FUNC(void, CANIF_CODE) module_CanIf::CbCancelTxConfirmation(void){
-}
-
 FUNC(void, CANIF_CODE) module_CanIf::CbControllerBusOff(void){
 }
 
@@ -264,6 +240,30 @@ FUNC(void, CANIF_CODE) module_CanIf::CbControllerModeIndication(void){
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::CbTrcvModeIndication(void){
+}
+
+FUNC(void, CANIF_CODE) module_CanIf::Transmit(void){
+}
+
+FUNC(void, CANIF_CODE) module_CanIf::CancelTransmit(void){
+}
+
+FUNC(void, CANIF_CODE) module_CanIf::ReadRxPduData(void){
+}
+
+FUNC(void, CANIF_CODE) module_CanIf::ReadTxNotifStatus(void){
+}
+
+FUNC(void, CANIF_CODE) module_CanIf::ReadRxNotifStatus(void){
+}
+
+FUNC(void, CANIF_CODE) module_CanIf::CbTxConfirmation(void){
+}
+
+FUNC(void, CANIF_CODE) module_CanIf::CbRxIndication(void){
+}
+
+FUNC(void, CANIF_CODE) module_CanIf::CbCancelTxConfirmation(void){
 }
 
 /******************************************************************************/
