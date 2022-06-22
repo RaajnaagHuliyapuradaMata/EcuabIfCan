@@ -162,6 +162,12 @@ FUNC(void, CANIF_CODE) module_CanIf::MainFunction(void){
       == IsInitDone
    ){
 #endif
+
+#if(STD_ON == _ReSIM)
+      RxIndication();
+#else
+#endif
+
 #if(STD_ON == CanIf_InitCheck)
    }
    else{
@@ -262,6 +268,13 @@ FUNC(void, CANIF_CODE) module_CanIf::TxConfirmation(void){
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::RxIndication(void){
+#if(STD_ON == _ReSIM)
+   infPduRClient_CanIf.RxIndication(
+         0
+      ,  0
+   );
+#else
+#endif
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::CbCancelTxConfirmation(void){
