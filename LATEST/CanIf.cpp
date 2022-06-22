@@ -34,7 +34,7 @@
 /******************************************************************************/
 class module_CanIf:
       INTERFACES_EXPORTED_CANIF
-      public abstract_module
+   ,  public abstract_module
    ,  public class_CanIf_Functionality
 {
    private:
@@ -64,6 +64,7 @@ extern VAR(module_CanIf, CANIF_VAR) CanIf;
 CONSTP2VAR(infEcuMClient, CANIF_VAR, CANIF_CONST) gptrinfEcuMClient_CanIf = &CanIf;
 CONSTP2VAR(infDcmClient,  CANIF_VAR, CANIF_CONST) gptrinfDcmClient_CanIf  = &CanIf;
 CONSTP2VAR(infSchMClient, CANIF_VAR, CANIF_CONST) gptrinfSchMClient_CanIf = &CanIf;
+CONSTP2VAR(infCanIf_PduR, CANIF_VAR, CANIF_CONST) gptrinfCanIf_PduR       = &CanIf;
 
 /******************************************************************************/
 /* PARAMS                                                                     */
@@ -257,10 +258,10 @@ FUNC(void, CANIF_CODE) module_CanIf::ReadTxNotifStatus(void){
 FUNC(void, CANIF_CODE) module_CanIf::ReadRxNotifStatus(void){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::CbTxConfirmation(void){
+FUNC(void, CANIF_CODE) module_CanIf::TxConfirmation(void){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::CbRxIndication(void){
+FUNC(void, CANIF_CODE) module_CanIf::RxIndication(void){
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::CbCancelTxConfirmation(void){

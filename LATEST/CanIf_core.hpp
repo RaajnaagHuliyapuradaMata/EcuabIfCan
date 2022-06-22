@@ -34,8 +34,8 @@
               FUNC(void, CANIF_CODE) CheckTrcvWakeFlag             (void);     \
               FUNC(void, CANIF_CODE) CheckBaudRate                 (void);     \
               FUNC(void, CANIF_CODE) ChangeBaudRate                (void);     \
-              FUNC(void, CANIF_CODE) CbTxConfirmation              (void);     \
-              FUNC(void, CANIF_CODE) CbRxIndication                (void);     \
+              FUNC(void, CANIF_CODE) TxConfirmation                (void);     \
+              FUNC(void, CANIF_CODE) RxIndication                  (void);     \
               FUNC(void, CANIF_CODE) CbCancelTxConfirmation        (void);     \
               FUNC(void, CANIF_CODE) CbControllerBusOff            (void);     \
               FUNC(void, CANIF_CODE) CbConfirmPnAvailability       (void);     \
@@ -66,8 +66,8 @@
       virtual FUNC(void, CANIF_CODE) CheckTrcvWakeFlag             (void) = 0; \
       virtual FUNC(void, CANIF_CODE) CheckBaudRate                 (void) = 0; \
       virtual FUNC(void, CANIF_CODE) ChangeBaudRate                (void) = 0; \
-      virtual FUNC(void, CANIF_CODE) CbTxConfirmation              (void) = 0; \
-      virtual FUNC(void, CANIF_CODE) CbRxIndication                (void) = 0; \
+      virtual FUNC(void, CANIF_CODE) TxConfirmation                (void) = 0; \
+      virtual FUNC(void, CANIF_CODE) RxIndication                  (void) = 0; \
       virtual FUNC(void, CANIF_CODE) CbCancelTxConfirmation        (void) = 0; \
       virtual FUNC(void, CANIF_CODE) CbControllerBusOff            (void) = 0; \
       virtual FUNC(void, CANIF_CODE) CbConfirmPnAvailability       (void) = 0; \

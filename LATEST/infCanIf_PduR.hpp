@@ -1,22 +1,17 @@
 #pragma once
 /******************************************************************************/
-/* File   : infCanIf_Exp.hpp                                                  */
+/* File   : infCanIf_PduR.hpp                                                 */
 /* Author : NAGARAJA HM (c) since 1982. All rights reserved.                  */
 /******************************************************************************/
 
 /******************************************************************************/
 /* #INCLUDES                                                                  */
 /******************************************************************************/
-#include "infCanIf_EcuM.hpp"
-#include "infCanIf_Dcm.hpp"
-#include "infCanIf_Det.hpp"
-#include "infCanIf_PduR.hpp"
-#include "infCanIf_SchM.hpp"
+#include "CompilerCfg_CanIf.hpp"
 
 /******************************************************************************/
 /* #DEFINES                                                                   */
 /******************************************************************************/
-#define INTERFACES_EXPORTED_CANIF                           public infCanIf_PduR
 
 /******************************************************************************/
 /* MACROS                                                                     */
@@ -25,10 +20,45 @@
 /******************************************************************************/
 /* TYPEDEFS                                                                   */
 /******************************************************************************/
+class infCanIf_PduR{
+   public:
+      virtual FUNC(void, CANIF_CODE) Transmit(
+         void
+      ) = 0;
+
+      virtual FUNC(void, CANIF_CODE) CancelTransmit(
+         void
+      ) = 0;
+
+      virtual FUNC(void, CANIF_CODE) ReadRxPduData(
+         void
+      ) = 0;
+
+      virtual FUNC(void, CANIF_CODE) ReadTxNotifStatus(
+         void
+      ) = 0;
+
+      virtual FUNC(void, CANIF_CODE) ReadRxNotifStatus(
+         void
+      ) = 0;
+
+      virtual FUNC(void, CANIF_CODE) TxConfirmation(
+         void
+      ) = 0;
+
+      virtual FUNC(void, CANIF_CODE) RxIndication(
+         void
+      ) = 0;
+
+      virtual FUNC(void, CANIF_CODE) CbCancelTxConfirmation(
+         void
+      ) = 0;
+};
 
 /******************************************************************************/
 /* CONSTS                                                                     */
 /******************************************************************************/
+extern CONSTP2VAR(infCanIf_PduR, CANIF_VAR, CANIF_CONST) gptrinfCanIf_PduR;
 
 /******************************************************************************/
 /* PARAMS                                                                     */
