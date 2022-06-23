@@ -132,7 +132,9 @@ FUNC(void, CANIF_CODE) module_CanIf::InitFunction(
 #endif
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::DeInitFunction(void){
+FUNC(void, CANIF_CODE) module_CanIf::DeInitFunction(
+   void
+){
 #if(STD_ON == CanIf_InitCheck)
    if(
          E_OK
@@ -155,7 +157,9 @@ FUNC(void, CANIF_CODE) module_CanIf::DeInitFunction(void){
 #endif
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::MainFunction(void){
+FUNC(void, CANIF_CODE) module_CanIf::MainFunction(
+   void
+){
 #if(STD_ON == CanIf_InitCheck)
    if(
          E_OK
@@ -183,91 +187,162 @@ FUNC(void, CANIF_CODE) module_CanIf::MainFunction(void){
 #endif
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::GetControllerMode(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::GetControllerMode(
+      uint8                IdController
+   ,  TypeStateController* ptrModeController
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::SetControllerMode(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::SetControllerMode(
+      uint8               IdController
+   ,  TypeStateController ModeController
+){
+   return E_OK;
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::GetPduMode(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::GetControllerErrorState(
+      uint8           IdController
+   ,  TypeStateError* ptrStateError
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::SetPduMode(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::GetPduMode(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::SetDynamicTxId(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::SetPduMode(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::GetTrcvMode(void){
+FUNC(void, CANIF_CODE) module_CanIf::SetDynamicTxId(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::SetTrcvMode(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::GetTrcvMode(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::GetTrcvWakeupReason(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::SetTrcvMode(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::SetTrcvWakeupMode(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::GetTrcvWakeupReason(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::CheckWakeup(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::SetTrcvWakeupMode(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::CheckValidation(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::CheckWakeup(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::GetTxConfirmationState(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::CheckValidation(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::ClearTrcvWufFlag(void){
+FUNC(void, CANIF_CODE) module_CanIf::GetTxConfirmationState(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::CheckTrcvWakeFlag(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::ClearTrcvWufFlag(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::CheckBaudRate(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::CheckTrcvWakeFlag(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::ChangeBaudRate(void){
+//SetBaudRate
+
+FUNC(void, CANIF_CODE) module_CanIf::CheckBaudRate(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::CbControllerBusOff(void){
+FUNC(void, CANIF_CODE) module_CanIf::ChangeBaudRate(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::CbConfirmPnAvailability(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbControllerBusOff(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::CbClearTrcvWufFlagIndication(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbConfirmPnAvailability(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::CbCheckTrcvWakeFlagIndication(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbClearTrcvWufFlagIndication(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::CbControllerModeIndication(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbCheckTrcvWakeFlagIndication(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::CbTrcvModeIndication(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbControllerModeIndication(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::Transmit(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbTrcvModeIndication(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::CancelTransmit(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::Transmit(
+            TypeIdPdu IdPduTx
+   ,  const TypeInfoPdu* ptrInfoPdu
+){
+   return E_OK;
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::ReadRxPduData(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::CancelTransmit(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::ReadTxNotifStatus(void){
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::ReadRxPduData(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::ReadRxNotifStatus(void){
+FUNC(void, CANIF_CODE) module_CanIf::ReadTxNotifStatus(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::TxConfirmation(void){
+FUNC(void, CANIF_CODE) module_CanIf::ReadRxNotifStatus(
+   void
+){
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::RxIndication(void){
+FUNC(void, CANIF_CODE) module_CanIf::TxConfirmation(
+   void
+){
+}
+
+FUNC(void, CANIF_CODE) module_CanIf::RxIndication(
+   void
+){
 #if(STD_ON == _ReSIM)
    infPduRClient_CanIf.RxIndication(
          0
@@ -277,7 +352,9 @@ FUNC(void, CANIF_CODE) module_CanIf::RxIndication(void){
 #endif
 }
 
-FUNC(void, CANIF_CODE) module_CanIf::CbCancelTxConfirmation(void){
+FUNC(void, CANIF_CODE) module_CanIf::CbCancelTxConfirmation(
+   void
+){
 }
 
 /******************************************************************************/
