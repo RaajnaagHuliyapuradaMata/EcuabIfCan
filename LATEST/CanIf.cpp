@@ -188,32 +188,42 @@ FUNC(void, CANIF_CODE) module_CanIf::MainFunction(
 }
 
 FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::GetControllerMode(
-      uint8                IdController
-   ,  TypeStateController* ptrModeController
-){
-}
-
-FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::SetControllerMode(
-      uint8               IdController
-   ,  TypeStateController ModeController
+//      uint8                IdController
+//   ,  TypeStateController* ptrModeController
+   void
 ){
    return E_OK;
 }
 
+FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::SetControllerMode(
+//      uint8               IdController
+//   ,  TypeStateController ModeController
+   void
+){
+   return E_OK;
+}
+
+/*
 FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::GetControllerErrorState(
       uint8           IdController
    ,  TypeStateError* ptrStateError
+   void
 ){
+   return E_OK;
 }
+TBD: and many more!
+*/
 
 FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::GetPduMode(
    void
 ){
+   return E_OK;
 }
 
 FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::SetPduMode(
    void
 ){
+   return E_OK;
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::SetDynamicTxId(
@@ -224,31 +234,37 @@ FUNC(void, CANIF_CODE) module_CanIf::SetDynamicTxId(
 FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::GetTrcvMode(
    void
 ){
+   return E_OK;
 }
 
 FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::SetTrcvMode(
    void
 ){
+   return E_OK;
 }
 
 FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::GetTrcvWakeupReason(
    void
 ){
+   return E_OK;
 }
 
 FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::SetTrcvWakeupMode(
    void
 ){
+   return E_OK;
 }
 
 FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::CheckWakeup(
    void
 ){
+   return E_OK;
 }
 
 FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::CheckValidation(
    void
 ){
+   return E_OK;
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::GetTxConfirmationState(
@@ -259,11 +275,13 @@ FUNC(void, CANIF_CODE) module_CanIf::GetTxConfirmationState(
 FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::ClearTrcvWufFlag(
    void
 ){
+   return E_OK;
 }
 
 FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::CheckTrcvWakeFlag(
    void
 ){
+   return E_OK;
 }
 
 //SetBaudRate
@@ -309,8 +327,9 @@ FUNC(void, CANIF_CODE) module_CanIf::CbTrcvModeIndication(
 }
 
 FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::Transmit(
-            TypeIdPdu IdPduTx
-   ,  const TypeInfoPdu* ptrInfoPdu
+//            TypeIdPdu IdPduTx
+//   ,  const TypeInfoPdu* ptrInfoPdu
+   void
 ){
    return E_OK;
 }
@@ -318,11 +337,13 @@ FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::Transmit(
 FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::CancelTransmit(
    void
 ){
+   return E_OK;
 }
 
 FUNC(Std_TypeReturn, CANIF_CODE) module_CanIf::ReadRxPduData(
    void
 ){
+   return E_OK;
 }
 
 FUNC(void, CANIF_CODE) module_CanIf::ReadTxNotifStatus(

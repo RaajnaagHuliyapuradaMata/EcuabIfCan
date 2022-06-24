@@ -22,15 +22,15 @@
 /******************************************************************************/
 class infCanIf_PduR{
    public:
-      virtual FUNC(void, CANIF_CODE) Transmit(
+      virtual FUNC(Std_TypeReturn, CANIF_CODE) Transmit(
          void
       ) = 0;
 
-      virtual FUNC(void, CANIF_CODE) CancelTransmit(
+      virtual FUNC(Std_TypeReturn, CANIF_CODE) CancelTransmit(
          void
       ) = 0;
 
-      virtual FUNC(void, CANIF_CODE) ReadRxPduData(
+      virtual FUNC(Std_TypeReturn, CANIF_CODE) ReadRxPduData(
          void
       ) = 0;
 
