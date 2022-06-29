@@ -41,13 +41,9 @@ class module_CanIf:
 /******************************************************************************/
 /* OBJECTS                                                                    */
 /******************************************************************************/
-            Std_TypeReturn          IsInitDone{E_NOT_OK};
-      const CfgModule_TypeAbstract* lptrCfg{(CfgModule_TypeAbstract*)NULL_PTR};
             infPduRClient_Lo        infPduRClient_CanIf;
 
    public:
-      module_CanIf(Std_TypeVersionInfo lVersionInfo) : abstract_module(lVersionInfo){
-      }
       FUNC(void, CANIF_CODE) InitFunction(
          CONSTP2CONST(CfgModule_TypeAbstract, CANIF_CONFIG_DATA, CANIF_APPL_CONST) lptrCfgModule
       );
@@ -73,18 +69,7 @@ CONSTP2VAR(infCanIf_PduR, CANIF_VAR, CANIF_CONST) gptrinfCanIf_PduR       = &Can
 /******************************************************************************/
 /* OBJECTS                                                                    */
 /******************************************************************************/
-VAR(module_CanIf, CANIF_VAR) CanIf(
-   {
-         CANIF_AR_RELEASE_VERSION_MAJOR
-      ,  CANIF_AR_RELEASE_VERSION_MINOR
-      ,  0x00
-      ,  0xFF
-      ,  0x01
-      ,  '0'
-      ,  '1'
-      ,  '0'
-   }
-);
+VAR(module_CanIf, CANIF_VAR) CanIf;
 
 /******************************************************************************/
 /* FUNCTIONS                                                                  */
