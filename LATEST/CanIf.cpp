@@ -84,12 +84,7 @@ FUNC(void, CANIF_CODE) module_CanIf::InitFunction(
    ){
 #endif
       if(NULL_PTR != lptrCfgModule){
-         if(STD_HIGH){
-            lptrCfg = lptrCfgModule;
-         }
-         else{
-            lptrCfg = &PBcfgCanIf;
-         }
+         lptrCfg = lptrCfgModule;
       }
       else{
 #if(STD_ON == CanIf_DevErrorDetect)
