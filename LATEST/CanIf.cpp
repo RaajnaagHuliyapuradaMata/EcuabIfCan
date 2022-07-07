@@ -34,7 +34,6 @@
 /******************************************************************************/
 /* CONSTS                                                                     */
 /******************************************************************************/
-CONSTP2VAR(infEcuMClient, CANIF_VAR, CANIF_CONST) gptrinfEcuMClient_CanIf = &CanIf;
 CONSTP2VAR(infCanIf_PduR, CANIF_VAR, CANIF_CONST) gptrinfCanIf_PduR       = &CanIf;
 
 /******************************************************************************/
