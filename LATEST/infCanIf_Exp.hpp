@@ -8,10 +8,8 @@
 /* #INCLUDES                                                                  */
 /******************************************************************************/
 #include "infCanIf_EcuM.hpp"
-#include "infCanIf_Dcm.hpp"
 #include "infCanIf_Det.hpp"
 #include "infCanIf_PduR.hpp"
-#include "infCanIf_SchM.hpp"
 #include "infPduRClient_Lo.hpp"
 
 /******************************************************************************/
