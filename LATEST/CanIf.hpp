@@ -7,6 +7,7 @@
 /******************************************************************************/
 /* #INCLUDES                                                                  */
 /******************************************************************************/
+#include "ConstCanIf.hpp"
 #include "CfgCanIf.hpp"
 #include "CanIf_core.hpp"
 #include "infCanIf_Exp.hpp"
@@ -31,6 +32,7 @@ class module_CanIf:
 /******************************************************************************/
 /* OBJECTS                                                                    */
 /******************************************************************************/
+      const ConstCanIf_Type* lptrConst = (ConstCanIf_Type*)NULL_PTR;
       infPduRClient_Lo infPduRClient_CanIf;
 
    public:
@@ -38,7 +40,8 @@ class module_CanIf:
 /* FUNCTIONS                                                                  */
 /******************************************************************************/
       FUNC(void, CANIF_CODE) InitFunction(
-         CONSTP2CONST(CfgModule_TypeAbstract, CANIF_CONFIG_DATA, CANIF_APPL_CONST) lptrCfgModule
+            CONSTP2CONST(ConstModule_TypeAbstract, CANIF_CONST,       CANIF_APPL_CONST) lptrConstModule
+         ,  CONSTP2CONST(CfgModule_TypeAbstract,   CANIF_CONFIG_DATA, CANIF_APPL_CONST) lptrCfgModule
       );
       FUNC(void, CANIF_CODE) DeInitFunction (void);
       FUNC(void, CANIF_CODE) MainFunction   (void);

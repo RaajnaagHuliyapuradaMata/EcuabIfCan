@@ -48,7 +48,8 @@ VAR(module_CanIf, CANIF_VAR) CanIf;
 /* FUNCTIONS                                                                  */
 /******************************************************************************/
 FUNC(void, CANIF_CODE) module_CanIf::InitFunction(
-   CONSTP2CONST(CfgModule_TypeAbstract, CANIF_CONFIG_DATA, CANIF_APPL_CONST) lptrCfgModule
+      CONSTP2CONST(ConstModule_TypeAbstract, CANIF_CONST,       CANIF_APPL_CONST) lptrConstModule
+   ,  CONSTP2CONST(CfgModule_TypeAbstract,   CANIF_CONFIG_DATA, CANIF_APPL_CONST) lptrCfgModule
 ){
 #if(STD_ON == CanIf_InitCheck)
    if(
@@ -56,8 +57,12 @@ FUNC(void, CANIF_CODE) module_CanIf::InitFunction(
       != IsInitDone
    ){
 #endif
-      if(NULL_PTR != lptrCfgModule){
-         lptrCfg = lptrCfgModule;
+      if(
+            (NULL_PTR != lptrConstModule)
+         && (NULL_PTR != lptrCfgModule)
+      ){
+         lptrConst = lptrConstModule;
+         lptrCfg   = lptrCfgModule;
       }
       else{
 #if(STD_ON == CanIf_DevErrorDetect)
