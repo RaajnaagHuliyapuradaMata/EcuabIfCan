@@ -61,7 +61,7 @@ FUNC(void, CANIF_CODE) module_CanIf::InitFunction(
             (NULL_PTR != lptrConstModule)
          && (NULL_PTR != lptrCfgModule)
       ){
-         lptrConst = lptrConstModule;
+         lptrConst = (const ConstCanIf_Type*)lptrConstModule;
          lptrCfg   = lptrCfgModule;
       }
       else{
