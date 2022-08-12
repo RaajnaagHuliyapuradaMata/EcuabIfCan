@@ -1,17 +1,20 @@
 #pragma once
 /******************************************************************************/
-/* File   : infEcuabCanIf_ServicePduR.hpp                                                 */
+/* File   : infEcuabCanIf_Exp.hpp                                                  */
 /* Author : NAGARAJA HM (c) since 1982. All rights reserved.                  */
 /******************************************************************************/
 
 /******************************************************************************/
 /* #INCLUDES                                                                  */
 /******************************************************************************/
-#include "CompilerCfg_EcuabCanIf.hpp"
+#include "infEcuabCanIf_ServiceDet.hpp"
+#include "infEcuabCanIf_ServicePduR.hpp"
+#include "infServicePduRClient_Lo.hpp"
 
 /******************************************************************************/
 /* #DEFINES                                                                   */
 /******************************************************************************/
+#define INTERFACES_EXPORTED_CANIF                           public infEcuabCanIf_ServicePduR
 
 /******************************************************************************/
 /* MACROS                                                                     */
@@ -20,40 +23,6 @@
 /******************************************************************************/
 /* TYPEDEFS                                                                   */
 /******************************************************************************/
-class infEcuabCanIf_ServicePduR{
-   public:
-      virtual FUNC(Std_TypeReturn, ECUABCANIF_CODE) Transmit(
-         void
-      ) = 0;
-
-      virtual FUNC(Std_TypeReturn, ECUABCANIF_CODE) McalCancelTransmit(
-         void
-      ) = 0;
-
-      virtual FUNC(Std_TypeReturn, ECUABCANIF_CODE) ReadRxPduData(
-         void
-      ) = 0;
-
-      virtual FUNC(void, ECUABCANIF_CODE) ReadTxNotifStatus(
-         void
-      ) = 0;
-
-      virtual FUNC(void, ECUABCANIF_CODE) ReadRxNotifStatus(
-         void
-      ) = 0;
-
-      virtual FUNC(void, ECUABCANIF_CODE) TxConfirmation(
-         void
-      ) = 0;
-
-      virtual FUNC(void, ECUABCANIF_CODE) RxIndication(
-         void
-      ) = 0;
-
-      virtual FUNC(void, ECUABCANIF_CODE) CbCancelTxConfirmation(
-         void
-      ) = 0;
-};
 
 /******************************************************************************/
 /* CONSTS                                                                     */

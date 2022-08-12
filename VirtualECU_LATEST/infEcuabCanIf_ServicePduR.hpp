@@ -22,35 +22,35 @@
 /******************************************************************************/
 class infEcuabCanIf_ServicePduR{
    public:
-      virtual FUNC(Std_TypeReturn, CANIF_CODE) Transmit(
+      virtual FUNC(Std_TypeReturn, ECUABCANIF_CODE) Transmit(
          void
       ) = 0;
 
-      virtual FUNC(Std_TypeReturn, CANIF_CODE) McalCancelTransmit(
+      virtual FUNC(Std_TypeReturn, ECUABCANIF_CODE) McalCancelTransmit(
          void
       ) = 0;
 
-      virtual FUNC(Std_TypeReturn, CANIF_CODE) ReadRxPduData(
+      virtual FUNC(Std_TypeReturn, ECUABCANIF_CODE) ReadRxPduData(
          void
       ) = 0;
 
-      virtual FUNC(void, CANIF_CODE) ReadTxNotifStatus(
+      virtual FUNC(void, ECUABCANIF_CODE) ReadTxNotifStatus(
          void
       ) = 0;
 
-      virtual FUNC(void, CANIF_CODE) ReadRxNotifStatus(
+      virtual FUNC(void, ECUABCANIF_CODE) ReadRxNotifStatus(
          void
       ) = 0;
 
-      virtual FUNC(void, CANIF_CODE) TxConfirmation(
+      virtual FUNC(void, ECUABCANIF_CODE) TxConfirmation(
          void
       ) = 0;
 
-      virtual FUNC(void, CANIF_CODE) RxIndication(
+      virtual FUNC(void, ECUABCANIF_CODE) RxIndication(
          void
       ) = 0;
 
-      virtual FUNC(void, CANIF_CODE) CbMcalCancelTxConfirmation(
+      virtual FUNC(void, ECUABCANIF_CODE) CbCancelTxConfirmation(
          void
       ) = 0;
 };

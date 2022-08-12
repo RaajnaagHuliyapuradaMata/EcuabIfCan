@@ -14,7 +14,7 @@
 /******************************************************************************/
 /* #DEFINES                                                                   */
 /******************************************************************************/
-#define INTERFACES_EXPORTED_CANIF                           public infEcuabCanIf_ServicePduR
+#define INTERFACES_EXPORTED_ECUABCANIF                           public infEcuabCanIf_ServicePduR
 
 /******************************************************************************/
 /* MACROS                                                                     */

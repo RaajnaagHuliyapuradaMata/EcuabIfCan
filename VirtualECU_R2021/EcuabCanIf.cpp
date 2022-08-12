@@ -13,18 +13,18 @@
 /******************************************************************************/
 /* #DEFINES                                                                   */
 /******************************************************************************/
-#define ECUABCANIF_AR_RELEASE_VERSION_MAJOR                                         4
-#define ECUABCANIF_AR_RELEASE_VERSION_MINOR                                         3
+#define CANIF_AR_RELEASE_VERSION_MAJOR                                         4
+#define CANIF_AR_RELEASE_VERSION_MINOR                                         3
 
 /******************************************************************************/
 /* MACROS                                                                     */
 /******************************************************************************/
-#if(ECUABCANIF_AR_RELEASE_VERSION_MAJOR != STD_AR_RELEASE_VERSION_MAJOR)
-   #error "Incompatible ECUABCANIF_AR_RELEASE_VERSION_MAJOR!"
+#if(CANIF_AR_RELEASE_VERSION_MAJOR != STD_AR_RELEASE_VERSION_MAJOR)
+   #error "Incompatible CANIF_AR_RELEASE_VERSION_MAJOR!"
 #endif
 
-#if(ECUABCANIF_AR_RELEASE_VERSION_MINOR != STD_AR_RELEASE_VERSION_MINOR)
-   #error "Incompatible ECUABCANIF_AR_RELEASE_VERSION_MINOR!"
+#if(CANIF_AR_RELEASE_VERSION_MINOR != STD_AR_RELEASE_VERSION_MINOR)
+   #error "Incompatible CANIF_AR_RELEASE_VERSION_MINOR!"
 #endif
 
 /******************************************************************************/
@@ -42,14 +42,14 @@
 /******************************************************************************/
 /* OBJECTS                                                                    */
 /******************************************************************************/
-VAR(module_EcuabCanIf, ECUABCANIF_VAR) EcuabCanIf;
+VAR(module_EcuabCanIf, CANIF_VAR) EcuabCanIf;
 
 /******************************************************************************/
 /* FUNCTIONS                                                                  */
 /******************************************************************************/
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::InitFunction(
-      CONSTP2CONST(ConstModule_TypeAbstract, ECUABCANIF_CONST,       ECUABCANIF_APPL_CONST) lptrConstModule
-   ,  CONSTP2CONST(CfgModule_TypeAbstract,   ECUABCANIF_CONFIG_DATA, ECUABCANIF_APPL_CONST) lptrCfgModule
+FUNC(void, CANIF_CODE) module_EcuabCanIf::InitFunction(
+      CONSTP2CONST(ConstModule_TypeAbstract, CANIF_CONST,       CANIF_APPL_CONST) lptrConstModule
+   ,  CONSTP2CONST(CfgModule_TypeAbstract,   CANIF_CONFIG_DATA, CANIF_APPL_CONST) lptrCfgModule
 ){
 #if(STD_ON == EcuabCanIf_InitCheck)
    if(
@@ -83,14 +83,14 @@ FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::InitFunction(
             0 //TBD: IdModule
          ,  0 //TBD: IdInstance
          ,  0 //TBD: IdApi
-         ,  ECUABCANIF_E_UNINIT
+         ,  CANIF_E_UNINIT
       );
 #endif
    }
 #endif
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::DeInitFunction(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::DeInitFunction(
    void
 ){
 #if(STD_ON == EcuabCanIf_InitCheck)
@@ -108,14 +108,14 @@ FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::DeInitFunction(
             0 //TBD: IdModule
          ,  0 //TBD: IdInstance
          ,  0 //TBD: IdApi
-         ,  ECUABCANIF_E_UNINIT
+         ,  CANIF_E_UNINIT
       );
 #endif
    }
 #endif
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::MainFunction(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::MainFunction(
    void
 ){
 #if(STD_ON == EcuabCanIf_InitCheck)
@@ -138,14 +138,14 @@ FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::MainFunction(
             0 //TBD: IdModule
          ,  0 //TBD: IdInstance
          ,  0 //TBD: IdApi
-         ,  ECUABCANIF_E_UNINIT
+         ,  CANIF_E_UNINIT
       );
 #endif
    }
 #endif
 }
 
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::GetControllerMode(
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::GetControllerMode(
 //      uint8                IdController
 //   ,  TypeStateController* ptrModeController
    void
@@ -153,7 +153,7 @@ FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::GetControllerMode(
    return E_OK;
 }
 
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::SetControllerMode(
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::SetControllerMode(
 //      uint8               IdController
 //   ,  TypeStateController ModeController
    void
@@ -162,7 +162,7 @@ FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::SetControllerMode(
 }
 
 /*
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::GetControllerErrorState(
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::GetControllerErrorState(
       uint8           IdController
    ,  TypeStateError* ptrStateError
    void
@@ -172,71 +172,71 @@ FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::GetControllerErrorState
 TBD: and many more!
 */
 
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::GetPduMode(
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::GetPduMode(
    void
 ){
    return E_OK;
 }
 
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::SetPduMode(
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::SetPduMode(
    void
 ){
    return E_OK;
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::SetDynamicTxId(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::SetDynamicTxId(
    void
 ){
 }
 
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::GetTrcvMode(
-   void
-){
-   return E_OK;
-}
-
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::SetTrcvMode(
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::GetTrcvMode(
    void
 ){
    return E_OK;
 }
 
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::GetTrcvWakeupReason(
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::SetTrcvMode(
    void
 ){
    return E_OK;
 }
 
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::SetTrcvWakeupMode(
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::GetTrcvWakeupReason(
    void
 ){
    return E_OK;
 }
 
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::CheckWakeup(
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::SetTrcvWakeupMode(
    void
 ){
    return E_OK;
 }
 
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::CheckValidation(
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::CheckWakeup(
    void
 ){
    return E_OK;
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::GetTxConfirmationState(
-   void
-){
-}
-
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::ClearTrcvWufFlag(
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::CheckValidation(
    void
 ){
    return E_OK;
 }
 
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::CheckTrcvWakeFlag(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::GetTxConfirmationState(
+   void
+){
+}
+
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::ClearTrcvWufFlag(
+   void
+){
+   return E_OK;
+}
+
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::CheckTrcvWakeFlag(
    void
 ){
    return E_OK;
@@ -244,47 +244,47 @@ FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::CheckTrcvWakeFlag(
 
 //SetBaudRate
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::CheckBaudRate(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::CheckBaudRate(
    void
 ){
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::ChangeBaudRate(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::ChangeBaudRate(
    void
 ){
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::CbControllerBusOff(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::CbControllerBusOff(
    void
 ){
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::CbConfirmPnAvailability(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::CbConfirmPnAvailability(
    void
 ){
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::CbClearTrcvWufFlagIndication(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::CbClearTrcvWufFlagIndication(
    void
 ){
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::CbCheckTrcvWakeFlagIndication(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::CbCheckTrcvWakeFlagIndication(
    void
 ){
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::CbControllerModeIndication(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::CbControllerModeIndication(
    void
 ){
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::CbTrcvModeIndication(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::CbTrcvModeIndication(
    void
 ){
 }
 
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::Transmit(
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::Transmit(
 //            TypeIdPdu IdPduTx
 //   ,  const TypeInfoPdu* ptrInfoPdu
    void
@@ -292,34 +292,34 @@ FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::Transmit(
    return E_OK;
 }
 
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::McalCancelTransmit(
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::McalCancelTransmit(
    void
 ){
    return E_OK;
 }
 
-FUNC(Std_TypeReturn, ECUABCANIF_CODE) module_EcuabCanIf::ReadRxPduData(
+FUNC(Std_TypeReturn, CANIF_CODE) module_EcuabCanIf::ReadRxPduData(
    void
 ){
    return E_OK;
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::ReadTxNotifStatus(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::ReadTxNotifStatus(
    void
 ){
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::ReadRxNotifStatus(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::ReadRxNotifStatus(
    void
 ){
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::TxConfirmation(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::TxConfirmation(
    void
 ){
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::RxIndication(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::RxIndication(
    void
 ){
 #if(STD_ON == _ReSIM)
@@ -331,7 +331,7 @@ FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::RxIndication(
 #endif
 }
 
-FUNC(void, ECUABCANIF_CODE) module_EcuabCanIf::CbCancelTxConfirmation(
+FUNC(void, CANIF_CODE) module_EcuabCanIf::CbMcalCancelTxConfirmation(
    void
 ){
 }

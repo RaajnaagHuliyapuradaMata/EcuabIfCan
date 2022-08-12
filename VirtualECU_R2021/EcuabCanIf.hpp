@@ -1,13 +1,16 @@
 #pragma once
 /******************************************************************************/
-/* File   : infEcuabCanIf_ServiceDet.hpp                                                  */
+/* File   : EcuabCanIf.hpp                                                         */
 /* Author : NAGARAJA HM (c) since 1982. All rights reserved.                  */
 /******************************************************************************/
 
 /******************************************************************************/
 /* #INCLUDES                                                                  */
 /******************************************************************************/
-#include "CompilerCfg_EcuabCanIf.hpp"
+#include "ConstEcuabCanIf.hpp"
+#include "CfgEcuabCanIf.hpp"
+#include "EcuabCanIf_core.hpp"
+#include "infEcuabCanIf_Exp.hpp"
 
 /******************************************************************************/
 /* #DEFINES                                                                   */
@@ -20,9 +23,30 @@
 /******************************************************************************/
 /* TYPEDEFS                                                                   */
 /******************************************************************************/
-typedef enum{
-      ECUABCANIF_E_UNINIT
-}EcuabCanIf_TypeServiceDetErrorCode;
+class module_EcuabCanIf:
+      INTERFACES_EXPORTED_CANIF
+   ,  public abstract_module
+   ,  public class_EcuabCanIf_Functionality
+{
+   private:
+/******************************************************************************/
+/* OBJECTS                                                                    */
+/******************************************************************************/
+      const ConstEcuabCanIf_Type* lptrConst = (ConstEcuabCanIf_Type*)NULL_PTR;
+      infServicePduRClient_Lo infServicePduRClient_EcuabCanIf;
+
+   public:
+/******************************************************************************/
+/* FUNCTIONS                                                                  */
+/******************************************************************************/
+      FUNC(void, CANIF_CODE) InitFunction(
+            CONSTP2CONST(ConstModule_TypeAbstract, CANIF_CONST,       CANIF_APPL_CONST) lptrConstModule
+         ,  CONSTP2CONST(CfgModule_TypeAbstract,   CANIF_CONFIG_DATA, CANIF_APPL_CONST) lptrCfgModule
+      );
+      FUNC(void, CANIF_CODE) DeInitFunction (void);
+      FUNC(void, CANIF_CODE) MainFunction   (void);
+      CANIF_CORE_FUNCTIONALITIES
+};
 
 /******************************************************************************/
 /* CONSTS                                                                     */
@@ -35,10 +59,7 @@ typedef enum{
 /******************************************************************************/
 /* OBJECTS                                                                    */
 /******************************************************************************/
-
-/******************************************************************************/
-/* FUNCTIONS                                                                  */
-/******************************************************************************/
+extern VAR(module_EcuabCanIf, CANIF_VAR) EcuabCanIf;
 
 /******************************************************************************/
 /* EOF                                                                        */
