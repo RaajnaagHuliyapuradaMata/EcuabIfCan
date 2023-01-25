@@ -1,13 +1,13 @@
 #pragma once
 /******************************************************************************/
-/* File   : EcuabCanIf.hpp                                                         */
+/* File   : EcuabCanIf.hpp                                                    */
 /* Author : NAGARAJA HM (c) since 1982. All rights reserved.                  */
 /******************************************************************************/
 
 /******************************************************************************/
 /* #INCLUDES                                                                  */
 /******************************************************************************/
-#include "ConstEcuabCanIf.hpp"
+#include "infEcuabCanIf_ServiceNvM_Types.hpp"
 #include "CfgEcuabCanIf.hpp"
 #include "EcuabCanIf_core.hpp"
 #include "infEcuabCanIf_Exp.hpp"
