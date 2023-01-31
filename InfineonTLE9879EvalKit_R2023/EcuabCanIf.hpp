@@ -32,7 +32,7 @@ class module_EcuabCanIf:
 /******************************************************************************/
 /* OBJECTS                                                                    */
 /******************************************************************************/
-      const ConstEcuabCanIf_Type* lptrConst = (ConstEcuabCanIf_Type*)NULL_PTR;
+      const ConstModule_TypeAbstract* lptrNvMBlocksRom = (ConstModule_TypeAbstract*)NULL_PTR;
       infServicePduRClient_Lo infServicePduRClient_EcuabCanIf;
 
    public:
@@ -40,7 +40,7 @@ class module_EcuabCanIf:
 /* FUNCTIONS                                                                  */
 /******************************************************************************/
       FUNC(void, ECUABCANIF_CODE) InitFunction(
-            CONSTP2CONST(ConstModule_TypeAbstract, ECUABCANIF_CONST,       ECUABCANIF_APPL_CONST) lptrConstModule
+            CONSTP2CONST(ConstModule_TypeAbstract, ECUABCANIF_CONST,       ECUABCANIF_APPL_CONST) lptrNvMBlocksRomModule
          ,  CONSTP2CONST(CfgModule_TypeAbstract,   ECUABCANIF_CONFIG_DATA, ECUABCANIF_APPL_CONST) lptrCfgModule
       );
       FUNC(void, ECUABCANIF_CODE) DeInitFunction (void);
