@@ -10,9 +10,11 @@
 class NvM_BlocksRom_EcuabCanIf_Type:
       public ConstModule_TypeAbstract
 {
-/******************************************************************************/
-/* CONSTS                                                                     */
-/******************************************************************************/
+};
+
+class NvM_BlocksNv_EcuabCanIf_Type:
+      public CfgModule_TypeAbstract
+{
 };
 
 /******************************************************************************/
