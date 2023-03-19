@@ -1,6 +1,6 @@
 #pragma once
 /******************************************************************************/
-/* File   : infEcuabCanIf_ServiceSwcEcuM.hpp                                  */
+/* File   : infEcuabCanIfMcalCan.hpp                                          */
 /* Author : NAGARAJA HM (c) since 1982. All rights reserved.                  */
 /******************************************************************************/
 
@@ -24,8 +24,7 @@
 /******************************************************************************/
 /* FUNCTIONS                                                                  */
 /******************************************************************************/
-extern FUNC(void, ECUABCANIF_CODE) EcuabCanIf_InitFunction   (const CfgEcuabCanIf_Type*   CfgEcuabCanIf_ptr);
-extern FUNC(void, ECUABCANIF_CODE) EcuabCanIf_DeInitFunction (void);
+extern FUNC(void, ECUABCANIF_CODE) infEcuabCanIfMcalCan_RxIndication(uint8 lu8IndexBufferRx);
 
 /******************************************************************************/
 /* CONSTS                                                                     */
