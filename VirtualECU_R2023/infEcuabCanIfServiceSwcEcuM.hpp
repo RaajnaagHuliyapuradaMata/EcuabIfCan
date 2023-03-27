@@ -24,7 +24,7 @@
 /******************************************************************************/
 /* FUNCTIONS                                                                  */
 /******************************************************************************/
-extern FUNC(void, ECUABCANIF_CODE) infEcuabCanIfServiceSwcEcuM_InitFunction   (const CfgEcuabCanIf_Type*   CfgEcuabCanIf_ptr);
+extern FUNC(void, ECUABCANIF_CODE) infEcuabCanIfServiceSwcEcuM_InitFunction   (const CfgEcuabCanIf_tst* CfgEcuabCanIf_ptr);
 extern FUNC(void, ECUABCANIF_CODE) infEcuabCanIfServiceSwcEcuM_DeInitFunction (void);
 
 /******************************************************************************/

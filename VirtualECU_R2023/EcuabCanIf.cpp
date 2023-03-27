@@ -10,7 +10,6 @@
 
 #include "EcuabCanIf.hpp"
 
-#include "CanTypes.hpp"
 #include "infEcuabCanIfMcalCan.hpp"
 #include "infEcuabCanIfServiceSwcEcuM.hpp"
 
@@ -39,19 +38,32 @@
 /******************************************************************************/
 /* OBJECTS                                                                    */
 /******************************************************************************/
+const CfgEcuabCanIf_tst* EcuabCanIf_pstConfig;
 
 /******************************************************************************/
 /* FUNCTIONS                                                                  */
 /******************************************************************************/
-FUNC(void, ECUABCANIF_CODE) infEcuabCanIfServiceSwcEcuM_InitFunction   (const CfgEcuabCanIf_Type* CfgEcuabCanIf_ptr){UNUSED(CfgEcuabCanIf_ptr);}
+FUNC(void, ECUABCANIF_CODE) infEcuabCanIfServiceSwcEcuM_InitFunction(const CfgEcuabCanIf_tst* pstConfig){
+   EcuabCanIf_pstConfig = pstConfig;
+}
+
 FUNC(void, ECUABCANIF_CODE) infEcuabCanIfServiceSwcEcuM_DeInitFunction (void){}
 FUNC(void, ECUABCANIF_CODE) infEcuabCanIfServiceSwcSchM_MainFunction   (void){}
 
 FUNC(void, ECUABCANIF_CODE) infEcuabCanIfMcalCan_RxIndication(uint8 lu8IndexBufferRx){
-   const CfgEcuabCanIf_tstHardwareObjectHandle* pcstHardwareObjectHandleCfg = EcuabCanIf_ConfigHardwareObjectHandle[McalCan_auBufferRx[lu8IndexBufferRx].McalCan_stContext.eHardwareObjectHandle];
-   uint8 RxPduId = 0; //TBD: To be evaluated here based on received message id and CanIf config
-   UNUSED(pcstHardwareObjectHandleCfg);
-   (EcuabCanif_ConfigRxPdu_UL[RxPduId])(lu8IndexBufferRx);
+   for(
+      uint8 lu8IndexRxPdu = 0;
+            lu8IndexRxPdu < EcuabCanIf_pstConfig->u8NumMaxRxPdu;
+            lu8IndexRxPdu ++
+   ){
+      if(
+            EcuabCanIf_pstConfig->astPduInfoTable[lu8IndexRxPdu].IdCan
+         == McalCan_astRxFifio[lu8IndexBufferRx].McalCan_stFrameExtended.IdCan
+      ){
+         (EcuabCanIf_pstConfig->astPduInfoTable[lu8IndexRxPdu].fptrRxIndicationUpperLayer)(lu8IndexBufferRx);
+         break;
+      }
+   }
 }
 
 /******************************************************************************/
