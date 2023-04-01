@@ -11,7 +11,7 @@
 #include "EcuabCanIf.hpp"
 
 #include "infEcuabCanIfMcalCan.hpp"
-#include "infEcuabCanIfServiceSwcEcuM.hpp"
+#include "infEcuabCanIfSwcServiceEcuM.hpp"
 
 #include "CfgEcuabCanIf.hpp"
 
@@ -43,12 +43,12 @@ const CfgEcuabCanIf_tst* EcuabCanIf_pstConfig;
 /******************************************************************************/
 /* FUNCTIONS                                                                  */
 /******************************************************************************/
-FUNC(void, ECUABCANIF_CODE) infEcuabCanIfServiceSwcEcuM_InitFunction(const CfgEcuabCanIf_tst* pstConfig){
+FUNC(void, ECUABCANIF_CODE) infEcuabCanIfSwcServiceEcuM_InitFunction(const CfgEcuabCanIf_tst* pstConfig){
    EcuabCanIf_pstConfig = pstConfig;
 }
 
-FUNC(void, ECUABCANIF_CODE) infEcuabCanIfServiceSwcEcuM_DeInitFunction (void){}
-FUNC(void, ECUABCANIF_CODE) infEcuabCanIfServiceSwcSchM_MainFunction   (void){}
+FUNC(void, ECUABCANIF_CODE) infEcuabCanIfSwcServiceEcuM_DeInitFunction (void){}
+FUNC(void, ECUABCANIF_CODE) infEcuabCanIfSwcServiceSchM_MainFunction   (void){}
 
 FUNC(void, ECUABCANIF_CODE) infEcuabCanIfMcalCan_RxIndication(uint8 lu8IndexBufferRx){
    for(
