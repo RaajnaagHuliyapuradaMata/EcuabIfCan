@@ -8,28 +8,28 @@ extern "C"
 #include "CanIf_Cbk.hpp"
 
 #if !defined (CANIF_AVOID_VSTDLIB_COPY)
-# include "vstdlib.hpp"
-#  if defined (VSTD_HL_USE_VSTD_RAMMEMCPY)
-#   define CANIF_USES_VSTDLIB_COPY      STD_ON
-#  endif
+#include "vstdlib.hpp"
+#if defined (VSTD_HL_USE_VSTD_RAMMEMCPY)
+#define CANIF_USES_VSTDLIB_COPY      STD_ON
+#endif
 #endif
 
 #if !defined (CANIF_USES_VSTDLIB_COPY)
-# define CANIF_USES_VSTDLIB_COPY      STD_OFF
+#define CANIF_USES_VSTDLIB_COPY      STD_OFF
 #endif
 
 #if(CANIF_TRCV_HANDLING == STD_ON)
-# include "infEcuabCanIfEcuabCanTrcv.hpp"
+#include "infEcuabCanIfEcuabCanTrcv.hpp"
 #endif
 
 #if(CANIF_DEV_ERROR_REPORT == STD_ON)
-# include "SwcServiceDet.hpp"
+#include "SwcServiceDet.hpp"
 #endif
 
 #include "SchM_CanIf.hpp"
 
 #if(CANIF_BUS_MIRRORING_SUPPORT == STD_ON)
-# include "Mirror_Cbk.hpp"
+#include "Mirror_Cbk.hpp"
 #endif
 
 #if(CANIF_CBK_MAJOR_VERSION != 0x05u)
@@ -72,55 +72,55 @@ extern "C"
 # error "Invalid configuration! CPUType configured in EcuC-module differs from \"CPU_TYPE\" set in \"Platform_Types.h\"."
 #endif
 
-# if(CANIF_CFG5_GENERATOR_COMPATIBILITY_VERSION != CANIF_GENDATA_COMPATIBILITY_VERSION)
-#  error "Module CanIf: Source and Generated Header files are inconsistent! Please check the version of the generator."
-# endif
+#if(CANIF_CFG5_GENERATOR_COMPATIBILITY_VERSION != CANIF_GENDATA_COMPATIBILITY_VERSION)
+#error "Module CanIf: Source and Generated Header files are inconsistent! Please check the version of the generator."
+#endif
 
 #if defined (CANIF_RX_PASS_STATIC_DLC)
-# if(CANIF_RX_PASS_STATIC_DLC == STD_ON)
-#  error "Feature CANIF_RX_PASS_STATIC_DLC is NOT supported by CAN interface anymore."
-# endif
+#if(CANIF_RX_PASS_STATIC_DLC == STD_ON)
+#error "Feature CANIF_RX_PASS_STATIC_DLC is NOT supported by CAN interface anymore."
+#endif
 #endif
 
 #if(CANIF_WAKEUP_VALIDATION == STD_ON)
-# if(CANIF_WAKEUP_SUPPORT == STD_OFF)
-#  error "Invalid configuration: Wake up validation (CANIF_WAKEUP_VALIDATION) is activated without activating wake up support (CANIF_WAKEUP_SUPPORT)"
-# endif
+#if(CANIF_WAKEUP_SUPPORT == STD_OFF)
+#error "Invalid configuration: Wake up validation (CANIF_WAKEUP_VALIDATION) is activated without activating wake up support (CANIF_WAKEUP_SUPPORT)"
+#endif
 #endif
 
 #if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
-# if(CANIF_TRCV_MAPPING == STD_ON)
-#  error "Invalid configuration: One channel optimization not possible with transceiver mapping"
-# endif
+#if(CANIF_TRCV_MAPPING == STD_ON)
+#error "Invalid configuration: One channel optimization not possible with transceiver mapping"
+#endif
 #endif
 
 #if(CANIF_WAKEUP_VALIDATION == STD_OFF)
-# if(CANIF_WAKEUP_VALID_ALL_RX_MSGS == STD_ON)
-#  error "Invalid configuration"
-# endif
+#if(CANIF_WAKEUP_VALID_ALL_RX_MSGS == STD_ON)
+#error "Invalid configuration"
+#endif
 #endif
 
 #if(CANIF_PN_TRCV_HANDLING == STD_ON)
-# if(CANIF_TRCV_HANDLING == STD_OFF)
-#  error "Invalid configuration: Partial networking transceiver handling (CANIF_PN_TRCV_HANDLING) is enabled while transceiver handling is disabled (CANIF_TRCV_HANDLING)"
-# endif
+#if(CANIF_TRCV_HANDLING == STD_OFF)
+#error "Invalid configuration: Partial networking transceiver handling (CANIF_PN_TRCV_HANDLING) is enabled while transceiver handling is disabled (CANIF_TRCV_HANDLING)"
+#endif
 #endif
 
 #if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-# if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
-#  error "Invalid configuration: One channel optimization not possible if multiple CAN drivers are used"
-# endif
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
+#error "Invalid configuration: One channel optimization not possible if multiple CAN drivers are used"
+#endif
 #endif
 
 #if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
-# if(EcuabCanIf_Transmit_CANCELLATION == STD_ON)
+#if(EcuabCanIf_Transmit_CANCELLATION == STD_ON)
 # error "HW Tx-cancellation is NOT supported in combination with Tx-Buffer Type FIFO!"
-# endif
+#endif
 #endif
 
 #if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
 
-# define CANIF_PN_WU_FLAG_GET                   0x80u
+#define CANIF_PN_WU_FLAG_GET                   0x80u
 
 #endif
 
@@ -129,18 +129,18 @@ extern "C"
 
 #if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
 
-# define CANIF_MASKCODE_RANGE   0x20000000u
-# define CANIF_FDFLAG           0x40000000u
+#define CANIF_MASKCODE_RANGE   0x20000000u
+#define CANIF_FDFLAG           0x40000000u
 
-# define CANIF_STOP_FLAG        0x40000000u
-# define CANIF_RANGE_FLAG       0x20000000u
+#define CANIF_STOP_FLAG        0x40000000u
+#define CANIF_RANGE_FLAG       0x20000000u
 #else
 
-# define CANIF_MASKCODE_RANGE   0x2000u
-# define CANIF_FDFLAG           0x4000u
+#define CANIF_MASKCODE_RANGE   0x2000u
+#define CANIF_FDFLAG           0x4000u
 
-# define CANIF_STOP_FLAG        0x4000u
-# define CANIF_RANGE_FLAG       0x2000u
+#define CANIF_STOP_FLAG        0x4000u
+#define CANIF_RANGE_FLAG       0x2000u
 #endif
 
 #define CANIF_J1939_NULL_ADDR                 0xFEu
@@ -158,60 +158,60 @@ extern "C"
 #define CANIF_J1939_ACKM_PGN                  0x00E80000u
 
 #if((CANIF_SUPPORT_NMOSEK_INDICATION == STD_ON) || (CANIF_META_DATA_RX_SUPPORT == STD_ON) || (CANIF_RX_INDICATION_TYPE_IV_IS_USED == STD_ON))
-# define CanIf_Indirect_HlIndication(hrh, pduid, cansduptr, candlc, canid)     CanIf_HlIndication((hrh), (pduid), (cansduptr), (candlc), (canid))
+#define CanIf_Indirect_HlIndication(hrh, pduid, cansduptr, candlc, canid)     CanIf_HlIndication((hrh), (pduid), (cansduptr), (candlc), (canid))
 #else
-# define CanIf_Indirect_HlIndication(hrh, pduid, cansduptr, candlc, canid)     CanIf_HlIndication((hrh), (pduid), (cansduptr), (candlc))
+#define CanIf_Indirect_HlIndication(hrh, pduid, cansduptr, candlc, canid)     CanIf_HlIndication((hrh), (pduid), (cansduptr), (candlc))
 #endif
 
-#define CanIf_ControllerType                               CanIf_CtrlStatesIdxOfTxPduConfigType
-#define CanIf_RxIndFctListIdxType                          EcuabCanIf_RxIndicationFctListIdxOfRxPduConfigType
-#define CanIf_TxConfFctListIdxType                         EcuabCanIf_TxConfirmationFctListIdxOfTxPduConfigType
-#define CanIf_TxPduQueueType                               CanIf_TxPduQueueIndexStartIdxOfControllerConfigType
+#define CanIf_ControllerType                               EcuabCanIf_StatesCtrlIdxOfTxPduConfigType
+#define CanIf_RxIndFctListIdxType                          CfgEcuabCanIf_ListFctIndicationRxIdxOfRxPduConfigType
+#define CanIf_TxConfFctListIdxType                         EcuabCanIf_ListFctConfirmationTxIdxOfTxPduConfigType
+#define CanIf_TxPduQueueType                               EcuabCanIf_IndexQueuePduTxStartIdxOfControllerConfigType
 #define CanIf_CanTrcvFctTblIdx                             CanIf_CanTrcvFctTblIdxOfTransceiverUpToLowMapType
 
 #define  CanIf_AnyIdxType uint32_least
 
 #if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
-# define CANIF_CHANNEL_CANTYPE_FIRST
-# define CANIF_CHANNEL_CANTYPE_ONLY                   void
-# define CANIF_CHANNEL_CANPARA_ONLY
-# define CANIF_CHANNEL_CANPARA_FIRST
-# define CANIF_CHANNEL_CANPARA_FIRST_LOCAL
-# define CanIf_Controller_Value                       0u
-# define CANIF_CHANNEL_CANTYPE_LOCAL
-# define CANIF_WUCHANNEL_CANTYPE_LOCAL
-# define CanIf_Controller_Value_Local                 0u
-# define CanIf_WU_Controller_Value_Local              0u
-# define CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE     CanIf_GetMaxTrcvHandleIdPlusOne()
+#define CANIF_CHANNEL_CANTYPE_FIRST
+#define CANIF_CHANNEL_CANTYPE_ONLY                   void
+#define CANIF_CHANNEL_CANPARA_ONLY
+#define CANIF_CHANNEL_CANPARA_FIRST
+#define CANIF_CHANNEL_CANPARA_FIRST_LOCAL
+#define CanIf_Controller_Value                       0u
+#define CANIF_CHANNEL_CANTYPE_LOCAL
+#define CANIF_WUCHANNEL_CANTYPE_LOCAL
+#define CanIf_Controller_Value_Local                 0u
+#define CanIf_WU_Controller_Value_Local              0u
+#define CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE     CanIf_GetMaxTrcvHandleIdPlusOne()
 #else
-# define CANIF_CHANNEL_CANTYPE_FIRST                  CanIf_ControllerType ControllerId,
-# define CANIF_CHANNEL_CANTYPE_ONLY                   CanIf_ControllerType ControllerId
-# define CANIF_CHANNEL_CANPARA_ONLY                   ControllerId
-# define CANIF_CHANNEL_CANPARA_FIRST                  ControllerId,
-# define CANIF_CHANNEL_CANPARA_FIRST_LOCAL            controller,
-# define CanIf_Controller_Value                       ControllerId
-# define CANIF_CHANNEL_CANTYPE_LOCAL                  CanIf_ControllerType controller;
-# define CANIF_WUCHANNEL_CANTYPE_LOCAL                CanIf_ControllerType wuController;
-# define CanIf_Controller_Value_Local                 controller
-# define CanIf_WU_Controller_Value_Local              wuController
-# define CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE     CanIf_GetMaxTrcvHandleIdPlusOne()
+#define CANIF_CHANNEL_CANTYPE_FIRST                  CanIf_ControllerType ControllerId,
+#define CANIF_CHANNEL_CANTYPE_ONLY                   CanIf_ControllerType ControllerId
+#define CANIF_CHANNEL_CANPARA_ONLY                   ControllerId
+#define CANIF_CHANNEL_CANPARA_FIRST                  ControllerId,
+#define CANIF_CHANNEL_CANPARA_FIRST_LOCAL            controller,
+#define CanIf_Controller_Value                       ControllerId
+#define CANIF_CHANNEL_CANTYPE_LOCAL                  CanIf_ControllerType controller;
+#define CANIF_WUCHANNEL_CANTYPE_LOCAL                CanIf_ControllerType wuController;
+#define CanIf_Controller_Value_Local                 controller
+#define CanIf_WU_Controller_Value_Local              wuController
+#define CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE     CanIf_GetMaxTrcvHandleIdPlusOne()
 #endif
 
-# define CANIF_CFG_MAX_CONTROLLER                     CanIf_GetSizeOfCtrlStates()
-# define CANIF_CFG_TX_CONTROLLER(index)               CanIf_GetCtrlStatesIdxOfTxPduConfig(index)
+#define CANIF_CFG_MAX_CONTROLLER                     CanIf_GetSizeOfCtrlStates()
+#define CANIF_CFG_TX_CONTROLLER(index)               CanIf_GetCtrlStatesIdxOfTxPduConfig(index)
 
 #if(CANIF_TRCV_MAPPING == STD_ON)
-# define CANIF_CFG_MAX_CANTRCV_TRCVHANDLEIDPLUSONE    CanIf_GetSizeOfTransceiverUpToUpperMap()
+#define CANIF_CFG_MAX_CANTRCV_TRCVHANDLEIDPLUSONE    CanIf_GetSizeOfTransceiverUpToUpperMap()
 #else
-# define CANIF_CFG_MAX_CANTRCV_TRCVHANDLEIDPLUSONE    CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE
+#define CANIF_CFG_MAX_CANTRCV_TRCVHANDLEIDPLUSONE    CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE
 #endif
 
 #if(CANIF_TRCV_HANDLING == STD_ON)
-# if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
-#  define CanIf_TrcvIdUpper                     0u
-# else
-#  define CanIf_TrcvIdUpper                     TransceiverId
-# endif
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
+#define CanIf_TrcvIdUpper                     0u
+#else
+#define CanIf_TrcvIdUpper                     TransceiverId
+#endif
 #endif
 
 #define CANIF_CFG_GENERATORCOMPATIBILITYVERSION            CanIf_GetGeneratorCompatibilityVersion()
@@ -244,17 +244,17 @@ extern "C"
 #define CANIF_CFG_CTRLID2J1939DYNADDROFFSET(index)         CanIf_GetJ1939DynAddrOffsetOfCtrlConfig(index)
 
 #if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-# define CANIF_CFG_CTRLUPTOLOWMAP_CHANNELINDEX(index)      CanIf_GetChannelIndexOfCanChannelIdUpToLowMap(index)
-# define CANIF_GET_CANSETCTRLMODEFCT(index)                CanIf_GetSetControllerModeFctOfCanDrvFctTbl(CANIF_CFG_CTRLUPTOLOWMAP_DRIVERINDEX(index))
+#define CANIF_CFG_CTRLUPTOLOWMAP_CHANNELINDEX(index)      CanIf_GetChannelIndexOfCanChannelIdUpToLowMap(index)
+#define CANIF_GET_CANSETCTRLMODEFCT(index)                CanIf_GetSetControllerModeFctOfCanDrvFctTbl(CANIF_CFG_CTRLUPTOLOWMAP_DRIVERINDEX(index))
 #else
-# define CANIF_CFG_CTRLUPTOLOWMAP_CHANNELINDEX(index)      (index)
-# define canSetCtrlModeFct                                 Can_SetControllerMode
+#define CANIF_CFG_CTRLUPTOLOWMAP_CHANNELINDEX(index)      (index)
+#define canSetCtrlModeFct                                 Can_SetControllerMode
 #endif
 
 #if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-# define CANIF_GET_CANCANCELTXFCT(index)                   CanIf_GetCancelTxFctOfCanDrvFctTbl(CANIF_CFG_CTRLUPTOLOWMAP_DRIVERINDEX(index))
+#define CANIF_GET_CANCANCELTXFCT(index)                   CanIf_GetCancelTxFctOfCanDrvFctTbl(CANIF_CFG_CTRLUPTOLOWMAP_DRIVERINDEX(index))
 #else
-# define canCancelTxFct                                    Can_CancelTx
+#define canCancelTxFct                                    Can_CancelTx
 #endif
 
 #define CANIF_CFG_RX_RXINDICATION(index)                   CanIf_GetRxIndicationFctListIdxOfRxPduConfig(index)
@@ -280,11 +280,11 @@ extern "C"
 #define CANIF_VAR_GET_PDU_RECEPTION_MODE(Index)            CanIf_GetPduRxMode(Index)
 
 #if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
-# define CANIF_VAR_J1939RXADDR_LOOKUP(ch, addr)            CanIf_GetJ1939RxAddr_Lookup(addr)
-# define CANIF_VAR_SET_J1939RXADDR_LOOKUP(ch, addr, value) CanIf_SetJ1939RxAddr_Lookup((addr), (value))
+#define CANIF_VAR_J1939RXADDR_LOOKUP(ch, addr)            CanIf_GetJ1939RxAddr_Lookup(addr)
+#define CANIF_VAR_SET_J1939RXADDR_LOOKUP(ch, addr, value) CanIf_SetJ1939RxAddr_Lookup((addr), (value))
 #else
-# define CANIF_VAR_J1939RXADDR_LOOKUP(ch, addr)            CanIf_GetJ1939RxAddr_Lookup(CANIF_CFG_CTRLID2J1939DYNADDROFFSET(ch) + (addr))
-# define CANIF_VAR_SET_J1939RXADDR_LOOKUP(ch, addr, value) CanIf_SetJ1939RxAddr_Lookup((CANIF_CFG_CTRLID2J1939DYNADDROFFSET(ch) + (addr)), (value))
+#define CANIF_VAR_J1939RXADDR_LOOKUP(ch, addr)            CanIf_GetJ1939RxAddr_Lookup(CANIF_CFG_CTRLID2J1939DYNADDROFFSET(ch) + (addr))
+#define CANIF_VAR_SET_J1939RXADDR_LOOKUP(ch, addr, value) CanIf_SetJ1939RxAddr_Lookup((CANIF_CFG_CTRLID2J1939DYNADDROFFSET(ch) + (addr)), (value))
 #endif
 
 #define CANIF_CFG_TX_CANID(index)                          CanIf_GetCanIdOfTxPduConfig(index)
@@ -343,11 +343,11 @@ extern "C"
 #define CANIF_CFG_TXBUFFERPRIOBYCANIDBITQUEUE_BITPOS2TXPDUIDOFFSET(index)      CanIf_GetBitPos2TxPduIdOffsetOfTxBufferPrioByCanIdBitQueueConfig(index)
 
 #if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
-# define CANIF_VAR_J1939TXADDR_LOOKUP(ch, addr)            CanIf_GetJ1939TxAddr_Lookup(addr)
-# define CANIF_VAR_SET_J1939TXADDR_LOOKUP(ch, addr, value) CanIf_SetJ1939TxAddr_Lookup((addr), (value))
+#define CANIF_VAR_J1939TXADDR_LOOKUP(ch, addr)            CanIf_GetJ1939TxAddr_Lookup(addr)
+#define CANIF_VAR_SET_J1939TXADDR_LOOKUP(ch, addr, value) CanIf_SetJ1939TxAddr_Lookup((addr), (value))
 #else
-# define CANIF_VAR_J1939TXADDR_LOOKUP(ch, addr)            CanIf_GetJ1939TxAddr_Lookup(CANIF_CFG_CTRLID2J1939DYNADDROFFSET(ch) + (addr))
-# define CANIF_VAR_SET_J1939TXADDR_LOOKUP(ch, addr, value) CanIf_SetJ1939TxAddr_Lookup((CANIF_CFG_CTRLID2J1939DYNADDROFFSET(ch) + (addr)), (value))
+#define CANIF_VAR_J1939TXADDR_LOOKUP(ch, addr)            CanIf_GetJ1939TxAddr_Lookup(CANIF_CFG_CTRLID2J1939DYNADDROFFSET(ch) + (addr))
+#define CANIF_VAR_SET_J1939TXADDR_LOOKUP(ch, addr, value) CanIf_SetJ1939TxAddr_Lookup((CANIF_CFG_CTRLID2J1939DYNADDROFFSET(ch) + (addr)), (value))
 #endif
 
 #define CANIF_CFG_MAILBOX_PDUIDFIRST(index)                CanIf_GetPduIdFirstOfMailBoxConfig(index)
@@ -460,18 +460,18 @@ extern "C"
 #define CANIF_NOP      ((uint8)0xFFu)
 
 #if(CANIF_BITQUEUE == STD_ON)
-# if( CPU_TYPE == CPU_TYPE_8 )
-#  define kCanTxQueueShift     3u
-#  define elemStartBitIdx      7u
+#if( CPU_TYPE == CPU_TYPE_8 )
+#define kCanTxQueueShift     3u
+#define elemStartBitIdx      7u
 # elif( CPU_TYPE == CPU_TYPE_16 )
-#  define kCanTxQueueShift     4u
-#  define elemStartBitIdx      15u
-# else
-#  define kCanTxQueueShift     5u
-#  define elemStartBitIdx      31u
-# endif
+#define kCanTxQueueShift     4u
+#define elemStartBitIdx      15u
+#else
+#define kCanTxQueueShift     5u
+#define elemStartBitIdx      31u
+#endif
 
-# define kCanTxQueueMask      (((uint8)1u << kCanTxQueueShift) - (uint8)1u)
+#define kCanTxQueueMask      (((uint8)1u << kCanTxQueueShift) - (uint8)1u)
 #endif
 
 #define CANIF_START_SEC_CONST_8BIT
@@ -489,9 +489,9 @@ CONST(uint8, CANIF_CONST) CanIf_ReleaseVersion      = (uint8)CANIF_SW_PATCH_VERS
 
 #if((EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON) || (EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON))
 
-CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) CanIf_TxQueueTreatment(CanIf_HwHandleType hth);
+CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_QueueTxTreatment(CanIf_HwHandleType hth);
 
-CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) CanIf_TxQueueTransmit(PduIdType PduId);
+CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_QueueTxTransmit(PduIdType PduId);
 
 CANIF_LOCAL FUNC(void, CANIF_CODE) CanIf_ClearQueue(CANIF_CHANNEL_CANTYPE_ONLY);
 #endif
@@ -504,10 +504,10 @@ CANIF_LOCAL_INLINE FUNC(Std_ReturnType, CANIF_CODE) CanIf_ClearPrioByCanIdTxPduA
 #endif
 
 #if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
-# if  (CANIF_CANCEL_SUPPORT_API == STD_ON)
+#if  (CANIF_CANCEL_SUPPORT_API == STD_ON)
 
 CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) infEcuabCanIfSwcApplEcuM_InitFunctionSubInitFifoQueue(void);
-# endif
+#endif
 #endif
 
 #if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
@@ -535,10 +535,10 @@ CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) EcuabCanIf_TransmitSubHandleMetaData(P
 #endif
 
 #if(CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED)
-# if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
+#if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
 
 CANIF_LOCAL_INLINE FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_TransmitSubJ1939DynAddr(CANIF_CHANNEL_CANTYPE_FIRST P2VAR(Can_PduType, AUTOMATIC, AUTOMATIC)localPduPtr);
-# endif
+#endif
 #endif
 
 #if((EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON) || (EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON))
@@ -547,19 +547,19 @@ CANIF_LOCAL_INLINE FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_TransmitSubHandle
 #endif
 
 #if(CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED)
-# if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
+#if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
 
 CANIF_LOCAL_INLINE FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_RxIndicationSubJ1939DynAddr(P2VAR(CanIf_RxSearchParamsType, AUTOMATIC, AUTOMATIC) rxSearchParams);
-# endif
+#endif
 #endif
 
 #if(CANIF_SEARCH_ALGORITHM == CANIF_BINARY)
 
 CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationSubBinarySearch(P2VAR(CanIf_RxSearchParamsType, AUTOMATIC, AUTOMATIC) rxSearchParams);
 
-# if(CANIF_RX_SEARCH_CONSIDER_MSG_TYPE == STD_ON)
+#if(CANIF_RX_SEARCH_CONSIDER_MSG_TYPE == STD_ON)
 CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationSubBinarySearchSubCheckMsgType(P2VAR(CanIf_RxSearchParamsType, AUTOMATIC, AUTOMATIC) rxSearchParams);
-# endif
+#endif
 #endif
 
 #if(CANIF_SEARCH_ALGORITHM == CANIF_DOUBLE_HASH)
@@ -607,133 +607,133 @@ CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) CanIf_TxBufferPrioByCanIdQueuePdu(P2CO
 CANIF_LOCAL CONST(uint8, CANIF_CONST) CanIfState[CANIF_NO_MODE_PDU_GET_MODE_TYPE_END][CANIF_NO_MODE_PDU_SET_MODE_TYPE_END] =
 {
   {
-    (uint8)(CANIF_NOP),
-    (uint8)(CANIF_NOP),
-    (uint8)(CANIF_GET_RX_ONLINE),
-    (uint8)(CANIF_NOP),
-    (uint8)(CANIF_GET_TX_ONLINE),
-    (uint8)(CANIF_GET_ONLINE),
-    (uint8)(CANIF_GET_OFFLINE_ACTIVE)
-#if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
-,   (uint8)(CANIF_GET_ONLINE_WAKF),
-    (uint8)(CANIF_GET_TX_ONLINE_WAKF)
-#endif
-  },
-
-  {
-    (uint8)(CANIF_GET_OFFLINE),
-    (uint8)(CANIF_GET_OFFLINE),
-    (uint8)(CANIF_NOP),
-    (uint8)(CANIF_NOP),
-    (uint8)(CANIF_GET_ONLINE),
-    (uint8)(CANIF_GET_ONLINE),
-    (uint8)(CANIF_GET_OFFLINE_ACTIVE_RX_ONLINE)
-#if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
-,   (uint8)(CANIF_GET_ONLINE_WAKF),
-    (uint8)(CANIF_GET_ONLINE_WAKF)
-#endif
-  },
-
-  {
-    (uint8)(CANIF_GET_OFFLINE),
-    (uint8)(CANIF_NOP),
-    (uint8)(CANIF_GET_ONLINE),
-    (uint8)(CANIF_GET_OFFLINE),
-    (uint8)(CANIF_NOP),
-    (uint8)(CANIF_GET_ONLINE),
-    (uint8)(CANIF_GET_OFFLINE_ACTIVE)
-#if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
-,   (uint8)(CANIF_GET_ONLINE_WAKF),
-    (uint8)(CANIF_GET_TX_ONLINE_WAKF)
-#endif
-  },
-
-  {
-    (uint8)(CANIF_GET_OFFLINE),
-    (uint8)(CANIF_GET_TX_ONLINE),
-    (uint8)(CANIF_NOP),
-    (uint8)(CANIF_GET_RX_ONLINE),
-    (uint8)(CANIF_NOP),
-    (uint8)(CANIF_NOP),
-    (uint8)(CANIF_GET_OFFLINE_ACTIVE_RX_ONLINE)
-#if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
-,   (uint8)(CANIF_GET_ONLINE_WAKF),
-    (uint8)(CANIF_GET_ONLINE_WAKF)
-#endif
-  },
-
-  {
-    (uint8)(CANIF_GET_OFFLINE),
-    (uint8)(CANIF_NOP),
-    (uint8)(CANIF_GET_OFFLINE_ACTIVE_RX_ONLINE),
-    (uint8)(CANIF_GET_OFFLINE),
-    (uint8)(CANIF_GET_TX_ONLINE),
-    (uint8)(CANIF_GET_ONLINE),
     (uint8)(CANIF_NOP)
+   ,   (uint8)(CANIF_NOP)
+   ,   (uint8)(CANIF_GET_RX_ONLINE)
+   ,   (uint8)(CANIF_NOP)
+   ,   (uint8)(CANIF_GET_TX_ONLINE)
+   ,   (uint8)(CANIF_GET_ONLINE)
+   ,   (uint8)(CANIF_GET_OFFLINE_ACTIVE)
 #if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
-,   (uint8)(CANIF_GET_ONLINE_WAKF),
-    (uint8)(CANIF_GET_TX_ONLINE_WAKF)
+,   (uint8)(CANIF_GET_ONLINE_WAKF)
+   ,   (uint8)(CANIF_GET_TX_ONLINE_WAKF)
 #endif
   },
 
   {
-    (uint8)(CANIF_GET_OFFLINE),
-    (uint8)(CANIF_GET_OFFLINE_ACTIVE),
-    (uint8)(CANIF_NOP),
-    (uint8)(CANIF_GET_RX_ONLINE),
-    (uint8)(CANIF_GET_ONLINE),
-    (uint8)(CANIF_GET_ONLINE),
-    (uint8)(CANIF_NOP)
+    (uint8)(CANIF_GET_OFFLINE)
+   ,   (uint8)(CANIF_GET_OFFLINE)
+   ,   (uint8)(CANIF_NOP)
+   ,   (uint8)(CANIF_NOP)
+   ,   (uint8)(CANIF_GET_ONLINE)
+   ,   (uint8)(CANIF_GET_ONLINE)
+   ,   (uint8)(CANIF_GET_OFFLINE_ACTIVE_RX_ONLINE)
 #if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
-,   (uint8)(CANIF_GET_ONLINE_WAKF),
-    (uint8)(CANIF_GET_ONLINE_WAKF)
+,   (uint8)(CANIF_GET_ONLINE_WAKF)
+   ,   (uint8)(CANIF_GET_ONLINE_WAKF)
+#endif
+  },
+
+  {
+    (uint8)(CANIF_GET_OFFLINE)
+   ,   (uint8)(CANIF_NOP)
+   ,   (uint8)(CANIF_GET_ONLINE)
+   ,   (uint8)(CANIF_GET_OFFLINE)
+   ,   (uint8)(CANIF_NOP)
+   ,   (uint8)(CANIF_GET_ONLINE)
+   ,   (uint8)(CANIF_GET_OFFLINE_ACTIVE)
+#if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
+,   (uint8)(CANIF_GET_ONLINE_WAKF)
+   ,   (uint8)(CANIF_GET_TX_ONLINE_WAKF)
+#endif
+  },
+
+  {
+    (uint8)(CANIF_GET_OFFLINE)
+   ,   (uint8)(CANIF_GET_TX_ONLINE)
+   ,   (uint8)(CANIF_NOP)
+   ,   (uint8)(CANIF_GET_RX_ONLINE)
+   ,   (uint8)(CANIF_NOP)
+   ,   (uint8)(CANIF_NOP)
+   ,   (uint8)(CANIF_GET_OFFLINE_ACTIVE_RX_ONLINE)
+#if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
+,   (uint8)(CANIF_GET_ONLINE_WAKF)
+   ,   (uint8)(CANIF_GET_ONLINE_WAKF)
+#endif
+  },
+
+  {
+    (uint8)(CANIF_GET_OFFLINE)
+   ,   (uint8)(CANIF_NOP)
+   ,   (uint8)(CANIF_GET_OFFLINE_ACTIVE_RX_ONLINE)
+   ,   (uint8)(CANIF_GET_OFFLINE)
+   ,   (uint8)(CANIF_GET_TX_ONLINE)
+   ,   (uint8)(CANIF_GET_ONLINE)
+   ,   (uint8)(CANIF_NOP)
+#if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
+,   (uint8)(CANIF_GET_ONLINE_WAKF)
+   ,   (uint8)(CANIF_GET_TX_ONLINE_WAKF)
+#endif
+  },
+
+  {
+    (uint8)(CANIF_GET_OFFLINE)
+   ,   (uint8)(CANIF_GET_OFFLINE_ACTIVE)
+   ,   (uint8)(CANIF_NOP)
+   ,   (uint8)(CANIF_GET_RX_ONLINE)
+   ,   (uint8)(CANIF_GET_ONLINE)
+   ,   (uint8)(CANIF_GET_ONLINE)
+   ,   (uint8)(CANIF_NOP)
+#if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
+,   (uint8)(CANIF_GET_ONLINE_WAKF)
+   ,   (uint8)(CANIF_GET_ONLINE_WAKF)
 #endif
   }
 #if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
 ,
 
   {
-    (uint8)(CANIF_GET_OFFLINE),
-    (uint8)(CANIF_GET_TX_ONLINE_WAKF),
-    (uint8)(CANIF_NOP),
-    (uint8)(CANIF_GET_RX_ONLINE),
-    (uint8)(CANIF_GET_ONLINE),
-    (uint8)(CANIF_GET_ONLINE),
-    (uint8)(CANIF_GET_OFFLINE_ACTIVE_RX_ONLINE),
-    (uint8)(CANIF_NOP),
-    (uint8)(CANIF_NOP)
+    (uint8)(CANIF_GET_OFFLINE)
+   ,   (uint8)(CANIF_GET_TX_ONLINE_WAKF)
+   ,   (uint8)(CANIF_NOP)
+   ,   (uint8)(CANIF_GET_RX_ONLINE)
+   ,   (uint8)(CANIF_GET_ONLINE)
+   ,   (uint8)(CANIF_GET_ONLINE)
+   ,   (uint8)(CANIF_GET_OFFLINE_ACTIVE_RX_ONLINE)
+   ,   (uint8)(CANIF_NOP)
+   ,   (uint8)(CANIF_NOP)
   },
 
   {
-    (uint8)(CANIF_GET_OFFLINE),
-    (uint8)(CANIF_NOP),
-    (uint8)(CANIF_GET_ONLINE_WAKF),
-    (uint8)(CANIF_GET_OFFLINE),
-    (uint8)(CANIF_GET_TX_ONLINE),
-    (uint8)(CANIF_GET_ONLINE),
-    (uint8)(CANIF_GET_OFFLINE_ACTIVE),
-    (uint8)(CANIF_GET_ONLINE_WAKF),
-    (uint8)(CANIF_NOP)
+    (uint8)(CANIF_GET_OFFLINE)
+   ,   (uint8)(CANIF_NOP)
+   ,   (uint8)(CANIF_GET_ONLINE_WAKF)
+   ,   (uint8)(CANIF_GET_OFFLINE)
+   ,   (uint8)(CANIF_GET_TX_ONLINE)
+   ,   (uint8)(CANIF_GET_ONLINE)
+   ,   (uint8)(CANIF_GET_OFFLINE_ACTIVE)
+   ,   (uint8)(CANIF_GET_ONLINE_WAKF)
+   ,   (uint8)(CANIF_NOP)
   }
 #endif
 };
 
 #if(CANIF_BITQUEUE == STD_ON)
 
-CANIF_LOCAL CONST(CanIf_TxQueueFlagType, CANIF_CONST) CanShiftLookUp[1u << kCanTxQueueShift] =
+CANIF_LOCAL CONST(EcuabCanIf_QueueTxFlagType, CANIF_CONST) CanShiftLookUp[1u << kCanTxQueueShift] =
 {
-  (CanIf_TxQueueFlagType)0x00000001u, (CanIf_TxQueueFlagType)0x00000002u, (CanIf_TxQueueFlagType)0x00000004u, (CanIf_TxQueueFlagType)0x00000008u,
-  (CanIf_TxQueueFlagType)0x00000010u, (CanIf_TxQueueFlagType)0x00000020u, (CanIf_TxQueueFlagType)0x00000040u, (CanIf_TxQueueFlagType)0x00000080u
-# if( CPU_TYPE > CPU_TYPE_8 )
-,  (CanIf_TxQueueFlagType)0x00000100u, (CanIf_TxQueueFlagType)0x00000200u, (CanIf_TxQueueFlagType)0x00000400u, (CanIf_TxQueueFlagType)0x00000800u,
-   (CanIf_TxQueueFlagType)0x00001000u, (CanIf_TxQueueFlagType)0x00002000u, (CanIf_TxQueueFlagType)0x00004000u, (CanIf_TxQueueFlagType)0x00008000u
-# endif
-# if( CPU_TYPE > CPU_TYPE_16 )
-,  (CanIf_TxQueueFlagType)0x00010000u, (CanIf_TxQueueFlagType)0x00020000u, (CanIf_TxQueueFlagType)0x00040000u, (CanIf_TxQueueFlagType)0x00080000u,
-   (CanIf_TxQueueFlagType)0x00100000u, (CanIf_TxQueueFlagType)0x00200000u, (CanIf_TxQueueFlagType)0x00400000u, (CanIf_TxQueueFlagType)0x00800000u,
-   (CanIf_TxQueueFlagType)0x01000000u, (CanIf_TxQueueFlagType)0x02000000u, (CanIf_TxQueueFlagType)0x04000000u, (CanIf_TxQueueFlagType)0x08000000u,
-   (CanIf_TxQueueFlagType)0x10000000u, (CanIf_TxQueueFlagType)0x20000000u, (CanIf_TxQueueFlagType)0x40000000u, (CanIf_TxQueueFlagType)0x80000000u
-# endif
+  (EcuabCanIf_QueueTxFlagType)0x00000001u, (EcuabCanIf_QueueTxFlagType)0x00000002u, (EcuabCanIf_QueueTxFlagType)0x00000004u, (EcuabCanIf_QueueTxFlagType)0x00000008u
+   ,  (EcuabCanIf_QueueTxFlagType)0x00000010u, (EcuabCanIf_QueueTxFlagType)0x00000020u, (EcuabCanIf_QueueTxFlagType)0x00000040u, (EcuabCanIf_QueueTxFlagType)0x00000080u
+#if( CPU_TYPE > CPU_TYPE_8 )
+,  (EcuabCanIf_QueueTxFlagType)0x00000100u, (EcuabCanIf_QueueTxFlagType)0x00000200u, (EcuabCanIf_QueueTxFlagType)0x00000400u, (EcuabCanIf_QueueTxFlagType)0x00000800u
+   ,  (EcuabCanIf_QueueTxFlagType)0x00001000u, (EcuabCanIf_QueueTxFlagType)0x00002000u, (EcuabCanIf_QueueTxFlagType)0x00004000u, (EcuabCanIf_QueueTxFlagType)0x00008000u
+#endif
+#if( CPU_TYPE > CPU_TYPE_16 )
+,  (EcuabCanIf_QueueTxFlagType)0x00010000u, (EcuabCanIf_QueueTxFlagType)0x00020000u, (EcuabCanIf_QueueTxFlagType)0x00040000u, (EcuabCanIf_QueueTxFlagType)0x00080000u
+   ,  (EcuabCanIf_QueueTxFlagType)0x00100000u, (EcuabCanIf_QueueTxFlagType)0x00200000u, (EcuabCanIf_QueueTxFlagType)0x00400000u, (EcuabCanIf_QueueTxFlagType)0x00800000u
+   ,  (EcuabCanIf_QueueTxFlagType)0x01000000u, (EcuabCanIf_QueueTxFlagType)0x02000000u, (EcuabCanIf_QueueTxFlagType)0x04000000u, (EcuabCanIf_QueueTxFlagType)0x08000000u
+   ,  (EcuabCanIf_QueueTxFlagType)0x10000000u, (EcuabCanIf_QueueTxFlagType)0x20000000u, (EcuabCanIf_QueueTxFlagType)0x40000000u, (EcuabCanIf_QueueTxFlagType)0x80000000u
+#endif
 };
 #endif
 
@@ -743,13 +743,13 @@ CANIF_LOCAL CONST(CanIf_TxQueueFlagType, CANIF_CONST) CanShiftLookUp[1u << kCanT
 #define CANIF_START_SEC_VAR_INIT_UNSPECIFIED
 #include "MemMap.hpp"
 
-# if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 P2CONST(CanIf_ConfigType, CANIF_VAR_INIT, CANIF_XCFG) CanIf_ConfigDataPtr = NULL_PTR;
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 CANIF_LOCAL VAR(boolean, CANIF_VAR_INIT) CanIf_SystemInit = FALSE;
-# endif
-# endif
+#endif
+#endif
 
 #define CANIF_STOP_SEC_VAR_INIT_UNSPECIFIED
 #include "MemMap.hpp"
@@ -775,7 +775,7 @@ CANIF_LOCAL_INLINE FUNC(boolean, CANIF_CODE) EcuabCanIf_TransmitSubCheckFiFoQueu
 #endif
 
 #if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
-# if(CANIF_CANCEL_SUPPORT_API == STD_ON)
+#if(CANIF_CANCEL_SUPPORT_API == STD_ON)
 
 CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) infEcuabCanIfSwcApplEcuM_InitFunctionSubInitFifoQueue(void){
   CanIf_AnyIdxType counter;
@@ -788,36 +788,36 @@ CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) infEcuabCanIfSwcApplEcuM_InitFunctionS
     CANIF_VAR_TXBUFFERFIFO_QUEUEBASE( counter, eQueued) = 0;
   }
 }
-# endif
+#endif
 #endif
 
 #if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
 
 CANIF_LOCAL_INLINE FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetPrioByCanIdTxPduAsQueued(PduIdType PduId){
-# if(CANIF_BITQUEUE == STD_ON)
+#if(CANIF_BITQUEUE == STD_ON)
   CanIf_AnyIdxType  queueElementIdx;
   uint8         elementBitIdx;
   PduIdType     queueBitPos;
-# endif
+#endif
   uint8 errorId;
   CanIf_AnyIdxType txBufferCfgIdx;
   Std_ReturnType retval = E_NOT_OK;
   errorId = CANIF_E_NO_ERROR;
   txBufferCfgIdx = CANIF_CFG_MAILBOX_TXBUFFERIDX(CANIF_CFG_TX_HTH(PduId));
 
-# if(CANIF_BITQUEUE == STD_ON)
+#if(CANIF_BITQUEUE == STD_ON)
 
   queueBitPos  =  (PduIdType)(PduId - CANIF_CFG_TXBUFFERPRIOBYCANIDBITQUEUE_BITPOS2TXPDUIDOFFSET(txBufferCfgIdx));
   queueElementIdx = (((uint16_least)queueBitPos) >> kCanTxQueueShift) + CANIF_CFG_TXBUFFERPRIOBYCANIDBITQUEUE_QUEUESTARTIDX(txBufferCfgIdx);
   elementBitIdx  = (uint8)(queueBitPos & kCanTxQueueMask);
 
-  if( (CANIF_VAR_TXBUFFERPRIOBYCANIDBITQUEUE_QUEUEFLAGS(queueElementIdx) & CanShiftLookUp[elementBitIdx]) == (CanIf_TxQueueFlagType)0 ){
-#  if(CANIF_DEV_ERROR_DETECT == STD_ON)
+  if( (CANIF_VAR_TXBUFFERPRIOBYCANIDBITQUEUE_QUEUEFLAGS(queueElementIdx) & CanShiftLookUp[elementBitIdx]) == (EcuabCanIf_QueueTxFlagType)0 ){
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
     if(queueElementIdx >= CanIf_GetSizeOfTxQueueFlags()){
       errorId = CANIF_E_FATAL;
     }
     else
-#  endif
+#endif
     {
       CANIF_VAR_SET_TXBUFFERPRIOBYCANIDBITQUEUE_QUEUEFLAGS(queueElementIdx, (CANIF_VAR_TXBUFFERPRIOBYCANIDBITQUEUE_QUEUEFLAGS(queueElementIdx) | CanShiftLookUp[elementBitIdx]));
       CanIf_IncTxQueueCounter(CANIF_CFG_TXBUFFERPRIOBYCANIDBITQUEUE_BUFFERBASEIDX(txBufferCfgIdx));
@@ -825,50 +825,50 @@ CANIF_LOCAL_INLINE FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetPrioByCanIdTxPduAsQ
     }
   }
 
-# else
+#else
 
   if(CANIF_VAR_TXBUFFERPRIOBYCANID_QUEUE(CANIF_CFG_TX_QUEUEINDEX(PduId), eQueued) == 0u){
     CANIF_VAR_TXBUFFERPRIOBYCANID_QUEUE(CANIF_CFG_TX_QUEUEINDEX(PduId), eQueued) = 1u;
     CanIf_IncTxQueueCounter(CANIF_CFG_TXBUFFERPRIOBYCANIDBYTEQUEUE_BUFFERBASEIDX(txBufferCfgIdx) );
     retval = E_OK;
   }
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(infEcuabCanIfSwcApplEcuM_InitFunction_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   return retval;
 }
 
 CANIF_LOCAL_INLINE FUNC(Std_ReturnType, CANIF_CODE) CanIf_ClearPrioByCanIdTxPduAsQueued(PduIdType PduId){
-# if(CANIF_BITQUEUE == STD_ON)
+#if(CANIF_BITQUEUE == STD_ON)
   CanIf_AnyIdxType  queueElementIdx;
   uint8         elementBitIdx;
   PduIdType     queueBitPos;
-# endif
+#endif
   uint8 errorId;
   CanIf_AnyIdxType txBufferCfgIdx;
   Std_ReturnType retval = E_NOT_OK;
   errorId = CANIF_E_NO_ERROR;
   txBufferCfgIdx = CANIF_CFG_MAILBOX_TXBUFFERIDX(CANIF_CFG_TX_HTH(PduId));
 
-# if(CANIF_BITQUEUE == STD_ON)
+#if(CANIF_BITQUEUE == STD_ON)
 
   queueBitPos  =  (PduIdType)(PduId - CANIF_CFG_TXBUFFERPRIOBYCANIDBITQUEUE_BITPOS2TXPDUIDOFFSET(txBufferCfgIdx));
   queueElementIdx = (((uint16_least)queueBitPos) >> kCanTxQueueShift) + CANIF_CFG_TXBUFFERPRIOBYCANIDBITQUEUE_QUEUESTARTIDX(txBufferCfgIdx);
   elementBitIdx  = (uint8)(queueBitPos & kCanTxQueueMask);
 
-  if( (CANIF_VAR_TXBUFFERPRIOBYCANIDBITQUEUE_QUEUEFLAGS(queueElementIdx) & CanShiftLookUp[elementBitIdx]) != (CanIf_TxQueueFlagType)0 ){
-#  if(CANIF_DEV_ERROR_DETECT == STD_ON)
+  if( (CANIF_VAR_TXBUFFERPRIOBYCANIDBITQUEUE_QUEUEFLAGS(queueElementIdx) & CanShiftLookUp[elementBitIdx]) != (EcuabCanIf_QueueTxFlagType)0 ){
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
     if(queueElementIdx >= CanIf_GetSizeOfTxQueueFlags()){
       errorId = CANIF_E_FATAL;
     }
     else
-#  endif
+#endif
     {
       CANIF_VAR_SET_TXBUFFERPRIOBYCANIDBITQUEUE_QUEUEFLAGS(queueElementIdx, (CANIF_VAR_TXBUFFERPRIOBYCANIDBITQUEUE_QUEUEFLAGS(queueElementIdx) & (~CanShiftLookUp[elementBitIdx])));
       CanIf_DecTxQueueCounter(CANIF_CFG_TXBUFFERPRIOBYCANIDBITQUEUE_BUFFERBASEIDX(txBufferCfgIdx));
@@ -876,22 +876,22 @@ CANIF_LOCAL_INLINE FUNC(Std_ReturnType, CANIF_CODE) CanIf_ClearPrioByCanIdTxPduA
     }
   }
 
-# else
+#else
 
   if(CANIF_VAR_TXBUFFERPRIOBYCANID_QUEUE(CANIF_CFG_TX_QUEUEINDEX(PduId), eQueued) == 1u){
     CANIF_VAR_TXBUFFERPRIOBYCANID_QUEUE(CANIF_CFG_TX_QUEUEINDEX(PduId), eQueued) = 0u;
     CanIf_DecTxQueueCounter(CANIF_CFG_TXBUFFERPRIOBYCANIDBYTEQUEUE_BUFFERBASEIDX(txBufferCfgIdx));
     retval = E_OK;
   }
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(infEcuabCanIfSwcApplEcuM_InitFunction_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   return retval;
 }
 #endif
@@ -901,23 +901,23 @@ CANIF_LOCAL_INLINE FUNC(Std_ReturnType, CANIF_CODE) CanIf_ClearPrioByCanIdTxPduA
 CANIF_LOCAL FUNC(void, CANIF_CODE) CanIf_ClearQueue(CANIF_CHANNEL_CANTYPE_ONLY){
   CanIf_AnyIdxType idx2MappedTxBufferCfg;
   CanIf_AnyIdxType hth;
-# if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
+#if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
   CanIf_AnyIdxType txBufferBaseIdx;
-#  if(CANIF_BITQUEUE == STD_ON)
+#if(CANIF_BITQUEUE == STD_ON)
   CanIf_AnyIdxType TxQueueFlagsIdx;
-#  else
+#else
   CanIf_AnyIdxType MappedTxPdusIdx;
   CanIf_AnyIdxType TxPduId;
-#  endif
-# endif
-# if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
+#endif
+#endif
+#if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
   CanIf_AnyIdxType txBufferFifoBaseIdx;
-#  if(CANIF_CANCEL_SUPPORT_API == STD_ON)
+#if(CANIF_CANCEL_SUPPORT_API == STD_ON)
   CanIf_AnyIdxType txFifoQueueBaseStartIdx;
   CanIf_TxBufferSizeType readIdx;
   CanIf_TxBufferSizeType counter;
-#  endif
-# endif
+#endif
+#endif
   CanIf_EnterCritical(CANIF_EXCLUSIVE_AREA_1);
 
   for(idx2MappedTxBufferCfg = CANIF_CFG_CTRL_STARTIDX2MAPPEDTXBUFFERS(CanIf_Controller_Value); idx2MappedTxBufferCfg < CANIF_CFG_CTRL_STOPIDX2MAPPEDTXBUFFERS(CanIf_Controller_Value); idx2MappedTxBufferCfg++ ){
@@ -926,34 +926,34 @@ CANIF_LOCAL FUNC(void, CANIF_CODE) CanIf_ClearQueue(CANIF_CHANNEL_CANTYPE_ONLY){
     txBufferCfgIdx = CANIF_CFG_MAILBOX_TXBUFFERIDX(hth);
 
     switch(CANIF_CFG_MAILBOX_TXBUFFERHANDLINGTYPE(hth)){
-# if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
+#if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
       case CANIF_TXBUFFER_HANDLINGTYPE_PRIOBYCANID:
-#  if(CANIF_BITQUEUE == STD_ON)
+#if(CANIF_BITQUEUE == STD_ON)
 
         for( TxQueueFlagsIdx = CANIF_CFG_TXBUFFERPRIOBYCANIDBITQUEUE_QUEUESTARTIDX(txBufferCfgIdx); TxQueueFlagsIdx < CANIF_CFG_TXBUFFERPRIOBYCANIDBITQUEUE_QUEUESTOPIDX(txBufferCfgIdx); TxQueueFlagsIdx++)
         {
           CANIF_VAR_SET_TXBUFFERPRIOBYCANIDBITQUEUE_QUEUEFLAGS(TxQueueFlagsIdx, 0);
         }
         txBufferBaseIdx = CANIF_CFG_TXBUFFERPRIOBYCANIDBITQUEUE_BUFFERBASEIDX(txBufferCfgIdx);
-# else
+#else
 
-        for (MappedTxPdusIdx = CANIF_CFG_TXBUFFERPRIOBYCANIDBYTEQUEUE_STARTIDX2MAPPEDTXPDUS(txBufferCfgIdx); MappedTxPdusIdx < CANIF_CFG_TXBUFFERPRIOBYCANIDBYTEQUEUE_STOPIDX2MAPPEDTXPDUS(txBufferCfgIdx); MappedTxPdusIdx++)
+        for(MappedTxPdusIdx = CANIF_CFG_TXBUFFERPRIOBYCANIDBYTEQUEUE_STARTIDX2MAPPEDTXPDUS(txBufferCfgIdx); MappedTxPdusIdx < CANIF_CFG_TXBUFFERPRIOBYCANIDBYTEQUEUE_STOPIDX2MAPPEDTXPDUS(txBufferCfgIdx); MappedTxPdusIdx++)
         {
           TxPduId =  CANIF_CFG_TXBUFFERPRIOBYCANIDBYTEQUEUE_MAPPEDTXPDUS(MappedTxPdusIdx);
           CANIF_VAR_TXBUFFERPRIOBYCANID_QUEUE(CANIF_CFG_TX_QUEUEINDEX(TxPduId), eQueued) = 0;
         }
         txBufferBaseIdx = CANIF_CFG_TXBUFFERPRIOBYCANIDBYTEQUEUE_BUFFERBASEIDX(txBufferCfgIdx);
-# endif
+#endif
 
         CanIf_SetTxQueueCounter(txBufferBaseIdx, 0);
         break;
-# endif
-# if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
+#endif
+#if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
       case CANIF_TXBUFFER_HANDLINGTYPE_FIFO:
 
         txBufferFifoBaseIdx = CANIF_CFG_TXBUFFERFIFO_BUFFERBASEIDX((txBufferCfgIdx));
 
-#  if(CANIF_CANCEL_SUPPORT_API == STD_ON)
+#if(CANIF_CANCEL_SUPPORT_API == STD_ON)
         if(CanIf_GetCtrlMode(CanIf_Controller_Value) != CANIF_CS_UNINIT)
         {
           readIdx = CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eReadIdx);
@@ -973,14 +973,14 @@ CANIF_LOCAL FUNC(void, CANIF_CODE) CanIf_ClearQueue(CANIF_CHANNEL_CANTYPE_ONLY){
             counter--;
           }
         }
-#  endif
+#endif
 
         CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eWriteIdx) = 0;
         CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eReadIdx) = 0;
         CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eQueueCounter) = 0;
 
         break;
-# endif
+#endif
       default:
         break;
     }
@@ -996,18 +996,18 @@ FUNC(void, CANIF_CODE) infEcuabCanIfSwcApplEcuM_InitFunction(P2CONST(CanIf_Confi
 #if(CANIF_USE_INIT_POINTER == STD_ON)
   CanIf_ConfigDataPtr = ConfigPtr;
 
-# if((CANIF_DEV_ERROR_DETECT == STD_ON ) || (CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME))
+#if((CANIF_DEV_ERROR_DETECT == STD_ON ) || (CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME))
 
   if(CanIf_ConfigDataPtr == NULL_PTR){
-#  if(CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME)
+#if(CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME)
     EcuM_BswErrorHook((uint16) CANIF_MODULE_ID, (uint8) ECUM_BSWERROR_NULLPTR);
-#  else
+#else
     errorId = CANIF_E_PARAM_POINTER;
-#  endif
+#endif
     }
     else
-# endif
-# if(CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME)
+#endif
+#if(CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME)
 
   if(CANIF_CFG_GENERATORCOMPATIBILITYVERSION != CANIF_GENDATA_COMPATIBILITY_VERSION){
     EcuM_BswErrorHook((uint16) CANIF_MODULE_ID, (uint8) ECUM_BSWERROR_COMPATIBILITYVERSION);
@@ -1017,29 +1017,29 @@ FUNC(void, CANIF_CODE) infEcuabCanIfSwcApplEcuM_InitFunction(P2CONST(CanIf_Confi
     EcuM_BswErrorHook((uint16) CANIF_MODULE_ID, (uint8) ECUM_BSWERROR_MAGICNUMBER);
   }
   else
-# endif
+#endif
 #else
   CANIF_DUMMY_STATEMENT(ConfigPtr);
 #endif
 
 #if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
-# if(CANIF_EXTENDEDID_SUPPORT != STD_ON)
+#if(CANIF_EXTENDEDID_SUPPORT != STD_ON)
   if(sizeof (Can_IdType) != 2u){
     errorId = CANIF_E_INVALID_CANIDTYPESIZE;
   }
-# else
+#else
   if(sizeof (Can_IdType) != 4u){
     errorId = CANIF_E_INVALID_CANIDTYPESIZE;
   }
-# endif
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#endif
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
   else
 
   if( CanIf_GetSizeOfCanChannelIdUpToLowMap() < CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_FATAL;
   }
-# endif
+#endif
   else
 #endif
   {
@@ -1056,16 +1056,16 @@ FUNC(void, CANIF_CODE) infEcuabCanIfSwcApplEcuM_InitFunction(P2CONST(CanIf_Confi
 #endif
 
 #if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
-    for (controller = 0; controller < CANIF_CFG_MAX_CONTROLLER; controller++)
+    for(controller = 0; controller < CANIF_CFG_MAX_CONTROLLER; controller++)
 #endif
     {
 #if((EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON) || (EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON))
 
-# if(CANIF_ONE_CONTROLLER_OPTIMIZATION==STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION==STD_ON)
       CanIf_ClearQueue();
-# else
+#else
       CanIf_ClearQueue(CanIf_Controller_Value_Local);
-# endif
+#endif
 #endif
 
       CanIf_SetCtrlMode(CanIf_Controller_Value_Local, CANIF_CS_STOPPED);
@@ -1086,7 +1086,7 @@ FUNC(void, CANIF_CODE) infEcuabCanIfSwcApplEcuM_InitFunction(P2CONST(CanIf_Confi
 #endif
 
 #if(CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED)
-# if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
+#if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
       {
         uint8 index;
 
@@ -1101,7 +1101,7 @@ FUNC(void, CANIF_CODE) infEcuabCanIfSwcApplEcuM_InitFunction(P2CONST(CanIf_Confi
           CANIF_VAR_SET_J1939TXADDR_LOOKUP(CanIf_Controller_Value_Local, 0xFFu, CANIF_J1939_BROADCAST_ADDR);
         }
       }
-# endif
+#endif
 #endif
 
 #if(CANIF_BUS_MIRRORING_SUPPORT == STD_ON)
@@ -1110,10 +1110,10 @@ FUNC(void, CANIF_CODE) infEcuabCanIfSwcApplEcuM_InitFunction(P2CONST(CanIf_Confi
 #endif
     }
 #if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
-# if(CANIF_CANCEL_SUPPORT_API == STD_ON)
+#if(CANIF_CANCEL_SUPPORT_API == STD_ON)
 
     infEcuabCanIfSwcApplEcuM_InitFunctionSubInitFifoQueue();
-# endif
+#endif
 #endif
 #if(CANIF_SET_PDU_RECEPTION_MODE_SUPPORT == STD_ON)
     {
@@ -1254,13 +1254,13 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetControllerMode(uint8 ControllerId, Can
   uint8 errorId = CANIF_E_NO_ERROR;
 
 #if(CANIF_DEV_ERROR_DETECT == STD_ON)
-# if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-# endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLERID;
@@ -1269,12 +1269,12 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetControllerMode(uint8 ControllerId, Can
   else if(CanIf_GetCtrlMode(CanIf_Controller_Value) == CANIF_CS_UNINIT){
     errorId = CANIF_E_UNINIT;
   }
-# if((CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON) && (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
+#if((CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON) && (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
 
   else if(!CANIF_CFG_IS_CANDRVINDEXVALID(CanIf_Controller_Value)){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
-# endif
+#endif
   else
 #endif
   {
@@ -1309,13 +1309,13 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetControllerMode(uint8 ControllerId, P2V
   uint8 errorId = CANIF_E_NO_ERROR;
 
 #if(CANIF_DEV_ERROR_DETECT == STD_ON)
-# if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-# endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLERID;
@@ -1409,7 +1409,7 @@ CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) EcuabCanIf_TransmitSubHandleMetaData(P
 #endif
 
 #if(CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED)
-# if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
+#if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
 
 CANIF_LOCAL_INLINE FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_TransmitSubJ1939DynAddr(CANIF_CHANNEL_CANTYPE_FIRST P2VAR(Can_PduType, AUTOMATIC, AUTOMATIC)localPduPtr){
   uint8 errorId = CANIF_E_NO_ERROR;
@@ -1464,7 +1464,7 @@ CANIF_LOCAL_INLINE FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_TransmitSubJ1939D
         (localPduPtr)->id = (Can_IdType)(((localPduPtr)->id & CANIF_J1939_INV_SA_MASK) | sa_t);
       }
     }
-#  if(CANIF_J1939_DYN_ADDR_SUPPORT == CANIF_J1939_DYN_ADDR_MIXED_CANID)
+#if(CANIF_J1939_DYN_ADDR_SUPPORT == CANIF_J1939_DYN_ADDR_MIXED_CANID)
     else{
       if( CANIF_CFG_CTRLJ1939DYNADDRSUPPORT(CanIf_Controller_Value) != CANIF_J1939_DYN_ADDR_EXT_CANID )
       {
@@ -1478,51 +1478,51 @@ CANIF_LOCAL_INLINE FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_TransmitSubJ1939D
         (localPduPtr)->id = (Can_IdType)(((localPduPtr)->id & CANIF_J1939_INV_SA_MASK) | sa);
       }
     }
-#  endif
+#endif
   }
 
-#  if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(EcuabCanIf_Transmit_API, errorId);
   }
-#  else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-#  endif
+#endif
 
   return retVal;
 }
-# endif
+#endif
 #endif
 
 #if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
 
 CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) CanIf_TxBufferPrioByCanIdQueuePdu(P2CONST(Can_PduType, AUTOMATIC, CANIF_CBK_DRV_VAR) PduInfoPtr ){
   CanIf_AnyIdxType queueindex = CANIF_CFG_TX_QUEUEINDEX(PduInfoPtr->swPduHandle);
-# if(CANIF_USES_VSTDLIB_COPY == STD_OFF)
+#if(CANIF_USES_VSTDLIB_COPY == STD_OFF)
   PduLengthType i;
-# endif
+#endif
 
-# if((CANIF_SETDYNAMICTXID_API == STD_ON) || (CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED) || (CANIF_META_DATA_TX_SUPPORT == STD_ON))
+#if((CANIF_SETDYNAMICTXID_API == STD_ON) || (CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED) || (CANIF_META_DATA_TX_SUPPORT == STD_ON))
   CANIF_VAR_TXBUFFERPRIOBYCANID_QUEUE(queueindex, eQueueParams.eBaseParams.eCanId) = PduInfoPtr->id;
-# endif
+#endif
 
   CANIF_VAR_TXBUFFERPRIOBYCANID_QUEUE(queueindex, eQueueParams.eBaseParams.eSduLength) = PduInfoPtr->length;
 
-# if(CANIF_USES_VSTDLIB_COPY == STD_ON)
-#  if(CANIF_STATIC_FD_TXQUEUE == STD_ON)
+#if(CANIF_USES_VSTDLIB_COPY == STD_ON)
+#if(CANIF_STATIC_FD_TXQUEUE == STD_ON)
   VStdMemCpyRamToRam(CANIF_ADDR_VAR_TXBUFFERPRIOBYCANID_STATFDQUEUE_QUEUEDATA(CANIF_CFG_TXBUFFERPRIOBYCANID_STATFDQUEUE_DATASTARTIDX(PduInfoPtr->swPduHandle)), PduInfoPtr->sdu, PduInfoPtr->length);
-#  else
+#else
   VStdMemCpyRamToRam(CANIF_VAR_TXBUFFERPRIOBYCANID_QUEUE(queueindex, eQueueParams.eSdu), PduInfoPtr->sdu, PduInfoPtr->length);
-#  endif
-# else
-  for (i = 0; i < PduInfoPtr->length; i++){
-#  if(CANIF_STATIC_FD_TXQUEUE == STD_ON)
+#endif
+#else
+  for(i = 0; i < PduInfoPtr->length; i++){
+#if(CANIF_STATIC_FD_TXQUEUE == STD_ON)
     CanIf_SetTxQueueData((CANIF_CFG_TXBUFFERPRIOBYCANID_STATFDQUEUE_DATASTARTIDX(PduInfoPtr->swPduHandle))+i, PduInfoPtr->sdu[i]);
-#  else
+#else
     CANIF_VAR_TXBUFFERPRIOBYCANID_QUEUE(queueindex, eQueueParams.eSdu[i]) = PduInfoPtr->sdu[i];
-#  endif
+#endif
   }
-# endif
+#endif
 }
 #endif
 
@@ -1533,39 +1533,39 @@ CANIF_LOCAL_INLINE FUNC (Std_ReturnType, CANIF_CODE) EcuabCanIf_TransmitSubHandl
   CanIf_AnyIdxType hth;
   uint8 errorId;
 
-# if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
+#if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
   CanIf_TxBufferSizeType writeIdx;
   CanIf_AnyIdxType queueDataStartIdx;
   CanIf_AnyIdxType txBufferCfgIdx;
   CanIf_AnyIdxType txBufferFifoBaseIdx;
   CanIf_AnyIdxType txFifoQueueBaseStartIdx;
-# endif
+#endif
   errorId = CANIF_E_NO_ERROR;
   retval = E_NOT_OK;
   hth = CANIF_CFG_TX_HTH(localPduPtr->swPduHandle);
 
   if(CANIF_CFG_MAILBOX_HASTXBUFFER(hth)){
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
     if((localPduPtr->sdu == NULL_PTR) && (localPduPtr->length != 0u)){
       errorId = CANIF_E_PARAM_POINTER;
     }
     else
-# endif
+#endif
     {
-# if((CANIF_USES_VSTDLIB_COPY != STD_ON) && (EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON))
+#if((CANIF_USES_VSTDLIB_COPY != STD_ON) && (EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON))
       PduLengthType i;
-# endif
+#endif
       switch(CANIF_CFG_MAILBOX_TXBUFFERHANDLINGTYPE(hth))
       {
-# if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
+#if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
 
         case CANIF_TXBUFFER_HANDLINGTYPE_PRIOBYCANID:
 
-#  if(CANIF_STATIC_FD_TXQUEUE == STD_ON)
+#if(CANIF_STATIC_FD_TXQUEUE == STD_ON)
           if(localPduPtr->length <= CANIF_CFG_TXBUFFERPRIOBYCANID_STATFDQUEUE_MAXDATALENGTH(localPduPtr->swPduHandle))
-#  else
+#else
           if(localPduPtr->length <= CANIF_STATIC_BUFFER_SIZE)
-#  endif
+#endif
           {
             CanIf_TxBufferPrioByCanIdQueuePdu(localPduPtr);
 
@@ -1575,14 +1575,14 @@ CANIF_LOCAL_INLINE FUNC (Std_ReturnType, CANIF_CODE) EcuabCanIf_TransmitSubHandl
           else
 
           {
-#  if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
             errorId = CANIF_E_PARAM_DLC;
-#  endif
+#endif
             retval = E_NOT_OK;
           }
           break;
-# endif
-# if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
+#endif
+#if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
 
         case CANIF_TXBUFFER_HANDLINGTYPE_FIFO:
           txBufferCfgIdx = CANIF_CFG_MAILBOX_TXBUFFERIDX(hth);
@@ -1597,15 +1597,15 @@ CANIF_LOCAL_INLINE FUNC (Std_ReturnType, CANIF_CODE) EcuabCanIf_TransmitSubHandl
               writeIdx = CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eWriteIdx);
 
               CANIF_VAR_TXBUFFERFIFO_QUEUEBASE((writeIdx + txFifoQueueBaseStartIdx), eBaseParams.eSduLength) = localPduPtr->length;
-#  if((CANIF_SETDYNAMICTXID_API == STD_ON) || (CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED) || (CANIF_META_DATA_TX_SUPPORT == STD_ON))
+#if((CANIF_SETDYNAMICTXID_API == STD_ON) || (CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED) || (CANIF_META_DATA_TX_SUPPORT == STD_ON))
 
               CANIF_VAR_TXBUFFERFIFO_QUEUEBASE((writeIdx + txFifoQueueBaseStartIdx), eBaseParams.eCanId) = localPduPtr->id;
-#  endif
+#endif
 
               CANIF_VAR_TXBUFFERFIFO_QUEUEBASE((writeIdx + txFifoQueueBaseStartIdx), eTxPduId) = localPduPtr->swPduHandle;
 
               queueDataStartIdx = ((uint32_least)writeIdx * (uint32_least)CANIF_CFG_TXBUFFERFIFO_SIZEOFONEPAYLOADEL(txBufferCfgIdx)) + CANIF_CFG_TXBUFFFERFIFO_QUEUEDATASTARTIDX(txBufferCfgIdx);
-#  if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
               if((queueDataStartIdx + localPduPtr->length) >  CANIF_CFG_SIZEOF_FIFO_BUFFER)
               {
@@ -1613,22 +1613,22 @@ CANIF_LOCAL_INLINE FUNC (Std_ReturnType, CANIF_CODE) EcuabCanIf_TransmitSubHandl
                 retval = E_NOT_OK;
               }
               else
-#  endif
+#endif
               {
-#  if(CANIF_USES_VSTDLIB_COPY == STD_ON)
+#if(CANIF_USES_VSTDLIB_COPY == STD_ON)
                 VStdMemCpyRamToRam(CANIF_ADDR_VAR_TXBUFFERFIFO_QUEUEDATA(queueDataStartIdx), localPduPtr->sdu, localPduPtr->length);
-#  else
-                for (i = 0u; i < localPduPtr->length; i++)
+#else
+                for(i = 0u; i < localPduPtr->length; i++)
                 {
                   CanIf_SetTxFifoQueueData((queueDataStartIdx+i), localPduPtr->sdu[i]);
                 }
-#  endif
-#  if CANIF_CANCEL_SUPPORT_API == STD_ON
+#endif
+#if CANIF_CANCEL_SUPPORT_API == STD_ON
 
                 CANIF_VAR_TXBUFFERFIFO_QUEUEBASE((writeIdx + txFifoQueueBaseStartIdx), eQueued) = 1;
 
                 CANIF_VAR_SET_TXBUFFERFIFO_QUEUEIDX2FIFOEL(CANIF_CFG_TX_QUEUEINDEX(localPduPtr->swPduHandle), writeIdx );
-#  endif
+#endif
 
                 (CANIF_VAR_TXBUFFERFIFO_BUFFERBASE( txBufferFifoBaseIdx, eQueueCounter))++;
 
@@ -1640,22 +1640,22 @@ CANIF_LOCAL_INLINE FUNC (Std_ReturnType, CANIF_CODE) EcuabCanIf_TransmitSubHandl
                 retval = E_OK;
               }
             }
-#  if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
             else
             {
               errorId = CANIF_E_FULL_TX_BUFFER_FIFO;
             }
-#  endif
+#endif
           }
           else
           {
-#  if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
             errorId = CANIF_E_PARAM_DLC;
-#  endif
+#endif
             retval = E_NOT_OK;
           }
           break;
-# endif
+#endif
       default:
         break;
       }
@@ -1665,13 +1665,13 @@ CANIF_LOCAL_INLINE FUNC (Std_ReturnType, CANIF_CODE) EcuabCanIf_TransmitSubHandl
     retval = E_NOT_OK;
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(EcuabCanIf_Transmit_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   return retval;
 }
 #endif
@@ -1748,13 +1748,13 @@ FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_Transmit(PduIdType CanTxPduId, P2CON
   else
 #endif
 #if((CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME) || (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
   if(CanTxPduId >= CANIF_CFG_MAX_ULTXPDUS){
     errorId = CANIF_E_INVALID_TXPDUID;
   }
   else
-# endif
+#endif
   {
     CanTxPduId = CANIF_CFG_TXPDUID2INTTXPDUID(CanTxPduId);
 #endif
@@ -1784,16 +1784,16 @@ FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_Transmit(PduIdType CanTxPduId, P2CON
 
       }
       else
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-#  if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
 
       if(!CANIF_CFG_IS_CANDRVINDEXVALID(CanIf_Controller_Value_Local))
       {
         errorId = CANIF_E_PARAM_CONTROLLERID;
       }
       else
-#  endif
-# endif
+#endif
+#endif
 #endif
       {
 #if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
@@ -1843,11 +1843,11 @@ FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_Transmit(PduIdType CanTxPduId, P2CON
 #endif
 
 #if(CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED)
-# if  (CANIF_EXTENDEDID_SUPPORT == STD_ON)
+#if  (CANIF_EXTENDEDID_SUPPORT == STD_ON)
 
               retval = EcuabCanIf_TransmitSubJ1939DynAddr(CANIF_CHANNEL_CANPARA_FIRST_LOCAL &localPdu);
               if(retval == E_OK)
-# endif
+#endif
 #endif
               {
 #if(CANIF_DATA_CHECKSUM_TX_SUPPORT == STD_ON)
@@ -1906,7 +1906,7 @@ FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_Transmit(PduIdType CanTxPduId, P2CON
 CANIF_LOCAL FUNC(void, CANIF_CODE) CanIf_HlTxConfirmation(PduIdType CanTxPduId){
   CanIf_TxConfFctListIdxType index;
   PduIdType upperLayerTxPduId;
-  EcuabCanIf_TxConfirmationFctType txConfirmationFct;
+  Type_EcuabCanIf_FctConfirmationTx txConfirmationFct;
 
   index = CANIF_CFG_TX_TXCONFIRMATION(CanTxPduId);
 
@@ -1914,7 +1914,7 @@ CANIF_LOCAL FUNC(void, CANIF_CODE) CanIf_HlTxConfirmation(PduIdType CanTxPduId){
 
   txConfirmationFct = CANIF_CFG_TXCONFIRMATION(index);
 
-  if(txConfirmationFct != (EcuabCanIf_TxConfirmationFctType)NULL_PTR){
+  if(txConfirmationFct != (Type_EcuabCanIf_FctConfirmationTx)NULL_PTR){
       txConfirmationFct(upperLayerTxPduId);
   }
 }
@@ -1923,13 +1923,13 @@ FUNC(void, CANIF_CODE) EcuabCanIf_TxConfirmation(PduIdType CanTxPduId){
   uint8 errorId = CANIF_E_NO_ERROR;
 
 #if(CANIF_DEV_ERROR_DETECT == STD_ON)
-# if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-# endif
+#endif
 
   if(CanTxPduId >=  CANIF_CFG_MAX_TXPDUS){
     errorId = CANIF_E_PARAM_LPDU;
@@ -1938,31 +1938,31 @@ FUNC(void, CANIF_CODE) EcuabCanIf_TxConfirmation(PduIdType CanTxPduId){
   else if(CanIf_GetCtrlMode(CANIF_CFG_TX_CONTROLLER(CanTxPduId)) == CANIF_CS_UNINIT ){
     errorId = CANIF_E_UNINIT;
   }
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-#  if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
 
   else if(!CANIF_CFG_IS_CANDRVINDEXVALID(CANIF_CFG_TX_CONTROLLER(CanTxPduId))){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
-#  endif
-# endif
+#endif
+#endif
   else
 #endif
   {
     if(CanIf_GetCtrlMode(CANIF_CFG_TX_CONTROLLER(CanTxPduId)) == CANIF_CS_STARTED){
       if( (CanIf_GetChannelMode(CANIF_CFG_TX_CONTROLLER(CanTxPduId)) == CANIF_GET_ONLINE) ||
              (CanIf_GetChannelMode(CANIF_CFG_TX_CONTROLLER(CanTxPduId)) == CANIF_GET_TX_ONLINE)
-# if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
+#if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
         || (CanIf_GetChannelMode(CANIF_CFG_TX_CONTROLLER(CanTxPduId)) == CANIF_GET_ONLINE_WAKF)
         || (CanIf_GetChannelMode(CANIF_CFG_TX_CONTROLLER(CanTxPduId)) == CANIF_GET_TX_ONLINE_WAKF)
-# endif
+#endif
          )
       {
 #if((CANIF_PN_WU_TX_PDU_FILTER == STD_ON) || (CANIF_PUBLIC_TX_CONFIRM_POLLING_SUPPORT == STD_ON))
         CANIF_CHANNEL_CANTYPE_LOCAL
-# if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
         controller = CANIF_CFG_TX_CONTROLLER(CanTxPduId);
-# endif
+#endif
 #endif
 
 #if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
@@ -1984,7 +1984,7 @@ FUNC(void, CANIF_CODE) EcuabCanIf_TxConfirmation(PduIdType CanTxPduId){
           {
             CanIf_EnterCritical(CANIF_EXCLUSIVE_AREA_2);
 
-            (void)CanIf_TxQueueTreatment((CanIf_HwHandleType)hth);
+            (void)EcuabCanIf_QueueTxTreatment((CanIf_HwHandleType)hth);
 
             CanIf_LeaveCritical(CANIF_EXCLUSIVE_AREA_2);
           }
@@ -2006,16 +2006,16 @@ FUNC(void, CANIF_CODE) EcuabCanIf_TxConfirmation(PduIdType CanTxPduId){
 }
 
 #if  (CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED)
-# if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
+#if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
 
 CANIF_LOCAL_INLINE FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_RxIndicationSubJ1939DynAddr(P2VAR(CanIf_RxSearchParamsType, AUTOMATIC, AUTOMATIC) rxSearchParams){
   CANIF_CHANNEL_CANTYPE_LOCAL
   uint8 errorId = CANIF_E_NO_ERROR;
   Std_ReturnType retVal = E_OK;
 
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
   CanIf_Controller_Value_Local = CANIF_CFG_MAILBOX_CONTROLLER(rxSearchParams->eHrh);
-#  endif
+#endif
 
   if( CANIF_CFG_CTRLJ1939DYNADDRSUPPORT(CanIf_Controller_Value_Local) != CANIF_J1939_DYN_ADDR_DISABLED ){
     uint8 da;
@@ -2052,7 +2052,7 @@ CANIF_LOCAL_INLINE FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_RxIndicationSubJ1
         (rxSearchParams->eCanId) = (Can_IdType)(((rxSearchParams->eCanId) & CANIF_J1939_INV_SA_MASK) | sa_t);
       }
     }
-#  if(CANIF_J1939_DYN_ADDR_SUPPORT == CANIF_J1939_DYN_ADDR_MIXED_CANID)
+#if(CANIF_J1939_DYN_ADDR_SUPPORT == CANIF_J1939_DYN_ADDR_MIXED_CANID)
     else{
       if( CANIF_CFG_CTRLJ1939DYNADDRSUPPORT(CanIf_Controller_Value_Local) == CANIF_J1939_DYN_ADDR_MIXED_CANID )
       {
@@ -2066,20 +2066,20 @@ CANIF_LOCAL_INLINE FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_RxIndicationSubJ1
         (rxSearchParams->eCanId) = (Can_IdType)(((rxSearchParams->eCanId) & CANIF_J1939_INV_SA_MASK) | sa);
       }
     }
-#  endif
+#endif
   }
 
-#  if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(EcuabCanIf_RxIndication_API, errorId);
   }
-#  else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-#  endif
+#endif
 
   return retVal;
 }
-# endif
+#endif
 #endif
 
 #if(CANIF_SEARCH_ALGORITHM == CANIF_BINARY)
@@ -2095,20 +2095,20 @@ CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationSubBinarySearch
   firstRxPduId = CANIF_CFG_MAILBOX_PDUIDFIRST(rxSearchParams->eHrh);
   lastRxPduId = rxSearchParams->eRxPduId;
 
-  while (firstRxPduId <= lastRxPduId){
-# if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
+  while(firstRxPduId <= lastRxPduId){
+#if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
     sint32 diffId;
-# else
+#else
     sint16 diffId;
-# endif
+#endif
 
     midRxPduId = (PduIdType)((lastRxPduId + firstRxPduId) >> 1);
 
-# if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
+#if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
     diffId = (sint32)rxSearchParams->eCanId - (sint32)CANIF_CFG_RX_CANID(midRxPduId);
-# else
+#else
     diffId = (sint16)rxSearchParams->eCanId - (sint16)CANIF_CFG_RX_CANID(midRxPduId);
-# endif
+#endif
 
     if(diffId == 0){
       resultId = midRxPduId;
@@ -2140,19 +2140,19 @@ CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationSubBinarySearch
   }
 
   if(resultId != CanIf_RxPduHnd_INVALID){
-# if(CANIF_RX_SEARCH_CONSIDER_MSG_TYPE == STD_ON)
+#if(CANIF_RX_SEARCH_CONSIDER_MSG_TYPE == STD_ON)
 
     rxSearchParams->eRxPduIdMatch = resultId;
     EcuabCanIf_RxIndicationSubBinarySearchSubCheckMsgType(rxSearchParams);
-# else
+#else
 
     rxSearchParams->eRxPduIdMatch = resultId;
     rxSearchParams->eContinueSearch = FALSE;
-# endif
+#endif
   }
 }
 
-# if(CANIF_RX_SEARCH_CONSIDER_MSG_TYPE == STD_ON)
+#if(CANIF_RX_SEARCH_CONSIDER_MSG_TYPE == STD_ON)
 
 CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationSubBinarySearchSubCheckMsgType(P2VAR(CanIf_RxSearchParamsType, AUTOMATIC, AUTOMATIC) rxSearchParams){
   if((CANIF_CFG_RX_MSGTYPE(rxSearchParams->eRxPduIdMatch) == CANIF_MSG_TYPE_CAN) || (CANIF_CFG_RX_MSGTYPE(rxSearchParams->eRxPduIdMatch) == rxSearchParams->eRxMsgType)){
@@ -2189,7 +2189,7 @@ CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationSubBinarySearch
     }
   }
 }
-# endif
+#endif
 #endif
 
 #if(CANIF_SEARCH_ALGORITHM == CANIF_DOUBLE_HASH)
@@ -2212,19 +2212,19 @@ CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationSubDoubleHashSe
   }
 
   if(CANIF_CFG_RX_CANID(rxSearchParams->eRxPduId) == rxSearchParams->eCanId){
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
     if((rxSearchParams->eRxPduId >= CANIF_CFG_MAILBOX_PDUIDFIRST(rxSearchParams->eHrh)) && (rxSearchParams->eRxPduId <= CANIF_CFG_MAILBOX_PDUIDLAST(rxSearchParams->eHrh)))
-# endif
+#endif
     {
-# if(CANIF_RX_SEARCH_CONSIDER_MSG_TYPE == STD_ON)
+#if(CANIF_RX_SEARCH_CONSIDER_MSG_TYPE == STD_ON)
       if((CANIF_CFG_RX_MSGTYPE(rxSearchParams->eRxPduId) == CANIF_MSG_TYPE_CAN) || (CANIF_CFG_RX_MSGTYPE(rxSearchParams->eRxPduId) == rxSearchParams->eRxMsgType))
-# endif
+#endif
       {
         rxSearchParams->eRxPduIdMatch = rxSearchParams->eRxPduId;
         rxSearchParams->eContinueSearch = FALSE;
       }
-# if(CANIF_RX_SEARCH_CONSIDER_MSG_TYPE == STD_ON)
+#if(CANIF_RX_SEARCH_CONSIDER_MSG_TYPE == STD_ON)
       else
       {
         if(rxSearchParams->eRxPduId > CANIF_CFG_MAILBOX_PDUIDFIRST(rxSearchParams->eHrh))
@@ -2240,33 +2240,33 @@ CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationSubDoubleHashSe
           }
         }
       }
-# endif
+#endif
     }
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
     else{
       errorId = CANIF_E_INVALID_DOUBLEHASH_CALC;
     }
-# endif
+#endif
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(EcuabCanIf_RxIndication_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
 }
 #endif
 
 #if(CANIF_SEARCH_ALGORITHM == CANIF_LINEAR)
 
 CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationSubLinearSearch(P2VAR(CanIf_RxSearchParamsType, AUTOMATIC, AUTOMATIC) rxSearchParams){
-  while (((CANIF_CFG_RX_MASK(rxSearchParams->eRxPduId) & CANIF_RANGE_FLAG) != CANIF_RANGE_FLAG)){
+  while(((CANIF_CFG_RX_MASK(rxSearchParams->eRxPduId) & CANIF_RANGE_FLAG) != CANIF_RANGE_FLAG)){
     if(CANIF_CFG_RX_CANID(rxSearchParams->eRxPduId) == rxSearchParams->eCanId){
-# if(CANIF_RX_SEARCH_CONSIDER_MSG_TYPE == STD_ON)
+#if(CANIF_RX_SEARCH_CONSIDER_MSG_TYPE == STD_ON)
       if((CANIF_CFG_RX_MSGTYPE(rxSearchParams->eRxPduId)  == CANIF_MSG_TYPE_CAN) || (CANIF_CFG_RX_MSGTYPE(rxSearchParams->eRxPduId) == rxSearchParams->eRxMsgType))
-# endif
+#endif
       {
         rxSearchParams->eRxPduIdMatch = rxSearchParams->eRxPduId;
         rxSearchParams->eContinueSearch = FALSE;
@@ -2318,7 +2318,7 @@ CANIF_LOCAL_INLINE FUNC(CanIf_NotifStatusType, CANIF_CODE) EcuabCanIf_RxIndicati
 }
 
 CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationSubRangeSearch(P2VAR(CanIf_RxSearchParamsType, AUTOMATIC, AUTOMATIC) rxSearchParams){
-  while ((CANIF_CFG_RX_MASK(rxSearchParams->eRxPduId) & (CANIF_STOP_FLAG | CANIF_RANGE_FLAG)) == CANIF_RANGE_FLAG){
+  while((CANIF_CFG_RX_MASK(rxSearchParams->eRxPduId) & (CANIF_STOP_FLAG | CANIF_RANGE_FLAG)) == CANIF_RANGE_FLAG){
     if((CANIF_CFG_RX_CANID(rxSearchParams->eRxPduId) & CANIF_MASKCODE_RANGE) == CANIF_MASKCODE_RANGE){
       if(CANIF_CFG_RX_CANID(rxSearchParams->eRxPduId) == ((rxSearchParams->eCanId & (CANIF_CFG_RX_MASK(rxSearchParams->eRxPduId) )) | CANIF_MASKCODE_RANGE ))
       {
@@ -2364,12 +2364,12 @@ CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationSubRangeSearch(
 
 CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationSubWakeupValidation(P2CONST(CanIf_RxSearchParamsType, AUTOMATIC, AUTOMATIC) rxSearchParams){
   CANIF_CHANNEL_CANTYPE_LOCAL
-# if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
 
   controller = CANIF_CFG_MAILBOX_CONTROLLER(rxSearchParams->eHrh);
-# else
+#else
   CANIF_DUMMY_STATEMENT(rxSearchParams);
-# endif
+#endif
   if(CanIf_GetCtrlMode(CanIf_Controller_Value_Local) == CANIF_CS_STARTED){
     CanIf_SetWakeUpValidationState(CanIf_Controller_Value_Local, CANIF_WUVALIDATION_DETECTED);
   }
@@ -2432,20 +2432,20 @@ CANIF_LOCAL_INLINE FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationSubBasicCan(P2V
 FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationAsr403(CanIf_HwHandleType Hrh, Can_IdType CanId, uint8 CanDlc, P2CONST(uint8, AUTOMATIC, CANIF_CBK_DRV_VAR)CanSduPtr){
   CanIf_RxSearchParamsType rxSearchParams;
 #if(CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED)
-# if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
+#if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
   Std_ReturnType j1939DynAddrRetVal;
-# endif
+#endif
 #endif
   uint8 errorId = CANIF_E_NO_ERROR;
 
 #if(CANIF_DEV_ERROR_DETECT == STD_ON)
-# if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-# endif
+#endif
 
   if(CanSduPtr == NULL_PTR){
     errorId = CANIF_E_PARAM_POINTER;
@@ -2454,12 +2454,12 @@ FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationAsr403(CanIf_HwHandleType Hrh, Can
   else if(CanDlc > CANIF_CFG_RX_MAXVALIDRXDLC){
     errorId = CANIF_E_PARAM_DLC;
   }
-# if(CANIF_EXTENDEDID_SUPPORT != STD_ON)
+#if(CANIF_EXTENDEDID_SUPPORT != STD_ON)
 
   else if((CanId & (~CANIF_FDFLAG)) > 0x7FFu){
     errorId = CANIF_E_PARAM_CANID;
   }
-# endif
+#endif
 
   else if(Hrh >= CANIF_CFG_MAX_MAILBOXES){
     errorId = CANIF_E_PARAM_HRH;
@@ -2499,11 +2499,11 @@ FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationAsr403(CanIf_HwHandleType Hrh, Can
 #endif
 
 #if(CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED)
-# if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
+#if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
 
     j1939DynAddrRetVal = EcuabCanIf_RxIndicationSubJ1939DynAddr(&rxSearchParams);
     if(j1939DynAddrRetVal == E_OK)
-# endif
+#endif
 #endif
     {
       if(CANIF_CFG_MAX_RXPDUS != 0u)
@@ -2537,12 +2537,12 @@ FUNC(void, CANIF_CODE) EcuabCanIf_RxIndicationAsr403(CanIf_HwHandleType Hrh, Can
 
             if(CANIF_CFG_RX_ISDATACHECKSUMPDU(rxSearchParams.eRxPduIdMatch))
             {
-# if((CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME) || (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
+#if((CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME) || (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
 
               PduIdType CanIfRxPduId = CANIF_CFG_INTRXPDUID2EXTRXPDUID(rxSearchParams.eRxPduIdMatch);
-# else
+#else
               PduIdType CanIfRxPduId = rxSearchParams.eRxPduIdMatch;
-# endif
+#endif
 
               localRetVal = EcuabCanIf_RxIndicationSubDataChecksumRxVerify(CanIfRxPduId, CanId, CanDlc, CanSduPtr);
             }
@@ -2661,13 +2661,13 @@ CANIF_LOCAL FUNC(void, CANIF_CODE) CanIf_HlIndication(CanIf_HwHandleType  Hrh, P
 #endif
 
 #if(CANIF_DEV_ERROR_DETECT == STD_ON)
-# if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
 
   if(CanIf_Controller_Value_Local >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_CONFIG;
   }
   else
-# endif
+#endif
 
   if(CanIf_GetCtrlMode(CanIf_Controller_Value_Local) == CANIF_CS_UNINIT){
     errorId = CANIF_E_UNINIT;
@@ -2677,23 +2677,23 @@ CANIF_LOCAL FUNC(void, CANIF_CODE) CanIf_HlIndication(CanIf_HwHandleType  Hrh, P
   {
     if(CanIf_GetCtrlMode(CanIf_Controller_Value_Local) == CANIF_CS_STARTED){
 #if(CANIF_WAKEUP_VALIDATION == STD_ON)
-# if(CANIF_WAKEUP_VALID_ALL_RX_MSGS != STD_ON)
+#if(CANIF_WAKEUP_VALID_ALL_RX_MSGS != STD_ON)
 
-#  if(CANIF_WAKEUP_VALID_ONLY_NM_RX_MSGS == STD_ON)
+#if(CANIF_WAKEUP_VALID_ONLY_NM_RX_MSGS == STD_ON)
       if((uint8)(CANIF_CFG_RX_DLC(PduId) & CANIF_WU_VALIDATION_NM_FLAG_GET) != 0u)
-#  endif
+#endif
       {
         CanIf_SetWakeUpValidationState(CanIf_Controller_Value_Local, CANIF_WUVALIDATION_DETECTED);
       }
-# endif
+#endif
 #endif
 
       if( (CanIf_GetChannelMode(CanIf_Controller_Value_Local) == CANIF_GET_ONLINE) ||
            (CanIf_GetChannelMode(CanIf_Controller_Value_Local) == CANIF_GET_RX_ONLINE) ||
            (CanIf_GetChannelMode(CanIf_Controller_Value_Local) == CANIF_GET_OFFLINE_ACTIVE_RX_ONLINE)
-# if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
+#if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
         || (CanIf_GetChannelMode(CanIf_Controller_Value_Local) == CANIF_GET_ONLINE_WAKF)
-# endif
+#endif
          )
       {
 #if(CANIF_DLC_CHECK == STD_ON)
@@ -2718,34 +2718,34 @@ CANIF_LOCAL FUNC(void, CANIF_CODE) CanIf_HlIndication(CanIf_HwHandleType  Hrh, P
           {
             if(CANIF_CFG_RX_RXMETADATALENGTH(PduId) > 0u)
             {
-# if(CANIF_USES_VSTDLIB_COPY == STD_ON)
+#if(CANIF_USES_VSTDLIB_COPY == STD_ON)
               VStdMemCpyRamToRam(CanSduLocal, CanSduPtr, CanDlc);
               i = CanDlc;
-# else
-              for (i = 0; i < CanDlc; i++)
+#else
+              for(i = 0; i < CanDlc; i++)
               {
                 CanSduLocal[i] = CanSduPtr[i];
               }
-# endif
-# if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
+#endif
+#if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
               {
                 Can_IdType CanIdLocal;
                 CanIdLocal = CanId;
 
-                for (j = 0; j < CANIF_CFG_RX_RXMETADATALENGTH(PduId); j++)
+                for(j = 0; j < CANIF_CFG_RX_RXMETADATALENGTH(PduId); j++)
                 {
                   CanSduLocal[i] = (uint8)(CanIdLocal & 0x000000FFu);
                   i++;
                   CanIdLocal = CanIdLocal >> 8;
                 }
               }
-# else
+#else
               {
                 Can_IdType CanIdLocal;
                 uint8_least shiftCounter;
                 CanIdLocal = CanId;
                 shiftCounter = 0;
-                for (j = 0; j < CANIF_CFG_RX_RXMETADATALENGTH(PduId); j++)
+                for(j = 0; j < CANIF_CFG_RX_RXMETADATALENGTH(PduId); j++)
                 {
                   if(shiftCounter < 2u)
                   {
@@ -2760,9 +2760,9 @@ CANIF_LOCAL FUNC(void, CANIF_CODE) CanIf_HlIndication(CanIf_HwHandleType  Hrh, P
                   i++;
                 }
               }
-# endif
-# if(CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED)
-#  if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
+#endif
+#if(CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED)
+#if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
 
               if((CanId & CANIF_J1939_PGN_MASK) == CANIF_J1939_ACKM_PGN)
               {
@@ -2773,8 +2773,8 @@ CANIF_LOCAL FUNC(void, CANIF_CODE) CanIf_HlIndication(CanIf_HwHandleType  Hrh, P
                 }
                 CanSduLocal[CANIF_J1939_ACKM_ACKADDR_POS] = ackAddr;
               }
-#  endif
-# endif
+#endif
+#endif
               CanSduPtr =  CanSduLocal;
               CanDlc = (uint8)i;
             }
@@ -2789,10 +2789,10 @@ CANIF_LOCAL FUNC(void, CANIF_CODE) CanIf_HlIndication(CanIf_HwHandleType  Hrh, P
 #endif
             {
 #if(CANIF_SUPPORT_NMOSEK_INDICATION == STD_ON) || (CANIF_RX_INDICATION_TYPE_IV_IS_USED == STD_ON)
-# if(CANIF_META_DATA_RX_SUPPORT == STD_ON)
+#if(CANIF_META_DATA_RX_SUPPORT == STD_ON)
 
               CanId = (CanId & (~CANIF_FDFLAG));
-# endif
+#endif
               CanIf_HlIndicationSubULCall(PduId, CanSduPtr, CanDlc, CanId);
 #else
               CanIf_HlIndicationSubULCall(PduId, CanSduPtr, CanDlc);
@@ -2819,16 +2819,16 @@ CANIF_LOCAL FUNC(void, CANIF_CODE) CanIf_HlIndication(CanIf_HwHandleType  Hrh, P
 
 FUNC(void, CANIF_CODE) CanIf_ControllerBusOff(uint8 ControllerId){
   uint8 errorId = CANIF_E_NO_ERROR;
-  CanIf_BusOffNotificationFctType busoffnotificationFct = CANIF_CFG_BUSOFFNOTIFICATION();
+  Type_CfgEcuabCanIf_FctNotificationBusOff busoffnotificationFct = CANIF_CFG_BUSOFFNOTIFICATION();
 
 #if(CANIF_DEV_ERROR_DETECT == STD_ON)
-# if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-# endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLER;
@@ -2851,7 +2851,7 @@ FUNC(void, CANIF_CODE) CanIf_ControllerBusOff(uint8 ControllerId){
       CanIf_SetTxConfState(CanIf_Controller_Value, CANIF_NO_NOTIFICATION);
 #endif
 
-      if(busoffnotificationFct != (CanIf_BusOffNotificationFctType)NULL_PTR)
+      if(busoffnotificationFct != (Type_CfgEcuabCanIf_FctNotificationBusOff)NULL_PTR)
       {
         busoffnotificationFct(CanIf_Controller_Value);
       }
@@ -2879,13 +2879,13 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetPduMode(uint8 ControllerId, CanIf_PduS
   uint8 errorId = CANIF_E_NO_ERROR;
 
 #if(CANIF_DEV_ERROR_DETECT == STD_ON)
-# if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-# endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLERID;
@@ -2968,9 +2968,9 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetPduMode(uint8 ControllerId, CanIf_PduS
   CANIF_DUMMY_STATEMENT(errorId);
 #endif
 
-# if((CANIF_ONE_CONTROLLER_OPTIMIZATION==STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
+#if((CANIF_ONE_CONTROLLER_OPTIMIZATION==STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
   CANIF_DUMMY_STATEMENT(ControllerId);
-# endif
+#endif
   return retval;
 }
 
@@ -2979,13 +2979,13 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetPduMode(uint8 ControllerId, P2VAR(CanI
   uint8 errorId = CANIF_E_NO_ERROR;
 
 #if(CANIF_DEV_ERROR_DETECT == STD_ON)
-# if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-# endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLERID;
@@ -3021,7 +3021,7 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetPduMode(uint8 ControllerId, P2VAR(CanI
 
 #if((EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON) || (EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON))
 
-CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) CanIf_TxQueueTransmit( PduIdType PduId){
+CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_QueueTxTransmit( PduIdType PduId){
   Can_PduType localPdu;
   Can_ReturnType txResult;
   Std_ReturnType retval;
@@ -3029,65 +3029,65 @@ CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) CanIf_TxQueueTransmit( PduIdType Pd
 
   uint8 errorId = CANIF_E_NO_ERROR;
 
-# if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
+#if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
   CanIf_AnyIdxType txBufferCfgIdx;
   CanIf_AnyIdxType txFifoQueueBaseStartIdx;
   CanIf_AnyIdxType txBufferFifoBaseIdx;
-# endif
+#endif
 
   retval = E_NOT_OK;
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
   if(PduId >= CANIF_CFG_MAX_TXPDUS){
     errorId = CANIF_E_INVALID_TXPDUID;
   }
   else
-# endif
+#endif
 
   {
     hth = CANIF_CFG_TX_HTH(PduId);
-# if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
+#if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
     txBufferCfgIdx = CANIF_CFG_MAILBOX_TXBUFFERIDX(hth);
-# endif
+#endif
 
     switch(CANIF_CFG_MAILBOX_TXBUFFERHANDLINGTYPE(hth)){
-# if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
+#if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
       case CANIF_TXBUFFER_HANDLINGTYPE_PRIOBYCANID:
 
-#  if((CANIF_SETDYNAMICTXID_API == STD_ON) || (CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED) || (CANIF_META_DATA_TX_SUPPORT == STD_ON))
+#if((CANIF_SETDYNAMICTXID_API == STD_ON) || (CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED) || (CANIF_META_DATA_TX_SUPPORT == STD_ON))
         (localPdu).id = CANIF_VAR_TXBUFFERPRIOBYCANID_QUEUE(CANIF_CFG_TX_QUEUEINDEX(PduId), eQueueParams.eBaseParams.eCanId);
-#  else
+#else
         (localPdu).id = CANIF_CFG_TX_CANID(PduId);
-#  endif
+#endif
         (localPdu).length = (uint8)CANIF_VAR_TXBUFFERPRIOBYCANID_QUEUE(CANIF_CFG_TX_QUEUEINDEX(PduId), eQueueParams.eBaseParams.eSduLength);
-#  if(CANIF_STATIC_FD_TXQUEUE == STD_ON)
+#if(CANIF_STATIC_FD_TXQUEUE == STD_ON)
         (localPdu).sdu = CANIF_ADDR_VAR_TXBUFFERPRIOBYCANID_STATFDQUEUE_QUEUEDATA(CANIF_CFG_TXBUFFERPRIOBYCANID_STATFDQUEUE_DATASTARTIDX(PduId));
-#  else
+#else
         (localPdu).sdu = CANIF_VAR_TXBUFFERPRIOBYCANID_QUEUE(CANIF_CFG_TX_QUEUEINDEX(PduId), eQueueParams.eSdu);
-#  endif
+#endif
         (localPdu).swPduHandle = (PduId);
         break;
-# endif
-# if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
+#endif
+#if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
       case CANIF_TXBUFFER_HANDLINGTYPE_FIFO:
         txBufferFifoBaseIdx = CANIF_CFG_TXBUFFERFIFO_BUFFERBASEIDX(txBufferCfgIdx);
         txFifoQueueBaseStartIdx = CANIF_CFG_TXBUFFERFIFO_QUEUEBASESTARTIDX(txBufferCfgIdx);
 
-#  if((CANIF_SETDYNAMICTXID_API == STD_ON) || (CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED) || (CANIF_META_DATA_TX_SUPPORT == STD_ON))
+#if((CANIF_SETDYNAMICTXID_API == STD_ON) || (CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED) || (CANIF_META_DATA_TX_SUPPORT == STD_ON))
         (localPdu).id = CANIF_VAR_TXBUFFERFIFO_QUEUEBASE( (CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eReadIdx  ) + txFifoQueueBaseStartIdx ), eBaseParams.eCanId );
-#  else
+#else
         (localPdu).id = CANIF_CFG_TX_CANID(PduId);
-#  endif
+#endif
         (localPdu).length = CANIF_VAR_TXBUFFERFIFO_QUEUEBASE( (CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eReadIdx  ) + txFifoQueueBaseStartIdx ), eBaseParams.eSduLength );
         (localPdu).sdu = CANIF_ADDR_VAR_TXBUFFERFIFO_QUEUEDATA((CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eReadIdx) * (uint32)CANIF_CFG_TXBUFFERFIFO_SIZEOFONEPAYLOADEL(txBufferCfgIdx)) + CANIF_CFG_TXBUFFFERFIFO_QUEUEDATASTARTIDX(txBufferCfgIdx));
         (localPdu).swPduHandle = (PduId);
           break;
-# endif
+#endif
       default:
         break;
     }
 
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
     {
       CanIf_Can_WriteFctType canWriteFct;
       Can_HwHandleType canDrvHth;
@@ -3097,26 +3097,26 @@ CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) CanIf_TxQueueTransmit( PduIdType Pd
 
       txResult = canWriteFct(canDrvHth, &localPdu);
     }
-# else
+#else
     txResult = Can_Write((CanIf_HwHandleType)hth, &localPdu);
-# endif
+#endif
 
     if(txResult == CAN_OK){
       switch(CANIF_CFG_MAILBOX_TXBUFFERHANDLINGTYPE(hth))
       {
-# if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
+#if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
         case CANIF_TXBUFFER_HANDLINGTYPE_PRIOBYCANID:
           (void)CanIf_ClearPrioByCanIdTxPduAsQueued(PduId);
           break;
-# endif
+#endif
 
-# if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
+#if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
         case CANIF_TXBUFFER_HANDLINGTYPE_FIFO:
           txBufferFifoBaseIdx = CANIF_CFG_TXBUFFERFIFO_BUFFERBASEIDX(txBufferCfgIdx);
-#  if(CANIF_CANCEL_SUPPORT_API == STD_ON)
+#if(CANIF_CANCEL_SUPPORT_API == STD_ON)
           CANIF_VAR_TXBUFFERFIFO_QUEUEBASE(( CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eReadIdx)+CANIF_CFG_TXBUFFERFIFO_QUEUEBASESTARTIDX( txBufferCfgIdx)), eQueued) = 0;
           CANIF_VAR_SET_TXBUFFERFIFO_QUEUEIDX2FIFOEL(CANIF_CFG_TX_QUEUEINDEX(PduId), CANIF_NO_ENTRY_IN_TX_FIFO);
-#  endif
+#endif
           CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eReadIdx)++;
           if(CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eReadIdx) == CANIF_CFG_TXBUFFERFIFO_QUEUESIZE(txBufferCfgIdx))
           {
@@ -3124,7 +3124,7 @@ CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) CanIf_TxQueueTransmit( PduIdType Pd
           }
           CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eQueueCounter)--;
           break;
-# endif
+#endif
         default:
           break;
       }
@@ -3135,39 +3135,39 @@ CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) CanIf_TxQueueTransmit( PduIdType Pd
     }
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_CANCELTRANSMIT_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   return retval;
 }
 #endif
 
 #if((EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON) || (EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON))
 
-CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) CanIf_TxQueueTreatment(CanIf_HwHandleType hth){
-# if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
-#  if(CANIF_BITQUEUE == STD_ON)
+CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) EcuabCanIf_QueueTxTreatment(CanIf_HwHandleType hth){
+#if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
+#if(CANIF_BITQUEUE == STD_ON)
 
   sint16_least queueElementIdx;
 
   sint16_least queueEndElementIdx;
   sint8_least elementBitIdx;
-  CanIf_TxQueueFlagType  elem;
+  EcuabCanIf_QueueTxFlagType  elem;
   PduIdType PduId;
-#  else
+#else
   CanIf_AnyIdxType idx2MappedTxPdus;
-#  endif
+#endif
   CanIf_AnyIdxType txBufferPrioByCanIdBaseIdx;
-# endif
-# if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
+#endif
+#if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
   CanIf_AnyIdxType txBufferFifoBaseIdx;
   CanIf_AnyIdxType txBufferFifoQueueBaseStartIdx;
   CanIf_TxBufferSizeType txBufferFifoActReadIdx;
-# endif
+#endif
   Std_ReturnType retval;
   CanIf_AnyIdxType txBufferCfgIdx;
 
@@ -3176,9 +3176,9 @@ CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) CanIf_TxQueueTreatment(CanIf_HwHand
   txBufferCfgIdx = CANIF_CFG_MAILBOX_TXBUFFERIDX(hth);
 
   switch(CANIF_CFG_MAILBOX_TXBUFFERHANDLINGTYPE(hth)){
-# if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
+#if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
     case CANIF_TXBUFFER_HANDLINGTYPE_PRIOBYCANID:
-#  if(CANIF_BITQUEUE == STD_ON)
+#if(CANIF_BITQUEUE == STD_ON)
 
       txBufferPrioByCanIdBaseIdx = CANIF_CFG_TXBUFFERPRIOBYCANIDBITQUEUE_BUFFERBASEIDX(txBufferCfgIdx);
 
@@ -3189,15 +3189,15 @@ CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) CanIf_TxQueueTreatment(CanIf_HwHand
         for(queueElementIdx = (((sint16_least)CANIF_CFG_TXBUFFERPRIOBYCANIDBITQUEUE_QUEUESTOPIDX(txBufferCfgIdx)) - (sint16_least)1); queueElementIdx >= queueEndElementIdx; queueElementIdx--)
         {
           elem = CANIF_VAR_TXBUFFERPRIOBYCANIDBITQUEUE_QUEUEFLAGS((uint16_least)queueElementIdx);
-          if(elem != (CanIf_TxQueueFlagType)0)
+          if(elem != (EcuabCanIf_QueueTxFlagType)0)
           {
             for(elementBitIdx = (sint8_least)elemStartBitIdx; elementBitIdx >= (sint8_least)0; elementBitIdx--)
             {
-              if( ( elem & CanShiftLookUp[elementBitIdx] ) != (CanIf_TxQueueFlagType)0)
+              if( ( elem & CanShiftLookUp[elementBitIdx] ) != (EcuabCanIf_QueueTxFlagType)0)
               {
                 PduId = ((((PduIdType)queueElementIdx - (PduIdType)queueEndElementIdx) << kCanTxQueueShift) + (PduIdType)elementBitIdx) + (PduIdType)CANIF_CFG_TXBUFFERPRIOBYCANIDBITQUEUE_BITPOS2TXPDUIDOFFSET(txBufferCfgIdx);
 
-                retval = CanIf_TxQueueTransmit(PduId);
+                retval = EcuabCanIf_QueueTxTransmit(PduId);
                 break;
               }
             }
@@ -3206,28 +3206,28 @@ CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) CanIf_TxQueueTreatment(CanIf_HwHand
           }
         }
       }
-#  else
+#else
 
       txBufferPrioByCanIdBaseIdx = CANIF_CFG_TXBUFFERPRIOBYCANIDBYTEQUEUE_BUFFERBASEIDX(txBufferCfgIdx);
 
       if(CanIf_GetTxQueueCounter(txBufferPrioByCanIdBaseIdx) != 0u)
       {
-        for (idx2MappedTxPdus = ((CanIf_AnyIdxType)CANIF_CFG_TXBUFFERPRIOBYCANIDBYTEQUEUE_STOPIDX2MAPPEDTXPDUS(txBufferCfgIdx)-1u); idx2MappedTxPdus >= CANIF_CFG_TXBUFFERPRIOBYCANIDBYTEQUEUE_STARTIDX2MAPPEDTXPDUS(txBufferCfgIdx); idx2MappedTxPdus--)
+        for(idx2MappedTxPdus = ((CanIf_AnyIdxType)CANIF_CFG_TXBUFFERPRIOBYCANIDBYTEQUEUE_STOPIDX2MAPPEDTXPDUS(txBufferCfgIdx)-1u); idx2MappedTxPdus >= CANIF_CFG_TXBUFFERPRIOBYCANIDBYTEQUEUE_STARTIDX2MAPPEDTXPDUS(txBufferCfgIdx); idx2MappedTxPdus--)
         {
           CanIf_AnyIdxType TxPduId;
           TxPduId = CANIF_CFG_TXBUFFERPRIOBYCANIDBYTEQUEUE_MAPPEDTXPDUS(idx2MappedTxPdus);
 
           if(CANIF_VAR_TXBUFFERPRIOBYCANID_QUEUE(CANIF_CFG_TX_QUEUEINDEX(TxPduId), eQueued) != 0u)
           {
-            retval = CanIf_TxQueueTransmit((PduIdType)TxPduId);
+            retval = EcuabCanIf_QueueTxTransmit((PduIdType)TxPduId);
             break;
           }
         }
       }
-#  endif
+#endif
       break;
-# endif
-# if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
+#endif
+#if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
     case CANIF_TXBUFFER_HANDLINGTYPE_FIFO:
 
       txBufferFifoBaseIdx = CANIF_CFG_TXBUFFERFIFO_BUFFERBASEIDX(txBufferCfgIdx);
@@ -3235,11 +3235,11 @@ CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) CanIf_TxQueueTreatment(CanIf_HwHand
 
       if(CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eQueueCounter) != 0u)
       {
-#  if(CANIF_CANCEL_SUPPORT_API == STD_ON)
+#if(CANIF_CANCEL_SUPPORT_API == STD_ON)
 
         txBufferFifoActReadIdx = CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eReadIdx);
 
-        while ((CANIF_VAR_TXBUFFERFIFO_QUEUEBASE((txBufferFifoActReadIdx + txBufferFifoQueueBaseStartIdx), eQueued) == 0u) && ((CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eQueueCounter)) != 0u))
+        while((CANIF_VAR_TXBUFFERFIFO_QUEUEBASE((txBufferFifoActReadIdx + txBufferFifoQueueBaseStartIdx), eQueued) == 0u) && ((CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eQueueCounter)) != 0u))
         {
           CANIF_VAR_TXBUFFERFIFO_BUFFERBASE( txBufferFifoBaseIdx, eReadIdx) ++;
 
@@ -3254,14 +3254,14 @@ CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) CanIf_TxQueueTreatment(CanIf_HwHand
         }
 
         if(CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eQueueCounter) != 0u)
-#  endif
+#endif
         {
           txBufferFifoActReadIdx = CANIF_VAR_TXBUFFERFIFO_BUFFERBASE(txBufferFifoBaseIdx, eReadIdx);
-          retval = CanIf_TxQueueTransmit(CANIF_VAR_TXBUFFERFIFO_QUEUEBASE((txBufferFifoActReadIdx + txBufferFifoQueueBaseStartIdx), eTxPduId));
+          retval = EcuabCanIf_QueueTxTransmit(CANIF_VAR_TXBUFFERFIFO_QUEUEBASE((txBufferFifoActReadIdx + txBufferFifoQueueBaseStartIdx), eTxPduId));
         }
       }
       break;
-# endif
+#endif
     default:
       break;
   }
@@ -3274,13 +3274,13 @@ CANIF_LOCAL FUNC(Std_ReturnType, CANIF_CODE) CanIf_TxQueueTreatment(CanIf_HwHand
 FUNC(void, CANIF_CODE) CanIf_GetVersionInfo(P2VAR(Std_VersionInfoType, AUTOMATIC, CANIF_APPL_VAR) VersionInfo){
   uint8 errorId = CANIF_E_NO_ERROR;
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
   if(VersionInfo == NULL_PTR){
     errorId = CANIF_E_PARAM_POINTER;
   }
   else
-# endif
+#endif
   {
     VersionInfo->vendorID         = CANIF_VENDOR_ID;
     VersionInfo->moduleID         = CANIF_MODULE_ID;
@@ -3289,13 +3289,13 @@ FUNC(void, CANIF_CODE) CanIf_GetVersionInfo(P2VAR(Std_VersionInfoType, AUTOMATIC
     VersionInfo->sw_patch_version = CANIF_SW_PATCH_VERSION;
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_GETVERSIONINFO_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
 }
 #endif
 
@@ -3306,27 +3306,27 @@ FUNC(void, CANIF_CODE) infEcuabCanIfSwcApplEcuM_InitFunctionMemory(void){
 
   CanIf_ConfigDataPtr = NULL_PTR;
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
   CanIf_SystemInit = FALSE;
-# endif
+#endif
 #endif
 
-# if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
-  for (controller = 0; controller < (sizeof(CanIf_CtrlStates) / sizeof(CanIf_CtrlStatesType)); controller++)
-# endif
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+  for(controller = 0; controller < (sizeof(EcuabCanIf_StatesCtrl) / sizeof(EcuabCanIf_StatesCtrlType)); controller++)
+#endif
   {
     CanIf_SetCtrlMode(CanIf_Controller_Value_Local, CANIF_CS_UNINIT);
   }
 }
 
 #if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
-# if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_OFF)
-#  if(EcuabCanIf_Transmit_CANCELLATION == STD_ON)
+#if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_OFF)
+#if(EcuabCanIf_Transmit_CANCELLATION == STD_ON)
 
 FUNC(void, CANIF_CODE) CanIf_CancelTxConfirmation(PduIdType CanTxPduId, P2CONST(Can_PduType, AUTOMATIC, CANIF_CBK_DRV_VAR) PduInfoPtr){
   uint8 errorId = CANIF_E_NO_ERROR;
 
-#    if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 #     if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
@@ -3353,14 +3353,14 @@ FUNC(void, CANIF_CODE) CanIf_CancelTxConfirmation(PduIdType CanTxPduId, P2CONST(
   }
 #     endif
   else
-#    endif
+#endif
   {
     if(CANIF_CFG_MAILBOX_HASTXBUFFER(CANIF_CFG_TX_HTH(PduInfoPtr->swPduHandle))){
-#    if(CANIF_STATIC_FD_TXQUEUE == STD_ON)
+#if(CANIF_STATIC_FD_TXQUEUE == STD_ON)
       if(PduInfoPtr->length <= CANIF_CFG_TXBUFFERPRIOBYCANID_STATFDQUEUE_MAXDATALENGTH(PduInfoPtr->swPduHandle))
 #    else
       if(PduInfoPtr->length <= CANIF_STATIC_BUFFER_SIZE)
-#    endif
+#endif
       {
         CanIf_EnterCritical(CANIF_EXCLUSIVE_AREA_1);
         if(CanIf_SetPrioByCanIdTxPduAsQueued(PduInfoPtr->swPduHandle) == E_OK)
@@ -3372,32 +3372,32 @@ FUNC(void, CANIF_CODE) CanIf_CancelTxConfirmation(PduIdType CanTxPduId, P2CONST(
         }
         CanIf_LeaveCritical(CANIF_EXCLUSIVE_AREA_1);
       }
-#    if((CANIF_STATIC_FD_TXQUEUE == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_ON))
+#if((CANIF_STATIC_FD_TXQUEUE == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_ON))
       else
       {
         errorId = CANIF_E_PARAM_DLC;
       }
-#    endif
+#endif
 
       CanIf_EnterCritical(CANIF_EXCLUSIVE_AREA_2);
-      (void)CanIf_TxQueueTreatment((CanIf_HwHandleType)CANIF_CFG_TX_HTH(PduInfoPtr->swPduHandle));
+      (void)EcuabCanIf_QueueTxTreatment((CanIf_HwHandleType)CANIF_CFG_TX_HTH(PduInfoPtr->swPduHandle));
       CanIf_LeaveCritical(CANIF_EXCLUSIVE_AREA_2);
     }
     else{
     }
   }
 
-#    if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_CANCELTXCONFIRMATION_API, errorId);
   }
 #    else
   CANIF_DUMMY_STATEMENT(errorId);
-#    endif
+#endif
   CANIF_DUMMY_STATEMENT(CanTxPduId);
 }
-#  endif
-# endif
+#endif
+#endif
 #endif
 
 #if(CANIF_CANCEL_SUPPORT_API == STD_ON)
@@ -3406,7 +3406,7 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CancelTransmit(PduIdType CanTxPduId){
   Std_ReturnType retval = E_OK;
   uint8 errorId = CANIF_E_NO_ERROR;
 
-# if((CANIF_DEV_ERROR_DETECT == STD_ON) && (CANIF_USE_INIT_POINTER == STD_ON))
+#if((CANIF_DEV_ERROR_DETECT == STD_ON) && (CANIF_USE_INIT_POINTER == STD_ON))
 
   if(CanIf_SystemInit == FALSE){
     retval = E_NOT_OK;
@@ -3414,9 +3414,9 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CancelTransmit(PduIdType CanTxPduId){
     errorId = CANIF_E_UNINIT;
   }
   else
-# endif
-# if((CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME) || (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
-#  if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#endif
+#if((CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME) || (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
   if(CanTxPduId >= CANIF_CFG_MAX_ULTXPDUS){
     retval = E_NOT_OK;
@@ -3424,11 +3424,11 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CancelTransmit(PduIdType CanTxPduId){
     errorId = CANIF_E_INVALID_TXPDUID;
   }
   else
-#  endif
+#endif
   {
     CanTxPduId = CANIF_CFG_TXPDUID2INTTXPDUID(CanTxPduId);
-# endif
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#endif
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
     if(CanTxPduId >= CANIF_CFG_MAX_TXPDUS){
       retval = E_NOT_OK;
@@ -3436,37 +3436,37 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CancelTransmit(PduIdType CanTxPduId){
       errorId = CANIF_E_INVALID_TXPDUID;
     }
     else
-# endif
+#endif
     {
       {
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
         if(CanIf_GetCtrlMode(CANIF_CFG_TX_CONTROLLER(CanTxPduId)) == CANIF_CS_UNINIT)
         {
           retval = E_NOT_OK;
           errorId = CANIF_E_UNINIT;
         }
-#  if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-#   if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
 
         else if(!CANIF_CFG_IS_CANDRVINDEXVALID(CANIF_CFG_TX_CONTROLLER(CanTxPduId)))
         {
           retval = E_NOT_OK;
           errorId = CANIF_E_PARAM_CONTROLLERID;
         }
-#   endif
-#  endif
+#endif
+#endif
         else
-# endif
+#endif
         {
           CanIf_AnyIdxType  hth;
-# if  (CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if  (CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
           CANIF_CHANNEL_CANTYPE_LOCAL
           controller = CANIF_CFG_TX_CONTROLLER(CanTxPduId);
-# endif
+#endif
           hth = CANIF_CFG_TX_HTH(CanTxPduId);
           {
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
             Can_HwHandleType canDrvHth;
             CanIf_Can_CancelTxFctType canCancelTxFct;
             canCancelTxFct = CANIF_GET_CANCANCELTXFCT(CanIf_Controller_Value_Local);
@@ -3474,9 +3474,9 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CancelTransmit(PduIdType CanTxPduId){
             canDrvHth = (Can_HwHandleType)(hth - CANIF_CFG_MULTIPLECANDRV_HXHOFFSET(CANIF_CFG_CTRLUPTOLOWMAP_DRIVERINDEX(CanIf_Controller_Value_Local)));
 
             if(canCancelTxFct != NULL_PTR)
-# endif
+#endif
             {
-# if((EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON) || (EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON))
+#if((EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON) || (EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON))
 
               if(CANIF_CFG_MAILBOX_HASTXBUFFER(hth))
               {
@@ -3484,13 +3484,13 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CancelTransmit(PduIdType CanTxPduId){
 
                 switch(CANIF_CFG_MAILBOX_TXBUFFERHANDLINGTYPE(hth))
                 {
-#  if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
+#if(EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON)
 
                   case CANIF_TXBUFFER_HANDLINGTYPE_PRIOBYCANID:
                     (void)CanIf_ClearPrioByCanIdTxPduAsQueued(CanTxPduId);
                     break;
-#  endif
-#  if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
+#endif
+#if(EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON)
 
                   case CANIF_TXBUFFER_HANDLINGTYPE_FIFO:
                     {
@@ -3506,56 +3506,56 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CancelTransmit(PduIdType CanTxPduId){
                       }
                     }
                     break;
-#  endif
+#endif
                 default:
                     break;
                 }
 
                 CanIf_LeaveCritical(CANIF_EXCLUSIVE_AREA_1);
 
-#  if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
                 canCancelTxFct(canDrvHth, CanTxPduId);
-#  else
+#else
                 canCancelTxFct((CanIf_HwHandleType)hth, CanTxPduId);
-#  endif
+#endif
               }
               else
               {
-#  if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
                 canCancelTxFct(canDrvHth, CanTxPduId);
-#  else
+#else
                 canCancelTxFct((CanIf_HwHandleType)hth, CanTxPduId);
-#  endif
+#endif
               }
-# else
-#  if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#else
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
               canCancelTxFct(canDrvHth, CanTxPduId);
-#  else
+#else
               canCancelTxFct((CanIf_HwHandleType)hth, CanTxPduId);
-#  endif
-# endif
+#endif
+#endif
             }
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
             else
             {
               retval = E_NOT_OK;
             }
-# endif
+#endif
           }
         }
       }
     }
-# if((CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME) || (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
+#if((CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME) || (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
   }
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_CANCELTRANSMIT_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   return retval;
 }
 #endif
@@ -3565,14 +3565,14 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CancelTransmit(PduIdType CanTxPduId){
 FUNC(void, CANIF_CODE) CanIf_CancelTxNotification(PduIdType PduId, CanIf_CancelResultType IsCancelled){
   uint8 errorId = CANIF_E_NO_ERROR;
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(PduId >=  CANIF_CFG_MAX_TXPDUS){
     errorId = CANIF_E_PARAM_LPDU;
@@ -3581,46 +3581,46 @@ FUNC(void, CANIF_CODE) CanIf_CancelTxNotification(PduIdType PduId, CanIf_CancelR
   else if(CanIf_GetCtrlMode(CANIF_CFG_TX_CONTROLLER(PduId)) == CANIF_CS_UNINIT){
     errorId = CANIF_E_UNINIT;
   }
-#  if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-#   if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
 
   else if(!CANIF_CFG_IS_CANDRVINDEXVALID(CANIF_CFG_TX_CONTROLLER(PduId))){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
-#   endif
-#  endif
+#endif
+#endif
   else
-# endif
+#endif
   {
     if(CanIf_GetCtrlMode(CANIF_CFG_TX_CONTROLLER(PduId)) == CANIF_CS_STARTED){
       if( (CanIf_GetChannelMode(CANIF_CFG_TX_CONTROLLER(PduId)) == CANIF_GET_ONLINE) ||
            (CanIf_GetChannelMode(CANIF_CFG_TX_CONTROLLER(PduId)) == CANIF_GET_TX_ONLINE)
-# if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
+#if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
          || (CanIf_GetChannelMode(CANIF_CFG_TX_CONTROLLER(PduId)) == CANIF_GET_ONLINE_WAKF)
          || (CanIf_GetChannelMode(CANIF_CFG_TX_CONTROLLER(PduId)) == CANIF_GET_TX_ONLINE_WAKF)
-# endif
+#endif
        )
       {
 #if((EcuabCanIf_Transmit_BUFFER_PRIO_BY_CANID == STD_ON) || (EcuabCanIf_Transmit_BUFFER_FIFO == STD_ON))
         if(CANIF_CFG_MAILBOX_HASTXBUFFER(CANIF_CFG_TX_HTH(PduId)))
         {
           CanIf_EnterCritical(CANIF_EXCLUSIVE_AREA_2);
-          (void)CanIf_TxQueueTreatment((CanIf_HwHandleType)CANIF_CFG_TX_HTH(PduId));
+          (void)EcuabCanIf_QueueTxTreatment((CanIf_HwHandleType)CANIF_CFG_TX_HTH(PduId));
 
           CanIf_LeaveCritical(CANIF_EXCLUSIVE_AREA_2);
         }
-# endif
+#endif
       }
     }
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_TXNOTIFICATION_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   CANIF_DUMMY_STATEMENT(IsCancelled);
 }
 #endif
@@ -3630,41 +3630,41 @@ FUNC(void, CANIF_CODE) CanIf_CancelTxNotification(PduIdType PduId, CanIf_CancelR
 FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetTrcvMode(uint8 TransceiverId, CanTrcv_TrcvModeType TransceiverMode){
   Std_ReturnType retval = E_NOT_OK;
   uint8 errorId = CANIF_E_NO_ERROR;
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
   CANIF_CHANNEL_CANTYPE_LOCAL
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(TransceiverId >= CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-#  if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
 
   if(TransceiverId >= CanIf_GetSizeOfTransceiverUpToLowMap()){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-#  endif
-# endif
+#endif
+#endif
   {
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
 
     CanIf_Controller_Value_Local = CANIF_CFG_TRCVTOCTRLMAP(TransceiverId);
     if(CanIf_Controller_Value_Local >= CANIF_CFG_MAX_CONTROLLER){
       errorId = CANIF_E_PARAM_CONTROLLER;
     }
     else
-#  endif
+#endif
     if(CanIf_GetCtrlMode(CanIf_Controller_Value_Local) == CANIF_CS_UNINIT){
       errorId = CANIF_E_UNINIT;
     }
@@ -3675,9 +3675,9 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetTrcvMode(uint8 TransceiverId, CanTrcv_
       errorId = CANIF_E_PARAM_TRCVMODE;
     }
     else
-# endif
+#endif
     {
-# if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
       uint8                           lowIndex;
       CanIf_CanTrcvFctTblIdx          lowAddress;
       CanIf_CanTrcv_SetOpModeFctType  lowFct;
@@ -3691,20 +3691,20 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetTrcvMode(uint8 TransceiverId, CanTrcv_
       {
         retval = lowFct(lowIndex, TransceiverMode);
       }
-# else
+#else
 
       retval = CanTrcv_SetOpMode(TransceiverId, TransceiverMode);
-# endif
+#endif
     }
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_SETTRCVMODE_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   return retval;
 }
 #endif
@@ -3714,41 +3714,41 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetTrcvMode(uint8 TransceiverId, CanTrcv_
 FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetTrcvMode(P2VAR(CanTrcv_TrcvModeType, AUTOMATIC, CANIF_APPL_STATE_VAR) TransceiverModePtr, uint8 TransceiverId ){
   Std_ReturnType retval = E_NOT_OK;
   uint8 errorId = CANIF_E_NO_ERROR;
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
   CANIF_CHANNEL_CANTYPE_LOCAL
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(TransceiverId >= CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-#  if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
 
   if(TransceiverId >= CanIf_GetSizeOfTransceiverUpToLowMap()){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-#  endif
-# endif
+#endif
+#endif
   {
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
     CanIf_Controller_Value_Local = CANIF_CFG_TRCVTOCTRLMAP(TransceiverId);
 
     if(CanIf_Controller_Value_Local >= CANIF_CFG_MAX_CONTROLLER){
       errorId = CANIF_E_PARAM_CONTROLLER;
     }
     else
-#  endif
+#endif
 
     if(TransceiverModePtr == NULL_PTR){
       errorId = CANIF_E_PARAM_POINTER;
@@ -3758,9 +3758,9 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetTrcvMode(P2VAR(CanTrcv_TrcvModeType, A
       errorId = CANIF_E_UNINIT;
     }
     else
-# endif
+#endif
     {
-# if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
       uint8                           lowIndex;
       CanIf_CanTrcvFctTblIdx          lowAddress;
       CanIf_CanTrcv_GetOpModeFctType  lowFct;
@@ -3773,20 +3773,20 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetTrcvMode(P2VAR(CanTrcv_TrcvModeType, A
       {
         retval = lowFct(lowIndex, TransceiverModePtr);
       }
-# else
+#else
 
       retval = CanTrcv_GetOpMode(TransceiverId, TransceiverModePtr);
-# endif
+#endif
     }
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_GETTRCVMODE_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   return retval;
 }
 #endif
@@ -3796,41 +3796,41 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetTrcvMode(P2VAR(CanTrcv_TrcvModeType, A
 FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetTrcvWakeupReason(uint8 TransceiverId, P2VAR(CanTrcv_TrcvWakeupReasonType, AUTOMATIC, CANIF_APPL_STATE_VAR) TrcvWuReasonPtr){
   Std_ReturnType retval = E_NOT_OK;
   uint8 errorId = CANIF_E_NO_ERROR;
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
   CANIF_CHANNEL_CANTYPE_LOCAL
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(TransceiverId >= CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-#  if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
 
   if(TransceiverId >= CanIf_GetSizeOfTransceiverUpToLowMap()){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-#  endif
-# endif
+#endif
+#endif
   {
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
     CanIf_Controller_Value_Local = CANIF_CFG_TRCVTOCTRLMAP(TransceiverId);
 
     if(CanIf_Controller_Value_Local >= CANIF_CFG_MAX_CONTROLLER){
       errorId = CANIF_E_PARAM_CONTROLLER;
     }
     else
-#  endif
+#endif
 
     if(TrcvWuReasonPtr == NULL_PTR){
       errorId = CANIF_E_PARAM_POINTER;
@@ -3840,9 +3840,9 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetTrcvWakeupReason(uint8 TransceiverId, 
       errorId = CANIF_E_UNINIT;
     }
     else
-# endif
+#endif
     {
-# if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
       uint8                                 lowIndex;
       CanIf_CanTrcvFctTblIdx                lowAddress;
       CanIf_CanTrcv_GetBusWuReasonFctType   lowFct;
@@ -3856,20 +3856,20 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetTrcvWakeupReason(uint8 TransceiverId, 
       {
         retval = lowFct(lowIndex, TrcvWuReasonPtr);
       }
-# else
+#else
 
       retval = CanTrcv_GetBusWuReason(TransceiverId, TrcvWuReasonPtr);
-# endif
+#endif
     }
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_GETTRCVWAKEUPREASON_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   return retval;
 }
 #endif
@@ -3879,41 +3879,41 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetTrcvWakeupReason(uint8 TransceiverId, 
 FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetTrcvWakeupMode(uint8 TransceiverId, CanTrcv_TrcvWakeupModeType TrcvWakeupMode){
   Std_ReturnType retval = E_NOT_OK;
   uint8 errorId = CANIF_E_NO_ERROR;
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
   CANIF_CHANNEL_CANTYPE_LOCAL
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(TransceiverId >= CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-#  if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
 
   if(TransceiverId >= CanIf_GetSizeOfTransceiverUpToLowMap()){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-#  endif
-# endif
+#endif
+#endif
   {
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
     CanIf_Controller_Value_Local = CANIF_CFG_TRCVTOCTRLMAP(TransceiverId);
 
     if(CanIf_Controller_Value_Local >= CANIF_CFG_MAX_CONTROLLER){
       errorId = CANIF_E_PARAM_CONTROLLER;
     }
     else
-#  endif
+#endif
 
     if((TrcvWakeupMode != CANTRCV_WUMODE_ENABLE) &&
         (TrcvWakeupMode != CANTRCV_WUMODE_DISABLE) &&
@@ -3925,9 +3925,9 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetTrcvWakeupMode(uint8 TransceiverId, Ca
       errorId = CANIF_E_UNINIT;
     }
     else
-# endif
+#endif
     {
-# if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
       uint8                                 lowIndex;
       CanIf_CanTrcvFctTblIdx                lowAddress;
       CanIf_CanTrcv_SetWakeupModeFctType    lowFct;
@@ -3940,10 +3940,10 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetTrcvWakeupMode(uint8 TransceiverId, Ca
       {
         retval = lowFct(lowIndex, TrcvWakeupMode);
       }
-# else
+#else
 
       retval = CanTrcv_SetWakeupMode(TransceiverId, TrcvWakeupMode);
-# endif
+#endif
     }
   }
 
@@ -3964,54 +3964,54 @@ FUNC(void, CANIF_CODE) CanIf_TrcvModeIndication(uint8 TransceiverId, CanTrcv_Trc
   uint8 errorId = CANIF_E_NO_ERROR;
   CANIF_CHANNEL_CANTYPE_LOCAL
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(TransceiverId >= CANIF_CFG_MAX_CANTRCV_TRCVHANDLEIDPLUSONE){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-# endif
+#endif
   {
-# if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
-#  if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_TRCV_MAPPING == STD_ON)
     CanIf_TrcvIdUpper = CANIF_CFG_TRCVUPTOUPPERMAP(TransceiverId);
-#  endif
+#endif
     CanIf_Controller_Value_Local = CANIF_CFG_TRCVTOCTRLMAP(CanIf_TrcvIdUpper);
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
-#   if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_TRCV_MAPPING == STD_ON)
 
     if(CanIf_TrcvIdUpper >= CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE){
       errorId = CANIF_E_PARAM_TRCV;
     }
     else
-#   endif
+#endif
 
     if(CanIf_Controller_Value_Local >= CANIF_CFG_MAX_CONTROLLER){
       errorId = CANIF_E_PARAM_CONTROLLER;
     }
     else
-#  endif
+#endif
 
     if(CanIf_GetCtrlMode(CanIf_Controller_Value_Local) == CANIF_CS_UNINIT){
       errorId = CANIF_E_UNINIT;
     }
     else
-# endif
+#endif
     {
-# if(CANIF_DEV_ERROR_DETECT == STD_OFF)
+#if(CANIF_DEV_ERROR_DETECT == STD_OFF)
 
       if(CanIf_GetCtrlMode(CanIf_Controller_Value_Local) != CANIF_CS_UNINIT)
-# endif
+#endif
       {
         CanIf_TrcvModeIndicationFctType  trcvModeIndicationFct;
         trcvModeIndicationFct = CANIF_CFG_TRCVMODEINDICATIONFCT();
@@ -4029,9 +4029,9 @@ FUNC(void, CANIF_CODE) CanIf_TrcvModeIndication(uint8 TransceiverId, CanTrcv_Trc
   }
 #else
   CANIF_DUMMY_STATEMENT(errorId);
-# if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
   CANIF_DUMMY_STATEMENT(TransceiverId);
-# endif
+#endif
 #endif
 }
 #endif
@@ -4040,51 +4040,51 @@ FUNC(void, CANIF_CODE) CanIf_TrcvModeIndication(uint8 TransceiverId, CanTrcv_Trc
 
 FUNC(void, CANIF_CODE) CanIf_ConfirmPnAvailability(uint8 TransceiverId){
   uint8 errorId = CANIF_E_NO_ERROR;
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
   CANIF_CHANNEL_CANTYPE_LOCAL
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(TransceiverId >= CANIF_CFG_MAX_CANTRCV_TRCVHANDLEIDPLUSONE){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-# endif
+#endif
   {
-# if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
     CanIf_TrcvIdUpper = CANIF_CFG_TRCVUPTOUPPERMAP(TransceiverId);
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
     CanIf_Controller_Value_Local = CANIF_CFG_TRCVTOCTRLMAP(CanIf_TrcvIdUpper);
-#   if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
 
     if(CanIf_TrcvIdUpper >= CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE){
       errorId = CANIF_E_PARAM_TRCV;
     }
     else
-#   endif
+#endif
 
     if(CanIf_Controller_Value_Local >= CANIF_CFG_MAX_CONTROLLER){
       errorId = CANIF_E_PARAM_CONTROLLER;
     }
     else
-#  endif
+#endif
 
     if(CanIf_GetCtrlMode(CanIf_Controller_Value_Local) == CANIF_CS_UNINIT){
       errorId = CANIF_E_UNINIT;
     }
     else
-# endif
+#endif
     {
       CanIf_ConfirmPnAvailabilityFctType cbkFct;
       cbkFct = CANIF_CFG_CONFIRMPNAVAILABILITYFCT();
@@ -4096,16 +4096,16 @@ FUNC(void, CANIF_CODE) CanIf_ConfirmPnAvailability(uint8 TransceiverId){
     }
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_CONFIRMPNAVAILABILITY_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
   CANIF_DUMMY_STATEMENT(TransceiverId);
-#  endif
-# endif
+#endif
+#endif
 }
 #endif
 
@@ -4113,51 +4113,51 @@ FUNC(void, CANIF_CODE) CanIf_ConfirmPnAvailability(uint8 TransceiverId){
 
 FUNC(void, CANIF_CODE) CanIf_ClearTrcvWufFlagIndication(uint8 TransceiverId){
   uint8 errorId = CANIF_E_NO_ERROR;
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
   CANIF_CHANNEL_CANTYPE_LOCAL
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(TransceiverId >= CANIF_CFG_MAX_CANTRCV_TRCVHANDLEIDPLUSONE){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-# endif
+#endif
   {
-# if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
     CanIf_TrcvIdUpper = CANIF_CFG_TRCVUPTOUPPERMAP(TransceiverId);
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
     CanIf_Controller_Value_Local = CANIF_CFG_TRCVTOCTRLMAP(CanIf_TrcvIdUpper);
-#   if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
 
     if(CanIf_TrcvIdUpper >= CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE){
       errorId = CANIF_E_PARAM_TRCV;
     }
     else
-#   endif
+#endif
 
     if(CanIf_Controller_Value_Local >= CANIF_CFG_MAX_CONTROLLER){
       errorId = CANIF_E_PARAM_CONTROLLER;
     }
     else
-#  endif
+#endif
 
     if(CanIf_GetCtrlMode(CanIf_Controller_Value_Local) == CANIF_CS_UNINIT){
       errorId = CANIF_E_UNINIT;
     }
     else
-# endif
+#endif
     {
       CanIf_ClearTrcvWufFlagIndicationFctType cbkFct;
       cbkFct = CANIF_CFG_CLEARTRCVWUFFLAGINDICATIONFCT();
@@ -4169,16 +4169,16 @@ FUNC(void, CANIF_CODE) CanIf_ClearTrcvWufFlagIndication(uint8 TransceiverId){
     }
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_CLEARTRCVWUFFLAGINDICATION_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
   CANIF_DUMMY_STATEMENT(TransceiverId);
-#  endif
-# endif
+#endif
+#endif
 }
 #endif
 
@@ -4186,51 +4186,51 @@ FUNC(void, CANIF_CODE) CanIf_ClearTrcvWufFlagIndication(uint8 TransceiverId){
 
 FUNC(void, CANIF_CODE) CanIf_CheckTrcvWakeFlagIndication(uint8 TransceiverId){
   uint8 errorId = CANIF_E_NO_ERROR;
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
   CANIF_CHANNEL_CANTYPE_LOCAL
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(TransceiverId >= CANIF_CFG_MAX_CANTRCV_TRCVHANDLEIDPLUSONE){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-# endif
+#endif
   {
-# if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
     CanIf_TrcvIdUpper = CANIF_CFG_TRCVUPTOUPPERMAP(TransceiverId);
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
     CanIf_Controller_Value_Local = CANIF_CFG_TRCVTOCTRLMAP(CanIf_TrcvIdUpper);
-#   if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
 
     if(CanIf_TrcvIdUpper >= CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE){
       errorId = CANIF_E_PARAM_TRCV;
     }
     else
-#   endif
+#endif
 
     if(CanIf_Controller_Value_Local >= CANIF_CFG_MAX_CONTROLLER){
       errorId = CANIF_E_PARAM_CONTROLLER;
     }
     else
-#  endif
+#endif
 
     if(CanIf_GetCtrlMode(CanIf_Controller_Value_Local) == CANIF_CS_UNINIT){
       errorId = CANIF_E_UNINIT;
     }
     else
-# endif
+#endif
     {
       CanIf_CheckTrcvWakeFlagIndicationFctType cbkFct;
       cbkFct = CANIF_CFG_CHECKTRCVWAKEFLAGINDICATIONFCT();
@@ -4248,9 +4248,9 @@ FUNC(void, CANIF_CODE) CanIf_CheckTrcvWakeFlagIndication(uint8 TransceiverId){
   }
 #else
   CANIF_DUMMY_STATEMENT(errorId);
-# if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
   CANIF_DUMMY_STATEMENT(TransceiverId);
-# endif
+#endif
 #endif
 }
 #endif
@@ -4260,49 +4260,49 @@ FUNC(void, CANIF_CODE) CanIf_CheckTrcvWakeFlagIndication(uint8 TransceiverId){
 FUNC(Std_ReturnType, CANIF_CODE) CanIf_ClearTrcvWufFlag(uint8 TransceiverId){
   Std_ReturnType retval = E_NOT_OK;
   uint8 errorId = CANIF_E_NO_ERROR;
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
   CANIF_CHANNEL_CANTYPE_LOCAL
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(TransceiverId >= CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-#  if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
 
   if(TransceiverId >= CanIf_GetSizeOfTransceiverUpToLowMap()){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-#  endif
-# endif
+#endif
+#endif
   {
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
     CanIf_Controller_Value_Local = CANIF_CFG_TRCVTOCTRLMAP(TransceiverId);
 
     if(CanIf_Controller_Value_Local >= CANIF_CFG_MAX_CONTROLLER){
       errorId = CANIF_E_PARAM_CONTROLLER;
     }
     else
-#  endif
+#endif
 
     if(CanIf_GetCtrlMode(CanIf_Controller_Value_Local) == CANIF_CS_UNINIT){
       errorId = CANIF_E_UNINIT;
     }
     else
-# endif
+#endif
     {
-# if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
 
       uint8                                  TrcvChannelId;
       CanIf_CanTrcvFctTblIdx                 TrcvDriverId;
@@ -4322,20 +4322,20 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_ClearTrcvWufFlag(uint8 TransceiverId){
         errorId = CANIF_E_PARAM_TRCV;
 
       }
-# else
+#else
 
       retval = CanTrcv_ClearTrcvWufFlag(TransceiverId);
-# endif
+#endif
     }
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_CLEARTRCVWUFFLAG_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   return retval;
 }
 #endif
@@ -4345,48 +4345,48 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_ClearTrcvWufFlag(uint8 TransceiverId){
 FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckTrcvWakeFlag(uint8 TransceiverId){
   Std_ReturnType retval = E_NOT_OK;
   uint8 errorId = CANIF_E_NO_ERROR;
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
   CANIF_CHANNEL_CANTYPE_LOCAL
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(TransceiverId >= CANIF_CFG_MAX_TRANSCEIVERHANDLEIDPLUSONE){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-#  if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
   if(TransceiverId >= CanIf_GetSizeOfTransceiverUpToLowMap()){
     errorId = CANIF_E_PARAM_TRCV;
   }
   else
-#  endif
-# endif
+#endif
+#endif
   {
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
     CanIf_Controller_Value_Local = CANIF_CFG_TRCVTOCTRLMAP(TransceiverId);
 
     if(CanIf_Controller_Value_Local >= CANIF_CFG_MAX_CONTROLLER){
       errorId = CANIF_E_PARAM_CONTROLLER;
     }
     else
-#  endif
+#endif
 
     if(CanIf_GetCtrlMode(CanIf_Controller_Value_Local) == CANIF_CS_UNINIT){
       errorId = CANIF_E_UNINIT;
     }
     else
-# endif
+#endif
     {
-# if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
 
       uint8                               TrcvChannelId;
       CanIf_CanTrcvFctTblIdx              TrcvDriverId;
@@ -4406,19 +4406,19 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckTrcvWakeFlag(uint8 TransceiverId){
         errorId = CANIF_E_PARAM_TRCV;
 
       }
-# else
+#else
       retval = CanTrcv_CheckWakeFlag(TransceiverId);
-# endif
+#endif
     }
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_CHECKTRCVWAKEFLAG_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   return retval;
 }
 #endif
@@ -4434,7 +4434,7 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckWakeup(EcuM_WakeupSourceType WakeupS
   uint8 numWUsrc;
   wokenUpSources = 0u;
 
-# if((CANIF_DEV_ERROR_DETECT == STD_ON) && (CANIF_USE_INIT_POINTER == STD_ON))
+#if((CANIF_DEV_ERROR_DETECT == STD_ON) && (CANIF_USE_INIT_POINTER == STD_ON))
 
   if(CanIf_SystemInit == FALSE){
     retval = E_NOT_OK;
@@ -4442,10 +4442,10 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckWakeup(EcuM_WakeupSourceType WakeupS
     errorId = CANIF_E_UNINIT;
   }
   else
-# endif
+#endif
 
   {
-    for (numWUsrc = 0u; numWUsrc < CANIF_CFG_MAX_WAKEUPSOURCES; numWUsrc++){
+    for(numWUsrc = 0u; numWUsrc < CANIF_CFG_MAX_WAKEUPSOURCES; numWUsrc++){
       EcuM_WakeupSourceType                 wuSrc;
       CanIf_WakeUpTargetType                wuTrgtmodule;
       uint8                                 wuTrgtaddress;
@@ -4454,15 +4454,15 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckWakeup(EcuM_WakeupSourceType WakeupS
       wuSrc         = CANIF_CFG_WAKEUP_WAKEUPSOURCE(numWUsrc);
       wuTrgtmodule  = CANIF_CFG_WAKEUP_WAKEUPTARGETMODULE(numWUsrc);
       wuTrgtaddress = CANIF_CFG_WAKEUP_WAKEUPTARGETADDRESS(numWUsrc);
-# if(CANIF_ONE_CONTROLLER_OPTIMIZATION==STD_OFF)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION==STD_OFF)
 
       wuController = CANIF_CFG_WAKEUP_CONTROLLER(numWUsrc);
-# endif
+#endif
 
       localRetval = E_NOT_OK;
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
 
       if(CanIf_WU_Controller_Value_Local >= CANIF_CFG_MAX_CONTROLLER)
       {
@@ -4471,7 +4471,7 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckWakeup(EcuM_WakeupSourceType WakeupS
         errorId = CANIF_E_PARAM_WAKEUPSOURCE;
       }
       else
-#  endif
+#endif
 
       if(CanIf_GetCtrlMode(CanIf_WU_Controller_Value_Local) == CANIF_CS_UNINIT)
       {
@@ -4480,7 +4480,7 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckWakeup(EcuM_WakeupSourceType WakeupS
         errorId = CANIF_E_UNINIT;
       }
       else
-# endif
+#endif
       {
         if((WakeupSource & wuSrc) != 0u)
         {
@@ -4488,15 +4488,15 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckWakeup(EcuM_WakeupSourceType WakeupS
           {
             if(wuTrgtmodule == CANIF_WAKEUPREQUEST_CAN)
             {
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-#  if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
               if(wuTrgtaddress >= CanIf_GetSizeOfCanChannelIdUpToLowMap())
               {
                 errorId = CANIF_E_PARAM_CONTROLLERID;
                 retval = E_NOT_OK;
               }
               else
-#   if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
+#if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
 
               if(!CANIF_CFG_IS_CANDRVINDEXVALID(wuTrgtaddress))
               {
@@ -4504,8 +4504,8 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckWakeup(EcuM_WakeupSourceType WakeupS
                 retval = E_NOT_OK;
               }
               else
-#   endif
-#  endif
+#endif
+#endif
               {
                 CanIf_Can_CheckWakeupFctType canCheckWakeupFct;
                 canCheckWakeupFct = CanIf_GetCan_CheckWakeupFctMap(CANIF_CFG_CTRLUPTOLOWMAP_DRIVERINDEX(wuTrgtaddress));
@@ -4514,27 +4514,27 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckWakeup(EcuM_WakeupSourceType WakeupS
                   localRetval = canCheckWakeupFct(CANIF_CFG_CTRLUPTOLOWMAP_CHANNELINDEX(wuTrgtaddress));
                 }
               }
-# else
+#else
               localRetval = Can_CheckWakeup(wuTrgtaddress);
-# endif
+#endif
             }
-# if(CANIF_TRCV_HANDLING == STD_ON)
+#if(CANIF_TRCV_HANDLING == STD_ON)
 
             else if(wuTrgtmodule == CANIF_WAKEUPREQUEST_TRCV)
             {
-#  if(CANIF_TRCV_MAPPING == STD_ON)
+#if(CANIF_TRCV_MAPPING == STD_ON)
 
               uint8                                 lowIndex;
               CanIf_CanTrcvFctTblIdx                lowAddress;
               CanIf_CanTrcv_CheckWakeupFctType   lowFct;
-#   if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
               if(wuTrgtaddress >= CanIf_GetSizeOfTransceiverUpToLowMap())
               {
                 errorId = CANIF_E_PARAM_TRCV;
                 retval = E_NOT_OK;
               }
               else
-#   endif
+#endif
               {
                 lowIndex   = CANIF_CFG_TRCVUPTOLOWMAP_CHANNELINDEX(wuTrgtaddress);
                 lowAddress = CANIF_CFG_TRCVUPTOLOWMAP_DRIVERINDEX(wuTrgtaddress);
@@ -4546,12 +4546,12 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckWakeup(EcuM_WakeupSourceType WakeupS
                   localRetval = lowFct(lowIndex);
                 }
               }
-#  else
+#else
 
               localRetval = CanTrcv_CheckWakeup(wuTrgtaddress);
-#  endif
+#endif
             }
-# endif
+#endif
             else
             {
             }
@@ -4576,13 +4576,13 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckWakeup(EcuM_WakeupSourceType WakeupS
     retval = E_NOT_OK;
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_CHECKWAKEUP_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   return retval;
   }
 #endif
@@ -4596,7 +4596,7 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckValidation(EcuM_WakeupSourceType Wak
   uint8  numWUsrc;
   wokenUpSources = 0u;
 
-# if((CANIF_DEV_ERROR_DETECT == STD_ON) && (CANIF_USE_INIT_POINTER == STD_ON))
+#if((CANIF_DEV_ERROR_DETECT == STD_ON) && (CANIF_USE_INIT_POINTER == STD_ON))
 
   if(CanIf_SystemInit == FALSE){
     retval = E_NOT_OK;
@@ -4604,20 +4604,20 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckValidation(EcuM_WakeupSourceType Wak
     errorId = CANIF_E_UNINIT;
   }
   else
-# endif
+#endif
   {
-    for (numWUsrc = 0u; numWUsrc < CANIF_CFG_MAX_WAKEUPSOURCES; numWUsrc++){
+    for(numWUsrc = 0u; numWUsrc < CANIF_CFG_MAX_WAKEUPSOURCES; numWUsrc++){
       EcuM_WakeupSourceType                 wuSrc;
       CANIF_WUCHANNEL_CANTYPE_LOCAL
 
       wuSrc         = CANIF_CFG_WAKEUP_WAKEUPSOURCE(numWUsrc);
-# if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
 
       wuController  = CANIF_CFG_WAKEUP_CONTROLLER(numWUsrc);
-# endif
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#endif
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
 
       if(CanIf_WU_Controller_Value_Local >= CANIF_CFG_MAX_CONTROLLER)
       {
@@ -4626,7 +4626,7 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckValidation(EcuM_WakeupSourceType Wak
         errorId = CANIF_E_PARAM_WAKEUPSOURCE;
       }
       else
-#  endif
+#endif
 
       if(CanIf_GetCtrlMode(CanIf_WU_Controller_Value_Local) == CANIF_CS_UNINIT)
       {
@@ -4635,7 +4635,7 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckValidation(EcuM_WakeupSourceType Wak
         errorId = CANIF_E_UNINIT;
       }
       else
-# endif
+#endif
       {
         if((WakeupSource & wuSrc) != 0u)
         {
@@ -4649,12 +4649,12 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckValidation(EcuM_WakeupSourceType Wak
         }
       }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
       if(errorId != CANIF_E_NO_ERROR)
       {
         CanIf_Det_ReportError(CANIF_CHECKVALIDATIONUP_API, errorId);
       }
-# endif
+#endif
     }
   }
 
@@ -4666,15 +4666,15 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckValidation(EcuM_WakeupSourceType Wak
     }
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_CHECKVALIDATIONUP_API, errorId);
   }
-#  endif
-# else
+#endif
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   return retval;
 }
 #endif
@@ -4686,64 +4686,64 @@ FUNC(void, CANIF_CODE) CanIf_SetDynamicTxId(PduIdType CanTxPduId, Can_IdType Can
   CANIF_CHANNEL_CANTYPE_LOCAL
   PduIdType dynamicPduId;
 
-# if((CANIF_DEV_ERROR_DETECT == STD_ON) && (CANIF_USE_INIT_POINTER == STD_ON))
+#if((CANIF_DEV_ERROR_DETECT == STD_ON) && (CANIF_USE_INIT_POINTER == STD_ON))
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-# endif
+#endif
 
-# if((CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME) || (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
-#  if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if((CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME) || (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
   if(CanTxPduId >= CANIF_CFG_MAX_ULTXPDUS){
     errorId = CANIF_E_INVALID_TXPDUID;
   }
   else
-#  endif
+#endif
   {
     CanTxPduId = CANIF_CFG_TXPDUID2INTTXPDUID(CanTxPduId);
-# endif
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#endif
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
     if(CanTxPduId >= CANIF_CFG_MAX_TXPDUS){
       errorId = CANIF_E_INVALID_TXPDUID;
     }
     else
-# endif
+#endif
     {
-# if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
 
       controller = CANIF_CFG_TX_CONTROLLER(CanTxPduId);
-# endif
+#endif
       dynamicPduId = CANIF_CFG_STAT2DYN_INDIRECTION(CanTxPduId);
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
       if(dynamicPduId >= CanIf_GetSizeOfDynTxId())
       {
         errorId = CANIF_E_INVALID_TXPDUID;
       }
-#  if(CANIF_EXTENDEDID_SUPPORT != STD_ON)
+#if(CANIF_EXTENDEDID_SUPPORT != STD_ON)
 
       else if((CanId & (~CANIF_FDFLAG)) > 0x7FFu)
       {
         errorId = CANIF_E_PARAM_CANID;
       }
-#  endif
+#endif
 
       else if(CanIf_GetCtrlMode(CanIf_Controller_Value_Local) == CANIF_CS_UNINIT)
       {
         errorId = CANIF_E_UNINIT;
       }
       else
-# endif
+#endif
       {
-# if(CANIF_DEV_ERROR_DETECT == STD_OFF)
+#if(CANIF_DEV_ERROR_DETECT == STD_OFF)
 
         if(CanIf_GetCtrlMode(CanIf_Controller_Value_Local) != CANIF_CS_UNINIT)
-# endif
+#endif
         {
           CanIf_EnterCritical(CANIF_EXCLUSIVE_AREA_5);
 
@@ -4752,17 +4752,17 @@ FUNC(void, CANIF_CODE) CanIf_SetDynamicTxId(PduIdType CanTxPduId, Can_IdType Can
         }
       }
     }
-# if((CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME) || (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
+#if((CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME) || (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
   }
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_SETDYNAMICTXID_API_ID, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
 }
 #endif
 
@@ -4770,13 +4770,13 @@ FUNC(void, CANIF_CODE) CanIf_ControllerModeIndication(uint8 ControllerId, CanIf_
   uint8 errorId = CANIF_E_NO_ERROR;
 
 #if(CANIF_DEV_ERROR_DETECT == STD_ON)
-# if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-# endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLER;
@@ -4874,9 +4874,9 @@ FUNC(void, CANIF_CODE) CanIf_ControllerModeIndication(uint8 ControllerId, CanIf_
   }
 #else
   CANIF_DUMMY_STATEMENT(errorId);
-# if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
   CANIF_DUMMY_STATEMENT(ControllerId);
-# endif
+#endif
 #endif
 }
 
@@ -4886,42 +4886,42 @@ FUNC(CanIf_NotifStatusType, CANIF_CODE) CanIf_GetTxConfirmationState(uint8 Contr
   CanIf_NotifStatusType retval = CANIF_NO_NOTIFICATION;
   uint8 errorId = CANIF_E_NO_ERROR;
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
-#  if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
+#endif
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_OFF)
 
   if(CanIf_Controller_Value >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLER;
   }
   else
-#  endif
+#endif
 
   if(CanIf_GetCtrlMode(CanIf_Controller_Value) == CANIF_CS_UNINIT){
     errorId = CANIF_E_UNINIT;
   }
   else
-# endif
+#endif
   {
     retval = CanIf_GetTxConfState(CanIf_Controller_Value);
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_GETTXCONFIRMATIONSTATE_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
 
-# if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
+#if(CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON)
   CANIF_DUMMY_STATEMENT(ControllerId);
-# endif
+#endif
   return retval;
 }
 #endif
@@ -4932,14 +4932,14 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckBaudrate(uint8 ControllerId, CONST(u
   Std_ReturnType retval = E_NOT_OK;
   uint8 errorId = CANIF_E_NO_ERROR;
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLERID;
@@ -4948,35 +4948,35 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_CheckBaudrate(uint8 ControllerId, CONST(u
   else if(CanIf_GetCtrlMode(CanIf_Controller_Value) == CANIF_CS_UNINIT){
     errorId = CANIF_E_UNINIT;
   }
-#  if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-#   if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
 
   else if(!CANIF_CFG_IS_CANDRVINDEXVALID(CanIf_Controller_Value)){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
-#   endif
-#  endif
+#endif
+#endif
   else
-# endif
+#endif
   {
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
     CanIf_Can_CheckBaudrateFctType canCheckBaudrateFct;
     canCheckBaudrateFct = CanIf_GetCan_CheckBaudrateFctMap(CANIF_CFG_CTRLUPTOLOWMAP_DRIVERINDEX(CanIf_Controller_Value));
     if(canCheckBaudrateFct != NULL_PTR){
       retval = canCheckBaudrateFct(CANIF_CFG_CTRLUPTOLOWMAP_CHANNELINDEX(CanIf_Controller_Value), Baudrate);
     }
-# else
+#else
     retval = Can_CheckBaudrate(CanIf_Controller_Value, Baudrate);
-# endif
+#endif
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_BAUDRATECHECK_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   CANIF_DUMMY_STATEMENT(ControllerId);
 
   return retval;
@@ -4986,14 +4986,14 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_ChangeBaudrate(uint8 ControllerId, CONST(
   Std_ReturnType retval = E_NOT_OK;
   uint8 errorId = CANIF_E_NO_ERROR;
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLERID;
@@ -5002,35 +5002,35 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_ChangeBaudrate(uint8 ControllerId, CONST(
   else if(CanIf_GetCtrlMode(CanIf_Controller_Value) == CANIF_CS_UNINIT){
     errorId = CANIF_E_UNINIT;
   }
-#  if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-#   if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
 
   else if(!CANIF_CFG_IS_CANDRVINDEXVALID(CanIf_Controller_Value)){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
-#   endif
-#  endif
+#endif
+#endif
   else
-# endif
+#endif
   {
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
     CanIf_Can_ChangeBaudrateFctType canChangeBaudrateFct;
     canChangeBaudrateFct = CanIf_GetCan_ChangeBaudrateFctMap(CANIF_CFG_CTRLUPTOLOWMAP_DRIVERINDEX(CanIf_Controller_Value));
     if(canChangeBaudrateFct != NULL_PTR){
       retval = canChangeBaudrateFct(CANIF_CFG_CTRLUPTOLOWMAP_CHANNELINDEX(CanIf_Controller_Value), Baudrate);
     }
-# else
+#else
     retval = Can_ChangeBaudrate(CanIf_Controller_Value, Baudrate);
-# endif
+#endif
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_BAUDRATECHANGE_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   CANIF_DUMMY_STATEMENT(ControllerId);
 
   return retval;
@@ -5043,14 +5043,14 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetBaudrate(uint8 ControllerId, uint16 Ba
   Std_ReturnType retval = E_NOT_OK;
   uint8 errorId = CANIF_E_NO_ERROR;
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLERID;
@@ -5059,62 +5059,62 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetBaudrate(uint8 ControllerId, uint16 Ba
   else if(CanIf_GetCtrlMode(CanIf_Controller_Value) == CANIF_CS_UNINIT){
     errorId = CANIF_E_UNINIT;
   }
-#  if((CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON) && (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
+#if((CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON) && (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
 
   else if(!CANIF_CFG_IS_CANDRVINDEXVALID(CanIf_Controller_Value)){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
-#  endif
+#endif
   else
-# endif
+#endif
   {
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
     CanIf_Can_SetBaudrateFctType canSetBaudrateFct;
     canSetBaudrateFct = CanIf_GetCan_SetBaudrateFctMap(CANIF_CFG_CTRLUPTOLOWMAP_DRIVERINDEX(CanIf_Controller_Value));
     if(canSetBaudrateFct != NULL_PTR){
       retval = canSetBaudrateFct(CANIF_CFG_CTRLUPTOLOWMAP_CHANNELINDEX(CanIf_Controller_Value), BaudRateConfigID);
     }
-# else
+#else
     retval = Can_SetBaudrate(CanIf_Controller_Value, BaudRateConfigID);
-# endif
+#endif
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_BAUDRATESET_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
 
-# if((CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
+#if((CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
   CANIF_DUMMY_STATEMENT(ControllerId);
-# endif
+#endif
   return retval;
 }
 #endif
 
 #if(CANIF_J1939_DYN_ADDR_SUPPORT != CANIF_J1939_DYN_ADDR_DISABLED)
-# if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
+#if(CANIF_EXTENDEDID_SUPPORT == STD_ON)
 
 FUNC(void, CANIF_CODE) CanIf_SetAddressTableEntry(uint8 ControllerId, uint8 intAddr, uint8 busAddr){
   uint8 errorId = CANIF_E_NO_ERROR;
   uint8 oldBusAddr;
 
-#  if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#   if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#   endif
+#endif
 
   if(CANIF_CFG_CTRLJ1939DYNADDRSUPPORT(CanIf_Controller_Value) == CANIF_J1939_DYN_ADDR_DISABLED){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
   else
-#  endif
+#endif
   {
     CanIf_EnterCritical(CANIF_EXCLUSIVE_AREA_6);
 
@@ -5128,33 +5128,33 @@ FUNC(void, CANIF_CODE) CanIf_SetAddressTableEntry(uint8 ControllerId, uint8 intA
     CanIf_LeaveCritical(CANIF_EXCLUSIVE_AREA_6);
   }
 
-#  if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_SETADDRESSTABLEENTRY_API, errorId);
   }
-#  else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-#  endif
+#endif
   CANIF_DUMMY_STATEMENT(ControllerId);
 }
 
 FUNC(void, CANIF_CODE) CanIf_ResetAddressTableEntry(uint8 ControllerId, uint8 intAddr){
   uint8 errorId = CANIF_E_NO_ERROR;
 
-#  if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#   if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#   endif
+#endif
 
   if(CANIF_CFG_CTRLJ1939DYNADDRSUPPORT(CanIf_Controller_Value) == CANIF_J1939_DYN_ADDR_DISABLED){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
   else
-#  endif
+#endif
   {
     uint8 busAddr;
 
@@ -5168,16 +5168,16 @@ FUNC(void, CANIF_CODE) CanIf_ResetAddressTableEntry(uint8 ControllerId, uint8 in
     CanIf_LeaveCritical(CANIF_EXCLUSIVE_AREA_6);
   }
 
-#  if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_RESETADDRESSTABLEENTRY_API, errorId);
   }
-#  else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-#  endif
+#endif
   CANIF_DUMMY_STATEMENT(ControllerId);
 }
-# endif
+#endif
 #endif
 
 #if(CANIF_EXTENDED_RAM_CHECK_SUPPORT == STD_ON)
@@ -5193,13 +5193,13 @@ FUNC(void, CANIF_CODE) CanIf_RamCheckCorruptMailbox(uint8 ControllerId, CanIf_Hw
     errorId = CANIF_E_CONFIG;
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_RAMCHECKCORRUPTMAILBOX_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
 }
 
 FUNC(void, CANIF_CODE) CanIf_RamCheckCorruptController(uint8 ControllerId){
@@ -5213,29 +5213,29 @@ FUNC(void, CANIF_CODE) CanIf_RamCheckCorruptController(uint8 ControllerId){
     errorId = CANIF_E_CONFIG;
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_RAMCHECKCORRUPTCONTROLLER_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
 }
 
 FUNC(void, CANIF_CODE) CanIf_RamCheckExecute(uint8 ControllerId){
   uint8 errorId = CANIF_E_NO_ERROR;
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
   CanIf_Can_RamCheckExecuteFctType can_RamCheckExecuteFct;
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLERID;
@@ -5244,18 +5244,18 @@ FUNC(void, CANIF_CODE) CanIf_RamCheckExecute(uint8 ControllerId){
   else if(CanIf_GetCtrlMode(CanIf_Controller_Value) == CANIF_CS_UNINIT){
     errorId = CANIF_E_UNINIT;
   }
-#  if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-#   if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
 
   else if(!CANIF_CFG_IS_CANDRVINDEXVALID(CanIf_Controller_Value)){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
-#   endif
-#  endif
+#endif
+#endif
   else
-# endif
+#endif
   {
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
     can_RamCheckExecuteFct = CanIf_GetCan_RamCheckExecuteFctMap(CANIF_CFG_CTRLUPTOLOWMAP_DRIVERINDEX(CanIf_Controller_Value));
 
     if(can_RamCheckExecuteFct != NULL_PTR){
@@ -5264,37 +5264,37 @@ FUNC(void, CANIF_CODE) CanIf_RamCheckExecute(uint8 ControllerId){
     else{
       errorId = CANIF_E_CONFIG;
     }
-# else
+#else
     Can_RamCheckExecute(CanIf_Controller_Value);
-# endif
+#endif
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_RAMCHECKEXECUTE_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
-# if((CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
+#endif
+#if((CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
   CANIF_DUMMY_STATEMENT(ControllerId);
-# endif
+#endif
 }
 
 FUNC(void, CANIF_CODE) CanIf_RamCheckEnableMailbox(uint8 ControllerId, CanIf_HwHandleType HwHandle){
   uint8 errorId = CANIF_E_NO_ERROR;
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
   CanIf_Can_RamCheckEnableMailboxFctType can_RamCheckEnableMailboxFct;
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLERID;
@@ -5303,18 +5303,18 @@ FUNC(void, CANIF_CODE) CanIf_RamCheckEnableMailbox(uint8 ControllerId, CanIf_HwH
   else if(CanIf_GetCtrlMode(CanIf_Controller_Value) == CANIF_CS_UNINIT){
     errorId = CANIF_E_UNINIT;
   }
-#  if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-#   if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
 
   else if(!CANIF_CFG_IS_CANDRVINDEXVALID(CanIf_Controller_Value)){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
-#   endif
-#  endif
+#endif
+#endif
   else
-# endif
+#endif
   {
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
     can_RamCheckEnableMailboxFct = CanIf_GetCan_RamCheckEnableMailboxFctMap(CANIF_CFG_CTRLUPTOLOWMAP_DRIVERINDEX(CanIf_Controller_Value));
 
     if(can_RamCheckEnableMailboxFct != NULL_PTR){
@@ -5323,35 +5323,35 @@ FUNC(void, CANIF_CODE) CanIf_RamCheckEnableMailbox(uint8 ControllerId, CanIf_HwH
     else{
       errorId = CANIF_E_CONFIG;
     }
-# else
+#else
     Can_RamCheckEnableMailbox(HwHandle);
-# endif
+#endif
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_RAMCHECKENABLEMAILBOX_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   CANIF_DUMMY_STATEMENT(ControllerId);
 }
 
 FUNC(void, CANIF_CODE) CanIf_RamCheckEnableController(uint8 ControllerId){
   uint8 errorId = CANIF_E_NO_ERROR;
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
   CanIf_Can_RamCheckEnableControllerFctType can_RamCheckEnableControllerFct;
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLERID;
@@ -5360,18 +5360,18 @@ FUNC(void, CANIF_CODE) CanIf_RamCheckEnableController(uint8 ControllerId){
   else if(CanIf_GetCtrlMode(CanIf_Controller_Value) == CANIF_CS_UNINIT){
     errorId = CANIF_E_UNINIT;
   }
-#  if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-#   if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
 
   else if(!CANIF_CFG_IS_CANDRVINDEXVALID(CanIf_Controller_Value)){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
-#   endif
-#  endif
+#endif
+#endif
   else
-# endif
+#endif
   {
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
     can_RamCheckEnableControllerFct = CanIf_GetCan_RamCheckEnableControllerFctMap(CANIF_CFG_CTRLUPTOLOWMAP_DRIVERINDEX(CanIf_Controller_Value));
 
     if(can_RamCheckEnableControllerFct != NULL_PTR){
@@ -5380,21 +5380,21 @@ FUNC(void, CANIF_CODE) CanIf_RamCheckEnableController(uint8 ControllerId){
     else{
       errorId = CANIF_E_CONFIG;
     }
-# else
+#else
     Can_RamCheckEnableController(CanIf_Controller_Value);
-# endif
+#endif
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_RAMCHECKENABLECONTROLLER_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
-# if((CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
+#endif
+#if((CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
   CANIF_DUMMY_STATEMENT(ControllerId);
-# endif
+#endif
 }
 #endif
 
@@ -5405,32 +5405,32 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetPduReceptionMode(PduIdType id, CanIf_R
   uint8 errorId = CANIF_E_NO_ERROR;
   CanIf_AnyIdxType CanIfRxPduId;
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
-# endif
-# if((CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME) || (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
-#  if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#endif
+#endif
+#if((CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME) || (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
   if(id >= CANIF_CFG_MAX_ULRXPDUS){
     errorId = CANIF_E_INVALID_RXPDUID;
   }
   else
-#  endif
-# endif
+#endif
+#endif
   {
-# if((CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME) || (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
+#if((CANIF_CONFIG_VARIANT == CANIF_CFGVAR_POSTBUILDTIME) || (CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON))
 
     CanIfRxPduId = CANIF_CFG_EXTRXPDUID2INTRXPDUID(id);
-# else
+#else
     CanIfRxPduId = id;
-# endif
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#endif
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
 
     if(CanIfRxPduId >= CANIF_CFG_MAX_RXPDUS){
       errorId = CANIF_E_INVALID_RXPDUID;
@@ -5440,50 +5440,50 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetPduReceptionMode(PduIdType id, CanIf_R
       errorId = CANIF_E_INVALID_PDURECEPTIONMODE;
     }
     else
-# endif
+#endif
     {
       if(CANIF_CFG_RX_ISRECEPTIONMODEPDU(CanIfRxPduId))
       {
         CANIF_VAR_SET_PDU_RECEPTION_MODE(CANIF_CFG_RX_PDURECEPTIONMODEIDX(CanIfRxPduId), mode);
         retval = E_OK;
       }
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
       else
       {
         errorId = CANIF_E_INVALID_RXPDUID;
       }
-# endif
+#endif
     }
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_SETPDURECEPTIONMODE_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
+#endif
   return retval;
 }
 #endif
 
-# if(CANIF_BUS_MIRRORING_SUPPORT == STD_ON)
+#if(CANIF_BUS_MIRRORING_SUPPORT == STD_ON)
 
 FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetControllerErrorState(uint8 ControllerId, P2VAR(Can_ErrorStateType, AUTOMATIC, CANIF_APPL_STATE_VAR) ErrorStatePtr){
   Std_ReturnType retval  = E_NOT_OK;
   uint8 errorId = CANIF_E_NO_ERROR;
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
   CanIf_Can_GetControllerErrorStateFctType can_GetControllerErrorStateFct;
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLERID;
@@ -5492,18 +5492,18 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetControllerErrorState(uint8 ControllerI
   else if(ErrorStatePtr == NULL_PTR){
     errorId = CANIF_E_PARAM_POINTER;
   }
-#  if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-#   if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
 
   else if(!CANIF_CFG_IS_CANDRVINDEXVALID(CanIf_Controller_Value)){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
-#   endif
-#  endif
+#endif
+#endif
   else
-# endif
+#endif
   {
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
     can_GetControllerErrorStateFct = CanIf_GetCan_GetControllerErrorStateFctMap(CANIF_CFG_CTRLUPTOLOWMAP_DRIVERINDEX(CanIf_Controller_Value));
 
     if(can_GetControllerErrorStateFct != NULL_PTR){
@@ -5512,39 +5512,39 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetControllerErrorState(uint8 ControllerI
     else{
       errorId = CANIF_E_CONFIG;
     }
-# else
+#else
     retval = Can_GetControllerErrorState(CanIf_Controller_Value, ErrorStatePtr);
-# endif
+#endif
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_GETCONTROLLERERRORSTATE_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
-# if((CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
+#endif
+#if((CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
   CANIF_DUMMY_STATEMENT(ControllerId);
-# endif
+#endif
   return retval;
 }
 
 FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetControllerRxErrorCounter(uint8 ControllerId, P2VAR(uint8, AUTOMATIC, CANIF_APPL_STATE_VAR) RxErrorCounterPtr){
   Std_ReturnType retval  = E_NOT_OK;
   uint8 errorId = CANIF_E_NO_ERROR;
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
   CanIf_Can_GetControllerRxErrorCounterFctType can_GetControllerRxErrorCounterFct;
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLERID;
@@ -5553,18 +5553,18 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetControllerRxErrorCounter(uint8 Control
   else if(RxErrorCounterPtr == NULL_PTR){
     errorId = CANIF_E_PARAM_POINTER;
   }
-#  if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-#   if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
 
   else if(!CANIF_CFG_IS_CANDRVINDEXVALID(CanIf_Controller_Value)){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
-#   endif
-#  endif
+#endif
+#endif
   else
-# endif
+#endif
   {
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
     can_GetControllerRxErrorCounterFct = CanIf_GetCan_GetControllerRxErrorCounterFctMap(CANIF_CFG_CTRLUPTOLOWMAP_DRIVERINDEX(CanIf_Controller_Value));
 
     if(can_GetControllerRxErrorCounterFct != NULL_PTR){
@@ -5573,39 +5573,39 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetControllerRxErrorCounter(uint8 Control
     else{
       errorId = CANIF_E_CONFIG;
     }
-# else
+#else
     retval = Can_GetControllerRxErrorCounter(CanIf_Controller_Value, RxErrorCounterPtr);
-# endif
+#endif
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_GETCONTROLLERRXERRORCOUNTER_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
-# if((CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
+#endif
+#if((CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
   CANIF_DUMMY_STATEMENT(ControllerId);
-# endif
+#endif
   return retval;
 }
 
 FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetControllerTxErrorCounter(uint8 ControllerId, P2VAR(uint8, AUTOMATIC, CANIF_APPL_STATE_VAR) TxErrorCounterPtr){
   Std_ReturnType retval  = E_NOT_OK;
   uint8 errorId = CANIF_E_NO_ERROR;
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
   CanIf_Can_GetControllerTxErrorCounterFctType can_GetControllerTxErrorCounterFct;
-# endif
+#endif
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLERID;
@@ -5614,18 +5614,18 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetControllerTxErrorCounter(uint8 Control
   else if(TxErrorCounterPtr == NULL_PTR){
     errorId = CANIF_E_PARAM_POINTER;
   }
-#  if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-#   if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
 
   else if(!CANIF_CFG_IS_CANDRVINDEXVALID(CanIf_Controller_Value)){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
-#   endif
-#  endif
+#endif
+#endif
   else
-# endif
+#endif
   {
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
     can_GetControllerTxErrorCounterFct = CanIf_GetCan_GetControllerTxErrorCounterFctMap(CANIF_CFG_CTRLUPTOLOWMAP_DRIVERINDEX(CanIf_Controller_Value));
 
     if(can_GetControllerTxErrorCounterFct != NULL_PTR){
@@ -5634,21 +5634,21 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetControllerTxErrorCounter(uint8 Control
     else{
       errorId = CANIF_E_CONFIG;
     }
-# else
+#else
     retval = Can_GetControllerTxErrorCounter(CanIf_Controller_Value, TxErrorCounterPtr);
-# endif
+#endif
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_GETCONTROLLERTXERRORCOUNTER_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
-# if((CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
+#endif
+#if((CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
   CANIF_DUMMY_STATEMENT(ControllerId);
-# endif
+#endif
   return retval;
 }
 
@@ -5656,35 +5656,35 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_EnableBusMirroring(uint8 ControllerId, bo
   Std_ReturnType retval  = E_NOT_OK;
   uint8 errorId = CANIF_E_NO_ERROR;
 
-# if(CANIF_DEV_ERROR_DETECT == STD_ON)
-#  if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_DEV_ERROR_DETECT == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-#  endif
+#endif
 
   if(ControllerId >= CANIF_CFG_MAX_CONTROLLER){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
   else
-# endif
+#endif
   {
     CanIf_ChangeMirroring(CanIf_Controller_Value, MirroringActive);
     retval = E_OK;
   }
 
-# if(CANIF_DEV_ERROR_REPORT == STD_ON)
+#if(CANIF_DEV_ERROR_REPORT == STD_ON)
   if(errorId != CANIF_E_NO_ERROR){
     CanIf_Det_ReportError(CANIF_ENABLEBUSMIRRORING_API, errorId);
   }
-# else
+#else
   CANIF_DUMMY_STATEMENT(errorId);
-# endif
-# if((CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
+#endif
+#if((CANIF_ONE_CONTROLLER_OPTIMIZATION == STD_ON) && (CANIF_DEV_ERROR_DETECT == STD_OFF))
   CANIF_DUMMY_STATEMENT(ControllerId);
-# endif
+#endif
   return retval;
 }
 
@@ -5692,13 +5692,13 @@ FUNC(Can_ReturnType, CANIF_CODE) Appl_GenericConfirmation(uint8 Controller, Can_
   uint8 errorId = CANIF_E_NO_ERROR;
 
 #if(CANIF_DEV_ERROR_DETECT == STD_ON)
-# if(CANIF_USE_INIT_POINTER == STD_ON)
+#if(CANIF_USE_INIT_POINTER == STD_ON)
 
   if(CanIf_SystemInit == FALSE){
     errorId = CANIF_E_UNINIT;
   }
   else
-# endif
+#endif
 
   if(DataPtr == NULL_PTR){
     errorId = CANIF_E_PARAM_POINTER;
@@ -5711,24 +5711,24 @@ FUNC(Can_ReturnType, CANIF_CODE) Appl_GenericConfirmation(uint8 Controller, Can_
   else if(CanIf_GetCtrlMode(CANIF_CFG_TX_CONTROLLER(DataPtr->swPduHandle)) == CANIF_CS_UNINIT ){
     errorId = CANIF_E_UNINIT;
   }
-# if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
-#  if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
+#if(CANIF_MULTIPLE_CANDRV_SUPPORT == STD_ON)
+#if(CANIF_POSTBUILD_VARIANT_SUPPORT == STD_ON)
 
   else if(!CANIF_CFG_IS_CANDRVINDEXVALID(CANIF_CFG_TX_CONTROLLER(DataPtr->swPduHandle))){
     errorId = CANIF_E_PARAM_CONTROLLERID;
   }
-#  endif
-# endif
+#endif
+#endif
   else
 #endif
   {
     if(CanIf_GetCtrlMode(CANIF_CFG_TX_CONTROLLER(DataPtr->swPduHandle)) == CANIF_CS_STARTED){
       if( (CanIf_GetChannelMode(CANIF_CFG_TX_CONTROLLER(DataPtr->swPduHandle)) == CANIF_GET_ONLINE) ||
              (CanIf_GetChannelMode(CANIF_CFG_TX_CONTROLLER(DataPtr->swPduHandle)) == CANIF_GET_TX_ONLINE)
-# if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
+#if(CANIF_PN_WU_TX_PDU_FILTER == STD_ON)
         || (CanIf_GetChannelMode(CANIF_CFG_TX_CONTROLLER(DataPtr->swPduHandle)) == CANIF_GET_ONLINE_WAKF)
         || (CanIf_GetChannelMode(CANIF_CFG_TX_CONTROLLER(DataPtr->swPduHandle)) == CANIF_GET_TX_ONLINE_WAKF)
-# endif
+#endif
          )
       {
         if(CanIf_IsMirroringEnabled(CANIF_CFG_TX_CONTROLLER(DataPtr->swPduHandle)))
