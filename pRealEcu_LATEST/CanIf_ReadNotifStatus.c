@@ -62,14 +62,14 @@ FUNC(Type_EcuabCanIf_eStatusNotification, CANIF_CODE) CanIf_ReadTxNotifStatus(
        VAR(uint16,                              AUTOMATIC                 ) ltxPduCustId_t   = CanIf_Lok_ConfigSet_tpst->TxPduIdTable_Ptr[CanIfTxSduId];
    P2CONST(CanIf_Cfg_TxPduConfig_tst,           AUTOMATIC, CANIF_CFG_CONST) lTxPduConfig_pst = CanIf_Lok_ConfigSet_tpst->CanIf_TxPduConfigPtr + ltxPduCustId_t;
      P2VAR(Type_EcuabCanIf_eStatusNotification, AUTOMATIC, AUTOMATIC      ) lTxNotifPtr      = (CanIf_Lok_TxNotification_aen + ltxPduCustId_t);
-       VAR(Type_EcuabCanIf_eStatusNotification, AUTOMATIC                 ) NotifStatus      = EcuabCanIf_eStatusNotification_NONE;
+       VAR(Type_EcuabCanIf_eStatusNotification, AUTOMATIC                 ) NotifStatus      = CANIF_NO_NOTIFICATION;
    if(
          FALSE
       != lTxPduConfig_pst->TxPduReadNotifyStatus
    ){
       SchM_Enter_CanIf_TxRxNotifNoNest();
       NotifStatus    = (Type_EcuabCanIf_eStatusNotification)(*lTxNotifPtr);
-      *(lTxNotifPtr) = EcuabCanIf_eStatusNotification_NONE;
+      *(lTxNotifPtr) = CANIF_NO_NOTIFICATION;
       SchM_Exit_CanIf_TxRxNotifNoNest();
    }
    return NotifStatus;
@@ -80,14 +80,14 @@ FUNC(Type_EcuabCanIf_eStatusNotification, CANIF_CODE) CanIf_ReadRxNotifStatus(
 ){
    P2CONST(CanIf_Cfg_RxPduType_tst, AUTOMATIC, CANIF_CFG_CONST) RxPduCfg_pcst     = CanIf_Lok_ConfigSet_tpst->RxPduConfig_pcst + CanIf_Lok_ConfigSet_tpst->RxPduIdTable_Ptr[CanIfRxSduId];
    P2VAR(Type_EcuabCanIf_eStatusNotification,     AUTOMATIC, AUTOMATIC      ) RxNotifStatus_pen = CanIf_Lok_RxNotification_taen;
-   VAR(Type_EcuabCanIf_eStatusNotification,       AUTOMATIC                 ) NotifStatus_ten   = EcuabCanIf_eStatusNotification_NONE;
+   VAR(Type_EcuabCanIf_eStatusNotification,       AUTOMATIC                 ) NotifStatus_ten   = CANIF_NO_NOTIFICATION;
    if(
          (RxPduCfg_pcst->RxPduReadNotifyReadDataStatus_u8 == CANIF_READ_NOTIFSTATUS_DATA)
       || (RxPduCfg_pcst->RxPduReadNotifyReadDataStatus_u8 == CANIF_READ_NOTIFSTATUS)
    ){
       SchM_Enter_CanIf_TxRxNotifNoNest();
       NotifStatus_ten = *(RxNotifStatus_pen + CanIfRxSduId);
-      *(RxNotifStatus_pen + CanIfRxSduId) = EcuabCanIf_eStatusNotification_NONE;
+      *(RxNotifStatus_pen + CanIfRxSduId) = CANIF_NO_NOTIFICATION;
       SchM_Exit_CanIf_TxRxNotifNoNest();
    }
    return NotifStatus_ten;

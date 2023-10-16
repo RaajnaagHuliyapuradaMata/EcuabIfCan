@@ -76,18 +76,18 @@ FUNC(void, CANIF_CODE) CanIf_Init(
 
 #if(CANIF_READTXPDU_NOTIFY_STATUS_API != STD_OFF)
    for(pdu_uo = 0; pdu_uo < CanIf_Lok_ConfigSet_tpst->NumOfTxPdus; pdu_uo++){
-        CanIf_Lok_TxNotification_aen[pdu_uo] = EcuabCanIf_eStatusNotification_NONE;
+        CanIf_Lok_TxNotification_aen[pdu_uo] = CANIF_NO_NOTIFICATION;
    }
 #endif
 
    for(index_u32 = 0; index_u32 < numControllers_u8; index_u32++){
-        (controllerState_pst + index_u32)->DeviceMode = EcuabCanIf_eModeController_STOPPED;
-        (controllerState_pst + index_u32)->ChannelMode = EcuabCanIf_eModePdu_OFFLINE;
+        (controllerState_pst + index_u32)->DeviceMode = CANIF_CS_STOPPED;
+        (controllerState_pst + index_u32)->ChannelMode = CANIF_OFFLINE;
    }
 
 #if(CANIF_PUBLIC_READRXPDU_NOTIFY_STATUS_API != STD_OFF)
    for(pdu_uo=CANIF_ZERO; pdu_uo < CanIf_Lok_ConfigSet_tpst->NumCanRxPduId_t; pdu_uo++){
-        CanIf_Lok_RxNotification_taen[pdu_uo] = EcuabCanIf_eStatusNotification_NONE;
+        CanIf_Lok_RxNotification_taen[pdu_uo] = CANIF_NO_NOTIFICATION;
    }
 #endif
    CanIf_Lok_InitStatus_b = TRUE;

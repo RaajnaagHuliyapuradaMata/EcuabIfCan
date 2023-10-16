@@ -58,21 +58,21 @@
 extern FUNC(void, CANIF_CODE) CanIf_Init(P2CONST (Type_CfgEcuabCanIf_st, AUTOMATIC, CANIF_APPL_CONST) ConfigPtr);
 
 extern FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetControllerMode(VAR (uint8,AUTOMATIC) ControllerId
-   ,     VAR(Type_EcuabCanIf_eModesController,AUTOMATIC) ControllerMode);
+   ,     VAR(Type_EcuabCanIf_eModeController,AUTOMATIC) ControllerMode);
 
 extern FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetControllerMode(VAR(uint8,AUTOMATIC) ControllerId
-   ,     P2VAR(Type_EcuabCanIf_eModesController, AUTOMATIC, CANIF_APPL_DATA) ControllerModePtr);
+   ,     P2VAR(Type_EcuabCanIf_eModeController, AUTOMATIC, CANIF_APPL_DATA) ControllerModePtr);
 
 extern FUNC(Std_ReturnType, CANIF_CODE) CanIf_Transmit(VAR(Type_SwcServiceCom_tIdPdu,AUTOMATIC) CanIfTxSduId
    ,     P2CONST(Type_SwcServiceCom_stInfoPdu, AUTOMATIC, CANIF_APPL_CONST) CanIfTxInfoPtr);
 
 extern FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetPduMode(VAR(uint8,AUTOMATIC) ControllerId
-   ,     VAR(Type_EcuabCanIf_eModesPdu,AUTOMATIC) PduModeRequest);
+   ,     VAR(Type_EcuabCanIf_eModePdu,AUTOMATIC) PduModeRequest);
 extern FUNC(void, CANIF_CODE) CanIf_DeInit(P2CONST (Type_CfgEcuabCanIf_st, AUTOMATIC, CANIF_APPL_CONST) ConfigPtr);
 
 extern FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetPduMode(
                                                          VAR(uint8,AUTOMATIC) ControllerId
-   ,     P2VAR(Type_EcuabCanIf_eModesPdu, AUTOMATIC,CANIF_APPL_DATA) PduModePtr
+   ,     P2VAR(Type_EcuabCanIf_eModePdu, AUTOMATIC,CANIF_APPL_DATA) PduModePtr
 );
 
 extern FUNC(Std_ReturnType, CANIF_CODE) CanIf_ReadRxPduData(VAR(Type_SwcServiceCom_tIdPdu, AUTOMATIC) CanIfRxSduId

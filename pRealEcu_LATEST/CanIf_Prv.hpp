@@ -83,8 +83,8 @@
 /* TYPEDEFS                                                                   */
 /******************************************************************************/
 typedef struct{
-   Type_EcuabCanIf_eModesController    DeviceMode;
-   Type_EcuabCanIf_eModesPdu           ChannelMode;
+   Type_EcuabCanIf_eModeController    DeviceMode;
+   Type_EcuabCanIf_eModePdu           ChannelMode;
 }CanIf_ControllerStateType;
 
 /******************************************************************************/
@@ -124,6 +124,11 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_XCore_LocalCore_Transmit(
 
 extern FUNC(Std_ReturnType, CANIF_CODE)CanIf_XCore_LocalCore_TxConfirmation(
    P2CONST(CanIf_Cfg_TxPduConfig_tst, AUTOMATIC, CANIF_CFG_CONST) CanIf_TxPduConfig_pst
+);
+
+extern FUNC(Std_ReturnType, CANIF_CODE)CanIf_XCore_LocalCore_RxIndication(
+      P2CONST(CanIf_Cfg_RxPduType_tst,      AUTOMATIC, CANIF_CFG_CONST) CanIf_RXPduConfig_pst
+   ,  P2CONST(Type_SwcServiceCom_stInfoPdu, AUTOMATIC, CANIF_CFG_CONST) CanIf_ULPduinfo_pst
 );
 
 /******************************************************************************/

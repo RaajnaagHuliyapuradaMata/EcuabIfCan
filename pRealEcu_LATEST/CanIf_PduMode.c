@@ -60,14 +60,14 @@
 #include "CanIf_MemMap.hpp"
 FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetPduMode(
       VAR(uint8,     AUTOMATIC) ControllerId
-   ,  VAR(Type_EcuabCanIf_eModesPdu, AUTOMATIC) PduModeRequest
+   ,  VAR(Type_EcuabCanIf_eModePdu, AUTOMATIC) PduModeRequest
 ){
      VAR(Std_ReturnType,     AUTOMATIC) lRetVal_en         = E_NOT_OK;
    P2VAR(CanIf_ControllerStateType, AUTOMATIC, AUTOMATIC) lControllerState_p = CanIf_Lok_ControllerState_ast + ControllerId;
 
    if(
          lControllerState_p->DeviceMode
-      != EcuabCanIf_eModeController_STARTED
+      != CANIF_CS_STARTED
    ){
       lRetVal_en = E_NOT_OK;
    }
@@ -80,7 +80,7 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_SetPduMode(
 
 FUNC(Std_ReturnType, CANIF_CODE) CanIf_GetPduMode(
         VAR(uint8,     AUTOMATIC                 ) ControllerId
-   ,  P2VAR(Type_EcuabCanIf_eModesPdu, AUTOMATIC, CANIF_APPL_DATA) PduModePtr
+   ,  P2VAR(Type_EcuabCanIf_eModePdu, AUTOMATIC, CANIF_APPL_DATA) PduModePtr
 ){
    P2VAR(CanIf_ControllerStateType, AUTOMATIC, AUTOMATIC) lControllerState_p = CanIf_Lok_ControllerState_ast + ControllerId;
    *PduModePtr = lControllerState_p->ChannelMode;

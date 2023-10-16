@@ -54,11 +54,8 @@
 /******************************************************************************/
 /* FUNCTIONS                                                                  */
 /******************************************************************************/
-extern FUNC(void, CANIF_CODE) infEcuabCanIfMcalCan_vIndicationRx(
-      P2CONST(Can_HwType,                   AUTOMATIC, CANIF_APPL_DATA) Mailbox
-   ,  P2CONST(Type_SwcServiceCom_stInfoPdu, AUTOMATIC, CANIF_APPL_DATA) PduInfoPtr
-);
-
+extern FUNC(void, CANIF_CODE) CanIf_RxIndication_Internal(P2CONST(Can_HwType, AUTOMATIC, CANIF_APPL_DATA) Mailbox
+   ,     P2CONST(Type_SwcServiceCom_stInfoPdu, AUTOMATIC, CANIF_APPL_DATA)PduInfoPtr);
 extern FUNC(void, CANIF_CODE) CanIf_TrcvModeIndication( VAR(uint8,AUTOMATIC) TransceiverId
    ,     VAR(CanTrcv_TrcvModeType,AUTOMATIC) TransceiverMode);
 extern FUNC(void, CANIF_CODE) CanIf_ClearTrcvWufFlagIndication( VAR(uint8,AUTOMATIC) TransceiverId);
@@ -70,7 +67,7 @@ extern FUNC(void, CANIF_CODE) CanIf_ControllerBusOff(VAR(uint8,AUTOMATIC) Contro
 
 extern FUNC(void, CANIF_CODE) CanIf_ControllerModeIndication(
       VAR(uint8,                    AUTOMATIC) ControllerId
-   ,  VAR(Type_EcuabCanIf_eModesController, AUTOMATIC) ControllerMode
+   ,  VAR(Type_EcuabCanIf_eModeController, AUTOMATIC) ControllerMode
 );
 
 extern FUNC(void, CANIF_CODE) CanIf_ControllerErrorPassive(VAR(uint8, AUTOMATIC) ControllerId);
