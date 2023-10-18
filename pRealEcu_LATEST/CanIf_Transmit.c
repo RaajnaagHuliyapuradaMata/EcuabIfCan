@@ -93,10 +93,10 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_XCore_LocalCore_Transmit(
           VAR(Type_SwcServiceCom_tIdPdu,    AUTOMATIC                  ) CanIfTxSduId
    ,  P2CONST(Type_SwcServiceCom_stInfoPdu, AUTOMATIC, CANIF_APPL_CONST) CanIfTxInfoPtr
 ){
-       VAR(Type_EcuabCanIf_eModeController, AUTOMATIC                 ) lDeviceMode_en;
-       VAR(Type_EcuabCanIf_eModePdu,        AUTOMATIC                 ) lChannelMode_en;
+       VAR(Type_EcuabCanIf_eModesController, AUTOMATIC                 ) lDeviceMode_en;
+       VAR(Type_EcuabCanIf_eModesPdu,        AUTOMATIC                 ) lChannelMode_en;
        VAR(Type_McalCan_stPdu,              AUTOMATIC                 ) lPduInfo_st         = {NULL_PTR, 0, 0, 0};
-       VAR(Type_McalCan_eReturn,            AUTOMATIC                 ) lCanStatus_en       = CAN_NOT_OK;
+       VAR(Type_McalCan_eReturn,            AUTOMATIC                 ) lCanStatus_en       = McalCan_eReturn_NOK;
        VAR(Type_SwcServiceCom_tLengthPdu,   AUTOMATIC                 ) lSduLength          = 0;
        VAR(uint32,                          AUTOMATIC                 ) lCanId_u32          = 0;
        VAR(uint16,                          AUTOMATIC                 ) ltxPduCustId_t      = CanIf_Lok_ConfigSet_tpst->TxPduIdTable_Ptr[CanIfTxSduId];
@@ -112,8 +112,8 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_XCore_LocalCore_Transmit(
    SchM_Exit_CanIf_ControllerState();
 
    if(
-         (lDeviceMode_en  == CANIF_CS_STARTED)
-      && (lChannelMode_en == CANIF_ONLINE)
+         (lDeviceMode_en  == EcuabCanIf_eModeController_STARTED)
+      && (lChannelMode_en == EcuabCanIf_eModePdu_ONLINE)
    ){
       if(
             lTxPduConfig_pst->TxPduCanId
@@ -146,8 +146,8 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_XCore_LocalCore_Transmit(
          ,  &lPduInfo_st
       );
 
-           if(lCanStatus_en == CAN_OK)  {lRetVal_en = E_OK;}
-      else if(lCanStatus_en == CAN_BUSY){lRetVal_en = E_NOT_OK;}
+           if(lCanStatus_en == McalCan_eReturn_OK)  {lRetVal_en = E_OK;}
+      else if(lCanStatus_en == McalCan_eReturn_BUSY){lRetVal_en = E_NOT_OK;}
       else                              {lRetVal_en = E_NOT_OK;}
    }
    else{

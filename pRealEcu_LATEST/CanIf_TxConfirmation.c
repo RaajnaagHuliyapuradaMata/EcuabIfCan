@@ -70,7 +70,7 @@ void CanIf_TxConfirmation(
          FALSE
       != lTxPduConfig_pst->TxPduReadNotifyStatus
    ){
-      *(lTxNotifPtr + CanTxPduId) = CANIF_TX_RX_NOTIFICATION;
+      *(lTxNotifPtr + CanTxPduId) = EcuabCanIf_eStatusNotification_TX_RX;
    }
 
    if(
@@ -80,7 +80,7 @@ void CanIf_TxConfirmation(
          )
       && (
                lControllerState_p->ChannelMode
-            == CANIF_ONLINE
+            == EcuabCanIf_eModePdu_ONLINE
          )
    ){
       (void)CanIf_XCore_LocalCore_TxConfirmation(

@@ -83,8 +83,8 @@
 /* TYPEDEFS                                                                   */
 /******************************************************************************/
 typedef struct{
-   Type_EcuabCanIf_eModeController    DeviceMode;
-   Type_EcuabCanIf_eModePdu           ChannelMode;
+   Type_EcuabCanIf_eModesController    DeviceMode;
+   Type_EcuabCanIf_eModesPdu           ChannelMode;
 }CanIf_ControllerStateType;
 
 /******************************************************************************/

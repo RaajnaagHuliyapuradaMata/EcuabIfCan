@@ -60,26 +60,26 @@ FUNC(void, CANIF_CODE) CanIf_RxIndication_Internal(
       P2CONST(Can_HwType,                   AUTOMATIC, CANIF_APPL_DATA) Mailbox
    ,  P2CONST(Type_SwcServiceCom_stInfoPdu, AUTOMATIC, CANIF_APPL_DATA) PduInfoPtr
 ){
-     P2VAR(Type_EcuabCanIf_eStatusNotification,        AUTOMATIC, AUTOMATIC      ) RxNotifPtr_pen     = CanIf_Lok_RxNotification_taen;
-       VAR(Type_McalCan_tId,             AUTOMATIC                 ) CanIdNoIdType_t    = Mailbox->CanId & CANIF_PRV_MSB_BIT_RESET;
-       VAR(uint8,                        AUTOMATIC                 ) CanIdPduType_u8    = (uint8)((Mailbox->CanId)>>CANIF_CANID_BIT_SHIFT);
-   P2CONST(CanIf_Cfg_Hrhtype_tst,        AUTOMATIC, CANIF_CFG_CONST) HrhCfg_pcst        = CanIf_Lok_ConfigSet_tpst->HrhConfig_pcst + CanIf_Lok_ConfigSet_tpst->HrhPduIdTable_Ptr[Mailbox->Hoh];
-     P2VAR(CanIf_ControllerStateType,    AUTOMATIC, AUTOMATIC      ) ControllerState_ps = CanIf_Lok_ControllerState_ast + Mailbox->ControllerId;
-       VAR(uint8,                        AUTOMATIC                 ) ModeChkStatus      = CANIF_PRV_INVALID_CHANNEL_MODE;
-       VAR(boolean,                      AUTOMATIC                 ) IdFound_b          = FALSE;
-       VAR(uint8,                        AUTOMATIC                 ) Index_u8;
-       VAR(Type_SwcServiceCom_tIdPdu,    AUTOMATIC                 ) PduId_qu8;
-   P2CONST(CanIf_Cfg_RxPduType_tst,      AUTOMATIC, CANIF_CFG_CONST) RxPduCfg_pcst;
-       VAR(Type_SwcServiceCom_stInfoPdu, AUTOMATIC                 ) PduInfoTemp_tst;
-       VAR(Type_SwcServiceCom_stInfoPdu, AUTOMATIC                 ) ULPduInfoTyp_tst;
+     P2VAR(Type_EcuabCanIf_eStatusNotification, AUTOMATIC, AUTOMATIC      ) RxNotifPtr_pen     = CanIf_Lok_RxNotification_taen;
+       VAR(Type_McalCan_tId,                    AUTOMATIC                 ) CanIdNoIdType_t    = Mailbox->CanId & CANIF_PRV_MSB_BIT_RESET;
+       VAR(uint8,                               AUTOMATIC                 ) CanIdPduType_u8    = (uint8)((Mailbox->CanId)>>CANIF_CANID_BIT_SHIFT);
+   P2CONST(CanIf_Cfg_Hrhtype_tst,               AUTOMATIC, CANIF_CFG_CONST) HrhCfg_pcst        = CanIf_Lok_ConfigSet_tpst->HrhConfig_pcst + CanIf_Lok_ConfigSet_tpst->HrhPduIdTable_Ptr[Mailbox->Hoh];
+     P2VAR(CanIf_ControllerStateType,           AUTOMATIC, AUTOMATIC      ) ControllerState_ps = CanIf_Lok_ControllerState_ast + Mailbox->ControllerId;
+       VAR(uint8,                               AUTOMATIC                 ) ModeChkStatus      = CANIF_PRV_INVALID_CHANNEL_MODE;
+       VAR(boolean,                             AUTOMATIC                 ) IdFound_b          = FALSE;
+       VAR(uint8,                               AUTOMATIC                 ) Index_u8;
+       VAR(Type_SwcServiceCom_tIdPdu,           AUTOMATIC                 ) PduId_qu8;
+   P2CONST(CanIf_Cfg_RxPduType_tst,             AUTOMATIC, CANIF_CFG_CONST) RxPduCfg_pcst;
+       VAR(Type_SwcServiceCom_stInfoPdu,        AUTOMATIC                 ) PduInfoTemp_tst;
+       VAR(Type_SwcServiceCom_stInfoPdu,        AUTOMATIC                 ) ULPduInfoTyp_tst;
 
    if(
-         CANIF_CS_STARTED
+         EcuabCanIf_eModeController_STARTED
       == ControllerState_ps->DeviceMode
    ){
       if(
-            (CANIF_TX_OFFLINE == ControllerState_ps->ChannelMode)
-         || (CANIF_ONLINE     == ControllerState_ps->ChannelMode)
+            (EcuabCanIf_eModePdu_TX_OFFLINE == ControllerState_ps->ChannelMode)
+         || (EcuabCanIf_eModePdu_ONLINE     == ControllerState_ps->ChannelMode)
       ){
          ModeChkStatus = CANIF_PRV_VALID_CHANNEL_MODE;
          Index_u8 = 0;
@@ -126,7 +126,7 @@ FUNC(void, CANIF_CODE) CanIf_RxIndication_Internal(
             (CANIF_READ_NOTIFSTATUS_DATA == RxPduCfg_pcst->RxPduReadNotifyReadDataStatus_u8)
          || (CANIF_READ_NOTIFSTATUS      == RxPduCfg_pcst->RxPduReadNotifyReadDataStatus_u8)
       ){
-         *(RxNotifPtr_pen + PduId_qu8) = CANIF_TX_RX_NOTIFICATION;
+         *(RxNotifPtr_pen + PduId_qu8) = EcuabCanIf_eStatusNotification_TX_RX;
       }
       if(
             RxPduCfg_pcst->IndexForUL_u8

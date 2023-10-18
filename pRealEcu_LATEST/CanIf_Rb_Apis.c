@@ -65,10 +65,10 @@ FUNC(void, CANIF_CODE) CanIf_ResetDynamicTxId(VAR(Type_SwcServiceCom_tIdPdu, AUT
 }
 
 FUNC(Std_ReturnType, CANIF_CODE) CanIf_Rn_ReadTxPduCanId(
-                                                    VAR(Type_SwcServiceCom_tIdPdu,AUTOMATIC) CanIfTxPduId
+                                                    VAR(Type_SwcServiceCom_tIdPdu, AUTOMATIC) CanIfTxPduId
    ,     P2VAR(uint32, AUTOMATIC, AUTOMATIC) TxPduCanId
 ){
-   VAR(Std_ReturnType,AUTOMATIC) RetVal = E_NOT_OK;
+   VAR(Std_ReturnType, AUTOMATIC) RetVal = E_NOT_OK;
    P2CONST(CanIf_Cfg_TxPduConfig_tst, AUTOMATIC, CANIF_CFG_CONST) lTxPduConfig_pst;
    VAR (uint32, AUTOMATIC         ) lCanId_u32             = 0;
    VAR(uint16, AUTOMATIC)          ltxPduCustId_t;
@@ -105,8 +105,8 @@ FUNC(Std_ReturnType, CANIF_CODE)CanIf_ReturnTxPduId(
    ,     P2VAR(Type_SwcServiceCom_tIdPdu, AUTOMATIC, CANIF_APPL_CONST) CanIfTxPduIdPtr
 ){
    VAR (uint16_least, AUTOMATIC) CanIf_TotalTxPduId;
-   VAR (Type_SwcServiceCom_tIdPdu,AUTOMATIC) PduIdx_Temp;
-   VAR (Std_ReturnType,AUTOMATIC) Ret_Val = E_NOT_OK;
+   VAR (Type_SwcServiceCom_tIdPdu, AUTOMATIC) PduIdx_Temp;
+   VAR (Std_ReturnType, AUTOMATIC) Ret_Val = E_NOT_OK;
    P2CONST(CanIf_Cfg_TxPduConfig_tst, AUTOMATIC, CANIF_CFG_CONST) lTxPduConfig_pst;
    CanIf_TotalTxPduId = CanIf_Lok_ConfigSet_tpst->NumOfTxPdus;
    lTxPduConfig_pst = CanIf_Lok_ConfigSet_tpst->CanIf_TxPduConfigPtr;
@@ -127,8 +127,8 @@ FUNC(Std_ReturnType, CANIF_CODE)CanIf_ReturnTxPduId(
 FUNC(Std_ReturnType, CANIF_CODE) CanIf_ReturnRxPduId(VAR(Type_SwcServiceCom_tIdPdu, AUTOMATIC) CanIfRxTargetPduId
    ,     P2VAR(Type_SwcServiceCom_tIdPdu, AUTOMATIC, AUTOMATIC) CanIfRxPduIdPtr
 ){
-   VAR (Type_SwcServiceCom_tIdPdu,AUTOMATIC) PduIdx_t;
-   VAR(Std_ReturnType,AUTOMATIC) Status_t= E_NOT_OK;
+   VAR (Type_SwcServiceCom_tIdPdu, AUTOMATIC) PduIdx_t;
+   VAR(Std_ReturnType, AUTOMATIC) Status_t= E_NOT_OK;
    P2CONST(CanIf_Cfg_RxPduType_tst, AUTOMATIC, CANIF_CFG_CONST) RxPduCfg_pcst;
     RxPduCfg_pcst = CanIf_Lok_ConfigSet_tpst->RxPduConfig_pcst;
 
