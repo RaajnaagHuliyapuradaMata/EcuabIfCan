@@ -45,7 +45,7 @@
 
 #define CANIF_MODULE_ID                       60u
 
-#define CANIF_VENDOR_ID                       0x001Eu
+#define CANIF_VENDOR_ID                       0x0001u
 
 #define CANIF_LINEAR                          1u
 #define CANIF_BINARY                          2u
