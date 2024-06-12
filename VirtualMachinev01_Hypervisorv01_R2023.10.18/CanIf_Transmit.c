@@ -1,23 +1,7 @@
 /******************************************************************************/
 /* File   : CanIf_Transmit.c                                                  */
-/*                                                                            */
-/* Author : Nagaraja HULIYAPURADA MATA                                        */
-/*                                                                            */
-/* License / Warranty / Terms and Conditions                                  */
-/*                                                                            */
-/* Everyone is permitted to copy and distribute verbatim copies of this lice- */
-/* nse document, but changing it is not allowed. This is a free, copyright l- */
-/* icense for software and other kinds of works. By contrast, this license is */
-/* intended to guarantee your freedom to share and change all versions of a   */
-/* program, to make sure it remains free software for all its users. You have */
-/* certain responsibilities, if you distribute copies of the software, or if  */
-/* you modify it: responsibilities to respect the freedom of others.          */
-/*                                                                            */
-/* All rights reserved. Copyright � 1982 Nagaraja HULIYAPURADA MATA           */
-/*                                                                            */
-/* Always refer latest software version from:                                 */
-/* https://github.com/RaajnaagHuliyapuradaMata?tab=repositories               */
-/*                                                                            */
+/* Author : Nagaraja HULIYAPURADA-MATA                                        */
+/* Date   : 01.02.1982                                                        */
 /******************************************************************************/
 
 /******************************************************************************/
@@ -94,20 +78,20 @@ FUNC(Std_ReturnType, CANIF_CODE) CanIf_XCore_LocalCore_Transmit(
 ){
        VAR(Type_EcuabCanIf_eModesController, AUTOMATIC                 ) lDeviceMode_en;
        VAR(Type_EcuabCanIf_eModesPdu,        AUTOMATIC                 ) lChannelMode_en;
-       VAR(Type_McalCan_stPdu,              AUTOMATIC                 ) lPduInfo_st         = {NULL_PTR, 0, 0, 0};
-       VAR(Type_McalCan_eReturn,            AUTOMATIC                 ) lCanStatus_en       = McalCan_eReturn_NOK;
-       VAR(Type_SwcServiceCom_tLengthPdu,   AUTOMATIC                 ) lSduLength          = 0;
-       VAR(uint32,                          AUTOMATIC                 ) lCanId_u32          = 0;
-       VAR(uint16,                          AUTOMATIC                 ) ltxPduCustId_t      = CanIf_Lok_ConfigSet_tpst->TxPduIdTable_Ptr[CanIfTxSduId];
-   P2CONST(CanIf_Cfg_TxPduConfig_tst,       AUTOMATIC, CANIF_CFG_CONST) lTxPduConfig_pst    = (CanIf_Lok_ConfigSet_tpst->CanIf_TxPduConfigPtr) + ltxPduCustId_t;
-       VAR(Type_McalCan_tHandleHw,          AUTOMATIC                 ) lHth_uo             = lTxPduConfig_pst->CanIf_TxBufferConfigPtr->CanIf_HthConfigPtr->CanObjectId;
-       VAR(uint8,                           AUTOMATIC                 ) lControllerId_u8    = lTxPduConfig_pst->CanIf_TxBufferConfigPtr->CanIf_HthConfigPtr->CanIf_CtrlConfigPtr->CtrlId;
-     P2VAR(CanIf_ControllerStateType,       AUTOMATIC, AUTOMATIC      ) lControllerState_en = CanIf_Lok_ControllerState_ast + lControllerId_u8;
-       VAR(Std_ReturnType,                  AUTOMATIC                 ) lRetVal_en          = E_NOT_OK;
+       VAR(Type_McalCan_stPdu,               AUTOMATIC                 ) lPduInfo_st         = {NULL_PTR, 0, 0, 0};
+       VAR(Type_McalCan_eReturn,             AUTOMATIC                 ) lCanStatus_en       = McalCan_eReturn_NOK;
+       VAR(Type_SwcServiceCom_tLengthPdu,    AUTOMATIC                 ) lSduLength          = 0;
+       VAR(uint32,                           AUTOMATIC                 ) lCanId_u32          = 0;
+       VAR(uint16,                           AUTOMATIC                 ) ltxPduCustId_t      = CanIf_Lok_ConfigSet_tpst->TxPduIdTable_Ptr[CanIfTxSduId];
+   P2CONST(CanIf_Cfg_TxPduConfig_tst,        AUTOMATIC, CANIF_CFG_CONST) lTxPduConfig_pst    = (CanIf_Lok_ConfigSet_tpst->CanIf_TxPduConfigPtr) + ltxPduCustId_t;
+       VAR(Type_McalCan_tHandleHw,           AUTOMATIC                 ) lHth_uo             = lTxPduConfig_pst->CanIf_TxBufferConfigPtr->CanIf_HthConfigPtr->CanObjectId;
+       VAR(uint8,                            AUTOMATIC                 ) lControllerId_u8    = lTxPduConfig_pst->CanIf_TxBufferConfigPtr->CanIf_HthConfigPtr->CanIf_CtrlConfigPtr->CtrlId;
+     P2VAR(CanIf_ControllerStateType,        AUTOMATIC, AUTOMATIC      ) lControllerState_en = CanIf_Lok_ControllerState_ast + lControllerId_u8;
+       VAR(Std_ReturnType,                   AUTOMATIC                 ) lRetVal_en          = E_NOT_OK;
 
    SchM_Enter_CanIf_ControllerState();
-   lDeviceMode_en      = lControllerState_en->DeviceMode;
-   lChannelMode_en     = lControllerState_en->ChannelMode;
+   lDeviceMode_en  = lControllerState_en->DeviceMode;
+   lChannelMode_en = lControllerState_en->ChannelMode;
    SchM_Exit_CanIf_ControllerState();
 
    if(

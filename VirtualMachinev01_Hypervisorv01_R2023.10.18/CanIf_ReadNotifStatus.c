@@ -1,23 +1,7 @@
 /******************************************************************************/
 /* File   : CanIf_ReadNotifStatus.c                                           */
-/*                                                                            */
-/* Author : Nagaraja HULIYAPURADA MATA                                        */
-/*                                                                            */
-/* License / Warranty / Terms and Conditions                                  */
-/*                                                                            */
-/* Everyone is permitted to copy and distribute verbatim copies of this lice- */
-/* nse document, but changing it is not allowed. This is a free, copyright l- */
-/* icense for software and other kinds of works. By contrast, this license is */
-/* intended to guarantee your freedom to share and change all versions of a   */
-/* program, to make sure it remains free software for all its users. You have */
-/* certain responsibilities, if you distribute copies of the software, or if  */
-/* you modify it: responsibilities to respect the freedom of others.          */
-/*                                                                            */
-/* All rights reserved. Copyright © 1982 Nagaraja HULIYAPURADA MATA           */
-/*                                                                            */
-/* Always refer latest software version from:                                 */
-/* https://github.com/RaajnaagHuliyapuradaMata?tab=repositories               */
-/*                                                                            */
+/* Author : Nagaraja HULIYAPURADA-MATA                                        */
+/* Date   : 01.02.1982                                                        */
 /******************************************************************************/
 
 /******************************************************************************/
@@ -61,7 +45,7 @@ FUNC(Type_EcuabCanIf_eStatusNotification, CANIF_CODE) CanIf_ReadTxNotifStatus(
 ){
        VAR(uint16,                              AUTOMATIC                 ) ltxPduCustId_t   = CanIf_Lok_ConfigSet_tpst->TxPduIdTable_Ptr[CanIfTxSduId];
    P2CONST(CanIf_Cfg_TxPduConfig_tst,           AUTOMATIC, CANIF_CFG_CONST) lTxPduConfig_pst = CanIf_Lok_ConfigSet_tpst->CanIf_TxPduConfigPtr + ltxPduCustId_t;
-     P2VAR(Type_EcuabCanIf_eStatusNotification, AUTOMATIC, AUTOMATIC      ) lTxNotifPtr      = (CanIf_Lok_TxNotification_aen + ltxPduCustId_t);
+     P2VAR(Type_EcuabCanIf_eStatusNotification, AUTOMATIC, AUTOMATIC      ) lTxNotifPtr      = CanIf_Lok_TxNotification_aen                   + ltxPduCustId_t;
        VAR(Type_EcuabCanIf_eStatusNotification, AUTOMATIC                 ) NotifStatus      = EcuabCanIf_eStatusNotification_NONE;
    if(
          FALSE
@@ -78,12 +62,12 @@ FUNC(Type_EcuabCanIf_eStatusNotification, CANIF_CODE) CanIf_ReadTxNotifStatus(
 FUNC(Type_EcuabCanIf_eStatusNotification, CANIF_CODE) CanIf_ReadRxNotifStatus(
    VAR(Type_SwcServiceCom_tIdPdu, AUTOMATIC) CanIfRxSduId
 ){
-   P2CONST(CanIf_Cfg_RxPduType_tst, AUTOMATIC, CANIF_CFG_CONST) RxPduCfg_pcst     = CanIf_Lok_ConfigSet_tpst->RxPduConfig_pcst + CanIf_Lok_ConfigSet_tpst->RxPduIdTable_Ptr[CanIfRxSduId];
-   P2VAR(Type_EcuabCanIf_eStatusNotification,     AUTOMATIC, AUTOMATIC      ) RxNotifStatus_pen = CanIf_Lok_RxNotification_taen;
-   VAR(Type_EcuabCanIf_eStatusNotification,       AUTOMATIC                 ) NotifStatus_ten   = EcuabCanIf_eStatusNotification_NONE;
+   P2CONST(CanIf_Cfg_RxPduType_tst,             AUTOMATIC, CANIF_CFG_CONST) RxPduCfg_pcst     = CanIf_Lok_ConfigSet_tpst->RxPduConfig_pcst + CanIf_Lok_ConfigSet_tpst->RxPduIdTable_Ptr[CanIfRxSduId];
+     P2VAR(Type_EcuabCanIf_eStatusNotification, AUTOMATIC, AUTOMATIC      ) RxNotifStatus_pen = CanIf_Lok_RxNotification_taen;
+       VAR(Type_EcuabCanIf_eStatusNotification, AUTOMATIC                 ) NotifStatus_ten   = EcuabCanIf_eStatusNotification_NONE;
    if(
-         (RxPduCfg_pcst->RxPduReadNotifyReadDataStatus_u8 == CANIF_READ_NOTIFSTATUS_DATA)
-      || (RxPduCfg_pcst->RxPduReadNotifyReadDataStatus_u8 == CANIF_READ_NOTIFSTATUS)
+         (CANIF_READ_NOTIFSTATUS_DATA == RxPduCfg_pcst->RxPduReadNotifyReadDataStatus_u8)
+      || (CANIF_READ_NOTIFSTATUS      == RxPduCfg_pcst->RxPduReadNotifyReadDataStatus_u8)
    ){
       SchM_Enter_CanIf_TxRxNotifNoNest();
       NotifStatus_ten = *(RxNotifStatus_pen + CanIfRxSduId);
